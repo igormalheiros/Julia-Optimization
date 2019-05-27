@@ -16,8 +16,8 @@ Given a set of itens with different values and weights, determine which itens to
 <img src="imgs/knapsack/KnapsackObj.gif" /> 
 
 <h4>s.t.:</h4>
-- <img src="imgs/knapsack/KnpasackConst.gif" /> 
-- <img src="imgs/knapsack/KnapsackVariable.gif" /> 
+<img src="imgs/knapsack/KnpasackConst.gif" /> 
+<img src="imgs/knapsack/KnapsackVariable.gif" /> 
 
 <h2> Bin Packing Problem </h2>
 
