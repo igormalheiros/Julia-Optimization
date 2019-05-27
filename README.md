@@ -12,12 +12,12 @@ Given a set of itens with different values and weights, determine which itens to
 * Mixed Integer Programming
 
 <h3>Formulation</h3>
-Objective:
-- <img src="imgs/KnapsackObj.gif" /> 
+<h4>Objective:</h4>
+<img src="imgs/knapsack/KnapsackObj.gif" /> 
 
-s.t.:
-- <img src="imgs/KnapsackConst.gif" /> 
-- <img src="imgs/KnapsackVariable.gif" /> 
+<h4>s.t.:</h4>
+- <img src="imgs/knapsack/KnpasackConst.gif" /> 
+- <img src="imgs/knapsack/KnapsackVariable.gif" /> 
 
 <h2> Bin Packing Problem </h2>
 
