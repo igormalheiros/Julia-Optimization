@@ -72,3 +72,5 @@ Given an undirected graph, print all connected components.
 **Solutions**
 * Depth First Search (DFS)
 * Breadth First Search (BFS)
+
+This math is inline $`a^2+b^2=c^2`$.
