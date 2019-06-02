@@ -56,3 +56,19 @@ Given a set of itens with different weights, assign each item to a bin such that
 <img src="imgs/binpacking/BinPackingConst2.gif" /> 
 <img src="imgs/binpacking/BinPackingVariableX.gif" />
 <img src="imgs/binpacking/BinPackingVariableY.gif" />
+
+<h2>Subset Sum</h2>
+
+Given a set of non-negative integers, and a value, determine if there is a subset of the given set with sum equal to given value.
+
+**Solutions**
+* Brute Force (Recursion)
+* Dynamic Programming
+
+<h2> Connected Components </h2>
+
+Given an undirected graph, print all connected components.
+
+**Solutions**
+* Depth First Search (DFS)
+* Breadth First Search (BFS)
