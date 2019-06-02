@@ -12,6 +12,16 @@ Given a set of itens with different values and weights, determine which itens to
 * Mixed Integer Programming
 
 <h3>Formulation</h3>
+
+<h4>Constants:</h4>
+
+<img src="imgs/knapsack/ConstantValue.gif" /> 
+<img src="imgs/knapsack/ConstantWeight.gif" /> 
+<img src="imgs/knapsack/ConstantCapacity.gif" /> 
+
+<h4>Variables</h4>
+<img src="imgs/knapsack/VariableX.gif" /> 
+
 <h4>Objective:</h4>
 <img src="imgs/knapsack/KnapsackObj.gif" /> 
 
@@ -26,3 +36,23 @@ Given a set of itens with different weights, assign each item to a bin such that
 **Solutions**
 
 * Mixed Integer Programming
+
+<h3>Formulation</h3>
+
+<h4>Constants:</h4>
+
+<img src="imgs/binpacking/ConstantWeight.gif" /> 
+<img src="imgs/binpacking/ConstantCapacity.gif" /> 
+
+<h4>Variables</h4>
+<img src="imgs/binpacking/VariableY.gif" /> 
+<img src="imgs/binpacking/VariableX.gif" /> 
+
+<h4>Objective:</h4>
+<img src="imgs/binpacking/BinPackingObj.gif" /> 
+
+<h4>s.t.:</h4>
+<img src="imgs/binpacking/BinPackingConst1.gif" /> 
+<img src="imgs/binpacking/BinPackingConst2.gif" /> 
+<img src="imgs/binpacking/BinPackingVariableX.gif" />
+<img src="imgs/binpacking/BinPackingVariableY.gif" />
