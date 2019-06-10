@@ -10,7 +10,7 @@ struct Order
     demand::Int64
 end
 
-length = 11
+len = 11
 upperBound = 22
 
 orders = Order[]
@@ -19,8 +19,8 @@ push!(orders, Order(2, 3.5, 6))
 push!(orders, Order(3, 3, 5))
 push!(orders, Order(4, 4, 3))
 
-function solve(orders::Array{Order}, length::Int, n::Int)
-    m = size(orders)[1]
+function solve(orders::Array{Order}, len::Int, n::Int)
+    m = length(orders)
 
     model = Model(with_optimizer(GLPK.Optimizer));  
 
@@ -34,7 +34,7 @@ function solve(orders::Array{Order}, length::Int, n::Int)
     end
 
     for i in 1:n
-        @constraint( model, sum( orders[j].size * x[i, j] for j in 1:m) <= length * y[i] )
+        @constraint( model, sum( orders[j].size * x[i, j] for j in 1:m) <= len * y[i] )
     end
 
     JuMP.optimize!(model) # Old syntax: status = JuMP.solve(model)
@@ -49,7 +49,7 @@ function solve(orders::Array{Order}, length::Int, n::Int)
                     used += (orders[j].size * value(x[i, j]))
                 end
             end
-            println("Total used: ", used, "/", length)
+            println("Total used: ", used, "/", len)
         end
     end
 
@@ -63,4 +63,4 @@ function solve(orders::Array{Order}, length::Int, n::Int)
 
 end
 
-solve(orders, length, upperBound)
+solve(orders, len, upperBound)
