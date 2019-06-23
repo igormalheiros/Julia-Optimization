@@ -1,3 +1,6 @@
+# ====== Code by Igor Malheiros - May of 2019 ====== #
+# ====== Knapsack Problem using Greedy and Dynamic Programming approaches ====== #
+
 import Base: isless
 
 struct Item
@@ -8,7 +11,7 @@ end
 
 isless(a::Item, b::Item) = isless(a.value/a.weight, b.value/b.weight)
 
-function knapsackGreedy(itens, capacity)
+function knapsackGreedy(itens::Array{Item}, capacity::Int)
     sort!(itens, rev=true)
     knapsack = []
     load = 0
@@ -27,11 +30,9 @@ function knapsackGreedy(itens, capacity)
         println(i)
     end
 
-    return totalValue
-
 end
 
-function knapsackDP(itens, capacity)
+function knapsackDP(itens::Array{Item}, capacity::Int)
     n = length(itens)
     memo = zeros(Int64, n+1, capacity+1)
     
@@ -80,5 +81,5 @@ push!(itens, Item("Crown", 9, 3) )
 push!(itens, Item("Vase", 10, 8) )
 push!(itens, Item("Skull", 5, 5) )
 
-value = knapsackGreedy(itens, capacity)
+knapsackGreedy(itens, capacity)
 knapsackDP(itens, capacity)

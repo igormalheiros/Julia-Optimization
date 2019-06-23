@@ -1,3 +1,6 @@
+# ====== Code by Igor Malheiros - May of 2019 ====== #
+# ====== Bin Packing Problem using Integer Programming ====== #
+
 using JuMP, GLPK
 using MathOptInterface # Replaces MathProgBase
 const MOI = MathOptInterface
@@ -30,7 +33,7 @@ push!(itens, Item("Watch", 12, 4) )
 push!(itens, Item("Golden Coins", 20, 5) )
 
 
-function solve(itens, capacity)
+function solve(itens::Array{Item}, capacity::Int)
     n = length(itens)
     load = 0
 

@@ -1,3 +1,6 @@
+# ====== Code by Igor Malheiros - May of 2019 ====== #
+# ====== Knapsack Problem using Integer Programming ====== #
+
 using JuMP, GLPK
 using MathOptInterface # Replaces MathProgBase
 const MOI = MathOptInterface
@@ -23,7 +26,7 @@ push!(itens, Item("Crown", 9, 3) )
 push!(itens, Item("Vase", 10, 8) )
 push!(itens, Item("Skull", 5, 5) )
 
-function solve(itens, capacity)
+function solve(itens::Array{Item}, capacity::Int)
     load = 0
 
     model = Model(with_optimizer(GLPK.Optimizer));  

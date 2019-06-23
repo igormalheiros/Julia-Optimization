@@ -1,3 +1,7 @@
+# ====== Code by Igor Malheiros - June of 2019 ====== #
+# ====== Subsetsum using Brute Force and Dynamic Programming approaches ====== #
+
+
 function solveBruteForce(set::Array{Int}, indx::Int, sum::Int)
     if (sum == 0) return true end
     if (indx > length(set) ) return false end

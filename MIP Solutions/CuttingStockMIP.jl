@@ -1,3 +1,7 @@
+# ====== Code by Igor Malheiros - June of 2019 ====== #
+# ====== Cutting Stock Problem using Integer Programming ====== #
+
+
 using JuMP, GLPK
 using MathOptInterface # Replaces MathProgBase
 const MOI = MathOptInterface
