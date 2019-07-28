@@ -1,4 +1,4 @@
-# ====== Code by Igor Malheiros - May of 2019 ====== #
+# ====== Code by Igor Malheiros - June of 2019 ====== #
 # ====== Assignment Problem using Integer Programming ====== #
 
 using JuMP, GLPK
@@ -24,8 +24,7 @@ function solve(cost_matrix::Array{Int,2}, N::Int)
         @constraint(model, sum(x[i, j] for i in 1:N) == 1 )
     end
 
-    JuMP.optimize!(model) # Old syntax: status = JuMP.solve(model)
-
+    JuMP.optimize!(model)
 
     for i in 1:N
         for j in 1:N
