@@ -2,6 +2,34 @@
 
 # This Repository contains solutions and algorithms for many problems.
 
+<!-- ######### ASSIGNMENT ######### -->
+<h2> Assignment Problem </h2>
+
+Given a set of tasks and a set of agents, given costs for each agent to perform each task.  It is required to perform all tasks by assigning exactly one agent to each task and exactly one task to each agent in such a way that the total cost of the assignment is minimized.
+
+**Solutions**
+
+* Mixed Integer Programming
+
+<h3>Formulation</h3>
+
+<h4>Constants:</h4>
+
+<img src="imgs/assignment/Constants.gif" /> 
+
+<h4>Variables</h4>
+
+<img src="imgs/assignment/Variable.gif" /> 
+
+<h4>Objective:</h4>
+
+<img src="imgs/assignment/Objective.gif" /> 
+
+<h4>s.t.:</h4>
+
+<img src="imgs/assignment/Constraints.gif" /> 
+
+
 <!-- ######### BIN PACKING PROBLEM ######### -->
 <h2> Bin Packing Problem </h2>
 
