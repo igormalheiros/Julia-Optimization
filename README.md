@@ -125,6 +125,24 @@ Given a set of itens with different values and weights, determine which itens to
 <img src="imgs/knapsack/KnpasackConst.gif" /> 
 <img src="imgs/knapsack/KnapsackVariable.gif" /> 
 
+<!-- ######### LONGEST COMMON SUBSEQUENCE PROBLEM ######### -->
+<h2> Longest Common Subsequence </h2>
+
+Given two sequences, find the length of longest subsequence present in both of them. A subsequence is a sequence that appears in the same relative order, but not necessarily contiguous.
+
+**Solutions**
+* Brute Force (Recursion)
+* Dynamic Programming
+
+<!-- ######### MINIMUM SPANNING TREE PROBLEM ######### -->
+<h2> Minimum Spanning Tree </h2>
+
+A minimum spanning tree (MST) is a subset of the edges of a connected, edge-weighted undirected graph that connects all the vertices together, without any cycles and with the minimum possible total edge weight.
+
+**Solutions**
+* Kruskal's Algorithm
+* Prim's Algorithm
+
 <!-- ######### SUBSET SUM PROBLEM ######### -->
 
 <h2>Subset Sum</h2>
