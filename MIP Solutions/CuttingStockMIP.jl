@@ -15,7 +15,7 @@ struct Order
 end
 
 len = 11
-upperBound = 22
+ub = 22
 
 orders = Order[]
 push!(orders, Order(1, 2, 8))
@@ -67,4 +67,4 @@ function solve(orders::Array{Order}, len::Int, n::Int)
 
 end
 
-solve(orders, len, upperBound)
+solve(orders, len, ub)

@@ -2,33 +2,7 @@
 
 # This Repository contains solutions and algorithms for many problems.
 
-<h2> Knapsack Problem </h2>
-
-Given a set of itens with different values and weights, determine which itens to include in a colection that total weight of itens is less than or equal to a given limit and the total value is higher as possible.
-
-**Solutions**
-* Greedy (Not Optimal)
-* Dynamic Programming
-* Mixed Integer Programming
-
-<h3>Formulation</h3>
-
-<h4>Constants:</h4>
-
-<img src="imgs/knapsack/ConstantValue.gif" /> 
-<img src="imgs/knapsack/ConstantWeight.gif" /> 
-<img src="imgs/knapsack/ConstantCapacity.gif" /> 
-
-<h4>Variables</h4>
-<img src="imgs/knapsack/VariableX.gif" /> 
-
-<h4>Objective:</h4>
-<img src="imgs/knapsack/KnapsackObj.gif" /> 
-
-<h4>s.t.:</h4>
-<img src="imgs/knapsack/KnpasackConst.gif" /> 
-<img src="imgs/knapsack/KnapsackVariable.gif" /> 
-
+<!-- ######### BIN PACKING PROBLEM ######### -->
 <h2> Bin Packing Problem </h2>
 
 Given a set of itens with different weights, assign each item to a bin such that number of total used bins is minimized. It is assumed that all itens have weights smaller than capacity.
@@ -57,13 +31,7 @@ Given a set of itens with different weights, assign each item to a bin such that
 <img src="imgs/binpacking/BinPackingVariableX.gif" />
 <img src="imgs/binpacking/BinPackingVariableY.gif" />
 
-<h2>Subset Sum</h2>
-
-Given a set of non-negative integers, and a value, determine if there is a subset of the given set with sum equal to given value.
-
-**Solutions**
-* Brute Force (Recursion)
-* Dynamic Programming
+<!-- ######### CONNECTED COMPONENTS ######### -->
 
 <h2> Connected Components </h2>
 
@@ -72,3 +40,69 @@ Given an undirected graph, print all connected components.
 **Solutions**
 * Depth First Search (DFS)
 * Breadth First Search (BFS)
+
+<!-- ######### CUTTING STOCK PROBLEM ######### -->
+
+<h2> Cutting Stock Problem </h2>
+Given a upperbound number of original rods, the number of new smaller rods, the size and the demand for each new rod. Determine the minimum number of original rods must be cutted to generate all demanded new rods.
+
+**Solutions**
+
+* Mixed Integer Programming
+
+<h3>Formulation</h3>
+
+<h4>Constants:</h4>
+
+<img src="imgs/cuttingstock/Constants.gif" /> 
+
+<h4>Variables</h4>
+
+<img src="imgs/cuttingstock/Variables.gif" /> 
+
+<h4>Objective:</h4>
+
+<img src="imgs/cuttingstock/Objective.gif" /> 
+
+<h4>s.t.:</h4>
+
+<img src="imgs/cuttingstock/Constraints.gif" /> 
+
+<!-- ######### KNAPSACK PROBLEM ######### -->
+
+<h2> Knapsack Problem </h2>
+
+Given a set of itens with different values and weights, determine which itens to include in a colection that total weight of itens is less than or equal to a given limit and the total value is higher as possible.
+
+**Solutions**
+* Greedy (Not Optimal)
+* Dynamic Programming
+* Mixed Integer Programming
+
+<h3>Formulation</h3>
+
+<h4>Constants:</h4>
+
+<img src="imgs/knapsack/ConstantValue.gif" /> 
+<img src="imgs/knapsack/ConstantWeight.gif" /> 
+<img src="imgs/knapsack/ConstantCapacity.gif" /> 
+
+<h4>Variables</h4>
+<img src="imgs/knapsack/VariableX.gif" /> 
+
+<h4>Objective:</h4>
+<img src="imgs/knapsack/KnapsackObj.gif" /> 
+
+<h4>s.t.:</h4>
+<img src="imgs/knapsack/KnpasackConst.gif" /> 
+<img src="imgs/knapsack/KnapsackVariable.gif" /> 
+
+<!-- ######### SUBSET SUM PROBLEM ######### -->
+
+<h2>Subset Sum</h2>
+
+Given a set of non-negative integers, and a value, determine if there is a subset of the given set with sum equal to given value.
+
+**Solutions**
+* Brute Force (Recursion)
+* Dynamic Programming
