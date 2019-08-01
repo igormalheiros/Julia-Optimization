@@ -10,7 +10,8 @@ Contents
 
 
 <!-- ######### ASSIGNMENT ######### -->
-## Assignment Problem <a name="assignment"></a>
+<a name="assignment"></a>
+## Assignment Problem 
 
 <p>Given a set of tasks and a set of agents, given costs for each agent to perform each task.  It is required to perform all tasks by assigning exactly one agent to each task and exactly one task to each agent in such a way that the total cost of the assignment is minimized.<p>
 
@@ -38,7 +39,9 @@ Contents
 
 
 <!-- ######### BIN PACKING PROBLEM ######### -->
-## Bin Packing Problem <a name="binpacking"></a>
+<a name="binpacking"></a>
+
+## Bin Packing Problem
 
 <p>Given a set of itens with different weights, assign each item to a bin such that number of total used bins is minimized. It is assumed that all itens have weights smaller than capacity.<p>
 
@@ -67,8 +70,8 @@ Contents
 <img src="imgs/binpacking/BinPackingVariableY.gif" />
 
 <!-- ######### CONNECTED COMPONENTS ######### -->
-
-## Connected Components <a name="cuttingstock"></a>
+<a name="cuttingstock"></a>
+## Connected Components
 
 <p>Given an undirected graph, print all connected components.</p>
 
@@ -77,8 +80,9 @@ Contents
 * Breadth First Search (BFS)
 
 <!-- ######### CUTTING STOCK PROBLEM ######### -->
+<a name="assignment"></a>
 
-## Cutting Stock Problem <a name="connectedcomponents"></a>
+## Cutting Stock Problem
 <p>Given a upperbound number of original rods, the number of new smaller rods, the size and the demand for each new rod. Determine the minimum number of original rods must be cutted to generate all demanded new rods.</p>
 
 **Solutions**
