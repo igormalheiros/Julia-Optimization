@@ -1,11 +1,18 @@
-# Julia Optimisation Study
+# Julia Optimization Study
 
 # This Repository contains solutions and algorithms for many problems.
 
-<!-- ######### ASSIGNMENT ######### -->
-<h2> Assignment Problem </h2>
+Contents
+1. [Assignment Problem](#assignment)
+2. [Bin Packing Problem](#binpacking)
+3. [Connected Components](#connectedcomponents)
+4. [Cutting Stock Problem](#cuttingstock)
 
-Given a set of tasks and a set of agents, given costs for each agent to perform each task.  It is required to perform all tasks by assigning exactly one agent to each task and exactly one task to each agent in such a way that the total cost of the assignment is minimized.
+
+<!-- ######### ASSIGNMENT ######### -->
+## Assignment Problem
+
+<h2>Given a set of tasks and a set of agents, given costs for each agent to perform each task.  It is required to perform all tasks by assigning exactly one agent to each task and exactly one task to each agent in such a way that the total cost of the assignment is minimized.</h2>
 
 **Solutions**
 
@@ -31,9 +38,9 @@ Given a set of tasks and a set of agents, given costs for each agent to perform 
 
 
 <!-- ######### BIN PACKING PROBLEM ######### -->
-<h2> Bin Packing Problem </h2>
+## Bin Packing Problem
 
-Given a set of itens with different weights, assign each item to a bin such that number of total used bins is minimized. It is assumed that all itens have weights smaller than capacity.
+<h2>Given a set of itens with different weights, assign each item to a bin such that number of total used bins is minimized. It is assumed that all itens have weights smaller than capacity.</h2>
 
 **Solutions**
 
@@ -61,9 +68,9 @@ Given a set of itens with different weights, assign each item to a bin such that
 
 <!-- ######### CONNECTED COMPONENTS ######### -->
 
-<h2> Connected Components </h2>
+## Connected Components
 
-Given an undirected graph, print all connected components.
+<h2>Given an undirected graph, print all connected components.</h2>
 
 **Solutions**
 * Depth First Search (DFS)
@@ -71,8 +78,8 @@ Given an undirected graph, print all connected components.
 
 <!-- ######### CUTTING STOCK PROBLEM ######### -->
 
-<h2> Cutting Stock Problem </h2>
-Given a upperbound number of original rods, the number of new smaller rods, the size and the demand for each new rod. Determine the minimum number of original rods must be cutted to generate all demanded new rods.
+## Cutting Stock Problem
+<h2>Given a upperbound number of original rods, the number of new smaller rods, the size and the demand for each new rod. Determine the minimum number of original rods must be cutted to generate all demanded new rods.</h2>
 
 **Solutions**
 
@@ -143,6 +150,14 @@ A minimum spanning tree (MST) is a subset of the edges of a connected, edge-weig
 * Kruskal's Algorithm
 * Prim's Algorithm
 
+<!-- ######### SINGLE SHORTEST PATH PROBLEM ######### -->
+<h2> Single Shortest Path </h2>
+
+Given a graph and a source vertex in the graph, find shortest paths from source to all vertices in the given graph.
+
+**Solutions**
+* Bellman-Ford's Algorithm
+
 <!-- ######### SUBSET SUM PROBLEM ######### -->
 
 <h2>Subset Sum</h2>
@@ -152,3 +167,26 @@ Given a set of non-negative integers, and a value, determine if there is a subse
 **Solutions**
 * Brute Force (Recursion)
 * Dynamic Programming
+
+<!-- ######### TRAVELLING SALESMAN PROBLEM ######### -->
+
+<h2> Travelling Salesman Problem </h2>
+
+Given a set of cities and distance between every pair of cities, the problem is to find the shortest possible route that visits every city exactly once and returns to the starting point.
+
+* Mixed Integer Programming
+
+<h3>Formulation</h3>
+
+<h4>Constants:</h4>
+
+<img src="imgs/tsp/Constants.gif" /> 
+
+<h4>Variables</h4>
+<img src="imgs/tsp/Variables.gif" /> 
+
+<h4>Objective:</h4>
+<img src="imgs/tsp/Objective.gif" /> 
+
+<h4>s.t.:</h4>
+<img src="imgs/tsp/Constraints.gif" />
