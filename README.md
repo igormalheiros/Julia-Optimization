@@ -180,7 +180,7 @@ Contents
 <!-- ######### SUBSET SUM PROBLEM ######### -->
 <a name="subsetsum"></a>
 
-##Subset Sum
+## Subset Sum
 
 <p>Given a set of non-negative integers, and a value, determine if there is a subset of the given set with sum equal to given value.</p>
 
