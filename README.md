@@ -10,9 +10,9 @@ Contents
 
 
 <!-- ######### ASSIGNMENT ######### -->
-## Assignment Problem
+## Assignment Problem <a name="assignment"></a>
 
-<h2>Given a set of tasks and a set of agents, given costs for each agent to perform each task.  It is required to perform all tasks by assigning exactly one agent to each task and exactly one task to each agent in such a way that the total cost of the assignment is minimized.</h2>
+<p>Given a set of tasks and a set of agents, given costs for each agent to perform each task.  It is required to perform all tasks by assigning exactly one agent to each task and exactly one task to each agent in such a way that the total cost of the assignment is minimized.<p>
 
 **Solutions**
 
@@ -38,9 +38,9 @@ Contents
 
 
 <!-- ######### BIN PACKING PROBLEM ######### -->
-## Bin Packing Problem
+## Bin Packing Problem <a name="binpacking"></a>
 
-<h2>Given a set of itens with different weights, assign each item to a bin such that number of total used bins is minimized. It is assumed that all itens have weights smaller than capacity.</h2>
+<p>Given a set of itens with different weights, assign each item to a bin such that number of total used bins is minimized. It is assumed that all itens have weights smaller than capacity.<p>
 
 **Solutions**
 
@@ -68,9 +68,9 @@ Contents
 
 <!-- ######### CONNECTED COMPONENTS ######### -->
 
-## Connected Components
+## Connected Components <a name="cuttingstock"></a>
 
-<h2>Given an undirected graph, print all connected components.</h2>
+<p>Given an undirected graph, print all connected components.</p>
 
 **Solutions**
 * Depth First Search (DFS)
@@ -78,8 +78,8 @@ Contents
 
 <!-- ######### CUTTING STOCK PROBLEM ######### -->
 
-## Cutting Stock Problem
-<h2>Given a upperbound number of original rods, the number of new smaller rods, the size and the demand for each new rod. Determine the minimum number of original rods must be cutted to generate all demanded new rods.</h2>
+## Cutting Stock Problem <a name="connectedcomponents"></a>
+<p>Given a upperbound number of original rods, the number of new smaller rods, the size and the demand for each new rod. Determine the minimum number of original rods must be cutted to generate all demanded new rods.</p>
 
 **Solutions**
 
