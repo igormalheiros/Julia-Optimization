@@ -7,6 +7,12 @@ Contents
 2. [Bin Packing Problem](#binpacking)
 3. [Connected Components](#connectedcomponents)
 4. [Cutting Stock Problem](#cuttingstock)
+5. [Knapsack Problem](#knapsack)
+6. [Longest Common Subsequence](#LCS)
+7. [Minimum Spanning Tree](#MST)
+8. [Single Shortest Path](#SSP)
+9. [Subset Sum](#subsetsum)
+10. [Travelling Salesman Problem](#TSP)
 
 
 <!-- ######### ASSIGNMENT ######### -->
@@ -110,10 +116,11 @@ Contents
 <img src="imgs/cuttingstock/Constraints.gif" /> 
 
 <!-- ######### KNAPSACK PROBLEM ######### -->
+<a name="knapsack"></a>
 
-<h2> Knapsack Problem </h2>
+## Knapsack Problem
 
-Given a set of itens with different values and weights, determine which itens to include in a colection that total weight of itens is less than or equal to a given limit and the total value is higher as possible.
+<p>Given a set of itens with different values and weights, determine which itens to include in a colection that total weight of itens is less than or equal to a given limit and the total value is higher as possible.</p>
 
 **Solutions**
 * Greedy (Not Optimal)
@@ -139,46 +146,54 @@ Given a set of itens with different values and weights, determine which itens to
 <img src="imgs/knapsack/KnapsackVariable.gif" /> 
 
 <!-- ######### LONGEST COMMON SUBSEQUENCE PROBLEM ######### -->
-<h2> Longest Common Subsequence </h2>
+<a name="LCS"></a>
 
-Given two sequences, find the length of longest subsequence present in both of them. A subsequence is a sequence that appears in the same relative order, but not necessarily contiguous.
+## Longest Common Subsequence
+
+<p>Given two sequences, find the length of longest subsequence present in both of them. A subsequence is a sequence that appears in the same relative order, but not necessarily contiguous.</p>
 
 **Solutions**
 * Brute Force (Recursion)
 * Dynamic Programming
 
 <!-- ######### MINIMUM SPANNING TREE PROBLEM ######### -->
-<h2> Minimum Spanning Tree </h2>
+<a name="MST"></a>
 
-A minimum spanning tree (MST) is a subset of the edges of a connected, edge-weighted undirected graph that connects all the vertices together, without any cycles and with the minimum possible total edge weight.
+## Minimum Spanning Tree
+
+<p>A minimum spanning tree (MST) is a subset of the edges of a connected, edge-weighted undirected graph that connects all the vertices together, without any cycles and with the minimum possible total edge weight.</p>
 
 **Solutions**
 * Kruskal's Algorithm
 * Prim's Algorithm
 
 <!-- ######### SINGLE SHORTEST PATH PROBLEM ######### -->
-<h2> Single Shortest Path </h2>
+<a name="SSP"></a>
 
-Given a graph and a source vertex in the graph, find shortest paths from source to all vertices in the given graph.
+## Single Shortest Path
+
+<p>Given a graph and a source vertex in the graph, find shortest paths from source to all vertices in the given graph.</p>
 
 **Solutions**
 * Bellman-Ford's Algorithm
 
 <!-- ######### SUBSET SUM PROBLEM ######### -->
+<a name="subsetsum"></a>
 
-<h2>Subset Sum</h2>
+##Subset Sum
 
-Given a set of non-negative integers, and a value, determine if there is a subset of the given set with sum equal to given value.
+<p>Given a set of non-negative integers, and a value, determine if there is a subset of the given set with sum equal to given value.</p>
 
 **Solutions**
 * Brute Force (Recursion)
 * Dynamic Programming
 
 <!-- ######### TRAVELLING SALESMAN PROBLEM ######### -->
+<a name="tsp"></a>
 
-<h2> Travelling Salesman Problem </h2>
+## Travelling Salesman Problem
 
-Given a set of cities and distance between every pair of cities, the problem is to find the shortest possible route that visits every city exactly once and returns to the starting point.
+<p>Given a set of cities and distance between every pair of cities, the problem is to find the shortest possible route that visits every city exactly once and returns to the starting point.</p>
 
 * Mixed Integer Programming
 
