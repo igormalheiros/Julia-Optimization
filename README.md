@@ -176,6 +176,7 @@ Contents
 
 **Solutions**
 * Bellman-Ford's Algorithm
+* Dijkstra's Algorithm
 
 <!-- ######### SUBSET SUM PROBLEM ######### -->
 <a name="subsetsum"></a>
