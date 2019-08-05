@@ -13,27 +13,30 @@ const friendship = [
            (:Andrea, :Afonso),
        ]
 
-adjList = Dict(p => eltype(people)[] for p in people)
+adj_list = Dict(p => eltype(people)[] for p in people)
 for (a, b) in friendship
-    push!(adjList[a], b)
-    push!(adjList[b], a)
+    push!(adj_list[a], b)
+    push!(adj_list[b], a)
 end
 
-function dfs(adjList::Dict{Symbol, Array{Symbol, 1}}, source::Symbol, visit::Dict{Symbol, Bool})
+function dfs(adj_list::Dict{Symbol, Array{Symbol, 1}}, source::Symbol, visit::Dict{Symbol, Bool})
     println(source)
-    for p in adjList[source]
+    for p in adj_list[source]
         if (!visit[p])
             visit[p] = true
-            dfs(adjList, p, visit)
+            dfs(adj_list, p, visit)
         end
     end
+
+    return
 end
 
-function bfs(adjList::Dict{Symbol, Array{Symbol, 1}}, source::Symbol, visit::Dict{Symbol, Bool})
+function bfs(adj_list::Dict{Symbol, Array{Symbol, 1}}, source::Symbol, visit::Dict{Symbol, Bool})
+    println(source)
     queue = [source]
     while !isempty(queue)
         current = popfirst!(queue)
-        for p in adjList[current]
+        for p in adj_list[current]
             if (!visit[p])
                 println(p)
                 visit[p] = true
@@ -41,21 +44,35 @@ function bfs(adjList::Dict{Symbol, Array{Symbol, 1}}, source::Symbol, visit::Dic
             end
         end
     end
+    return
 end
 
-function findComponents(adjList::Dict{Symbol, Array{Symbol, 1}})
+function find_components(adj_list::Dict{Symbol, Array{Symbol, 1}})
+    println("======== DFS ========")
     visit = Dict(p => false for p in people)
-
     component = 0
     for p in people
-        if (!visit[p] )
+        if (!visit[p])
             component += 1
             println("Coponent: ", component)
             visit[p] = true
-            dfs(adjList, p, visit)
-            #bfs(adjList, p, visit)
+            dfs(adj_list, p, visit)
         end
     end
+
+    println("======== BFS ========")
+    visit = Dict(p => false for p in people)
+    component = 0
+    for p in people
+        if (!visit[p])
+            component += 1
+            println("Coponent: ", component)
+            visit[p] = true
+            bfs(adj_list, p, visit)
+        end
+    end
+
+    return
 end
 
-findComponents(adjList)
+find_components(adj_list)

@@ -2,10 +2,8 @@
 # ====== Knapsack Problem using Integer Programming ====== #
 
 using JuMP, GLPK
-using MathOptInterface # Replaces MathProgBase
+import MathOptInterface # Replaces MathProgBase
 const MOI = MathOptInterface
-
-using GLPK # Loading the GLPK module for using its solver
 
 struct Item
     name::String
@@ -51,8 +49,9 @@ function solve(itens::Array{Item}, capacity::Int)
     @show JuMP.has_values(model)
     @show JuMP.termination_status(model) == MOI.OPTIMAL
     @show JuMP.primal_status(model) == MOI.FEASIBLE_POINT
-
     @show JuMP.objective_value(model)
+
+    return
 end
 
 

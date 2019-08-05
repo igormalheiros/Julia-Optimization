@@ -2,10 +2,8 @@
 # ====== Bin Packing Problem using Integer Programming ====== #
 
 using JuMP, GLPK
-using MathOptInterface # Replaces MathProgBase
+import MathOptInterface # Replaces MathProgBase
 const MOI = MathOptInterface
-
-using GLPK # Loading the GLPK module for using its solver
 
 struct Item
     name::String
@@ -51,7 +49,6 @@ function solve(itens::Array{Item}, capacity::Int)
         @constraint(model, sum(x[i, j] for i in 1:n) == 1)
     end
 
-
     JuMP.optimize!(model) # Old syntax: status = JuMP.solve(model)
 
     for i in 1:n
@@ -75,6 +72,8 @@ function solve(itens::Array{Item}, capacity::Int)
     @show JuMP.primal_status(model) == MOI.FEASIBLE_POINT
 
     @show JuMP.objective_value(model)
+
+    return
 end
 
 

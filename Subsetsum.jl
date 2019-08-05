@@ -2,14 +2,14 @@
 # ====== Subsetsum using Brute Force and Dynamic Programming approaches ====== #
 
 
-function solveBruteForce(set::Array{Int}, indx::Int, sum::Int)
+function solve_brute_force(set::Array{Int}, indx::Int, sum::Int)
     if (sum == 0) return true end
     if (indx > length(set) ) return false end
-    if ( (sum - set[indx]) < 0) return solveBruteForce(set, indx+1, sum) end
-    return solveBruteForce(set, indx+1, sum-set[indx]) || solveBruteForce(set, indx+1, sum)
+    if ( (sum - set[indx]) < 0) return solve_brute_force(set, indx+1, sum) end
+    return solve_brute_force(set, indx+1, sum-set[indx]) || solve_brute_force(set, indx+1, sum)
 end
 
-function solveDP(set::Array{Int}, sum::Int)
+function solve_dp(set::Array{Int}, sum::Int)
     n = length(set)
     memo = falses(n+1, sum+1)
 
@@ -25,17 +25,17 @@ function solveDP(set::Array{Int}, sum::Int)
     end
 
     return memo[n+1, sum+1]
-
 end
 
 set = [3, 34, 4, 12, 5, 2]
 sum = 9
 
-println("Brute Force:")
-if ( solveBruteForce(set, 1, sum) ) println("True")
+println("Set:", set, " ---- Sum: ", sum)
+println("\nBrute Force:")
+if ( solve_brute_force(set, 1, sum) ) println("True")
 else println("False") end
-println("Dynamic Programming:")
-if ( solveDP(set, sum) ) println("True")
+println("\nDynamic Programming:")
+if ( solve_dp(set, sum) ) println("True")
 else println("False") end
 
 #for sum in 1:50

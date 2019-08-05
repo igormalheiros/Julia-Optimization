@@ -2,10 +2,8 @@
 # ====== Assignment Problem using Integer Programming ====== #
 
 using JuMP, GLPK
-using MathOptInterface # Replaces MathProgBase
+import MathOptInterface # Replaces MathProgBase
 const MOI = MathOptInterface
-
-using GLPK # Loading the GLPK module for using its solver
 
 #C = [9 2 7 8; 6 4 3 7 ; 5 8 1 8; 7 6 9 4]
 C = [2500 4000 3500 ; 4000 6000 3500 ; 2000 4000 2500]
@@ -42,6 +40,7 @@ function solve(cost_matrix::Array{Int,2}, N::Int)
 
     @show JuMP.objective_value(model)
 
+    return
 end
 
 solve(C, size(C)[1])

@@ -5,12 +5,14 @@ const graph = Tuple{Int, Int, Float64}[]
 
 function add_edge(u::Int, v::Int, w::Float64)
     push!(graph, (u, v, w) )
+    return
 end
 
 function print_graph()
     for (u, v, w) in graph
         println("From ", u, " to ", v, " has cost of ", w)    
     end
+    return
 end
 
 function find(u::Int, parent::Array{Int})
@@ -32,10 +34,11 @@ function union(u::Int, v::Int, parent::Array{Int}, rank::Array{Int})
         parent[v_root] = u_root
         rank[v_root] += 1
     end
+    return
 end
 
 function kruskal(V::Int)
-    println("==== KRUSKAL ALGORITHM ====")
+    println("\n==== KRUSKAL ALGORITHM ====")
     mst = Tuple{Int, Int, Float64}[]
 
     parent = Int[]
@@ -72,7 +75,7 @@ function kruskal(V::Int)
     for (u, v, w) in mst
         println("The edge from ", u, " to ", v, " with cost: ", w)
     end
-
+    return
 end
 
 function get_adj_list(V::Int)
@@ -89,7 +92,6 @@ function get_adj_list(V::Int)
     end
 
     return adj_list
-
 end
 
 function min_key(V::Int, key::Array{Float64}, mstSet::Array{Bool})
@@ -104,11 +106,10 @@ function min_key(V::Int, key::Array{Float64}, mstSet::Array{Bool})
     end
 
     return min_index
-
 end
 
 function prim(V::Int, adj_list::Array{Array{Tuple{Int, Float64}}})
-    println("==== PRIM ALGORITHM ====")
+    println("\n==== PRIM ALGORITHM ====")
     mstSet = Bool[]
     key = Float64[]
     parent = Int[]
@@ -141,7 +142,7 @@ function prim(V::Int, adj_list::Array{Array{Tuple{Int, Float64}}})
     for node in 2:V
         println("The edge from ", node, " to ", parent[node])
     end
-
+    return
 end
 
 V = 4

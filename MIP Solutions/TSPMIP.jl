@@ -2,10 +2,8 @@
 # ====== Travelling Salesman Problem using Integer Programming ====== #
 
 using JuMP, GLPK
-using MathOptInterface # Replaces MathProgBase
+import MathOptInterface # Replaces MathProgBase
 const MOI = MathOptInterface
-
-using GLPK # Loading the GLPK module for using its solver
 
 #Data of points in a cartesian plan
 # ### N = 12
@@ -19,16 +17,16 @@ Y = [23.0, 76.0, 64.0, 38.0, 68.0, 57.0,  6.0,  5.0, 30.0,  2.0, 97.0, 79.0]
 # Y = [23.0, 76, 64, 38, 68, 57, 6, 5, 30, 2, 97, 79, 21, 71, 54, 31, 65, 51, 1, 3, 36, 2, 91, 69, 53, 76, 44, 38, 38, 57, 16, 15, 30, 24, 97, 79, 22, 71, 54, 31, 61, 59, 11, 30, 34, 10, 90, 60]
 
 #Build matrix of costs between points
-function buildCostMatrix(X::Array{Float64}, Y::Array{Float64})
+function build_cost_matrix(X::Array{Float64}, Y::Array{Float64})
     N = length(X)
-    costMatrix = zeros(Float64, N, N)
+    cost_matrix = zeros(Float64, N, N)
     for i in 1:N
         for j in 1:N
-            costMatrix[i, j] = sqrt( (X[i]-X[j])^2 + (Y[i]-Y[j])^2)
+            cost_matrix[i, j] = sqrt( (X[i]-X[j])^2 + (Y[i]-Y[j])^2)
         end
     end
-    println(costMatrix)
-    return costMatrix
+    println(cost_matrix)
+    return cost_matrix
 end
 
 function solve(c::Array{Float64, 2})
@@ -91,7 +89,9 @@ function solve(c::Array{Float64, 2})
     @show JuMP.termination_status(model) == MOI.OPTIMAL
     @show JuMP.primal_status(model) == MOI.FEASIBLE_POINT
     @show JuMP.objective_value(model)
+
+    return
 end
-c = buildCostMatrix(X,Y)
-#c = buildCostMatrix(X,Y, "GEO")
+
+c = build_cost_matrix(X,Y)
 solve(c)

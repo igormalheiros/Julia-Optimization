@@ -5,19 +5,27 @@ const graph = Tuple{Int, Int, Float64}[]
 
 function add_edge(u::Int, v::Int, w::Float64)
     push!(graph, (u, v, w) )
+    return
 end
 
 function print_graph()
     for (u, v, w) in graph
         println("From ", u, " to ", v, " has cost of ", w)    
     end
+    return
 end
 
 function bellmanford(V::Int, source::Int, target::Int)
     println("==== BELLMAN-FORD ALGORITHM ====")
 
-    dist = fill(100000.0, V)
-    bestEdges = fill( (0,0, 0.0), 10)
+    dist = Float64[]
+    bestEdges = Tuple{Int, Int, Float64}[]
+
+    for i in 1:V
+        push!(dist, 100000.0)
+        push!(bestEdges, (0, 0, 0.0) )
+    end
+
     bestEdges[source] = (source, source, 0.0)
     dist[source] = 0
 
@@ -39,6 +47,67 @@ function bellmanford(V::Int, source::Int, target::Int)
     for (u, v, w) in bestEdges
         println(u, " to ", v, " with weight = ", w)
     end
+    return
+end
+
+function getmin!(Q::Array{Tuple{Int, Float64}})
+    min_value = (-1, 1000000.0)
+    min_indx = -1
+    len = length(Q)
+
+    for i in 1:len
+        vertex = Q[i]
+        if (vertex[2] < min_value[2])
+            min_indx = i
+            min_value = vertex
+        end
+    end
+
+    deleteat!(Q, min_indx)
+    return min_value
+end
+
+function dijkstra(V::Int, source::Int, target::Int)
+    println("==== DIJKSTRA ALGORITHM ====")
+
+    dist = Float64[]
+    finished = Bool[]
+    bestEdges = Tuple{Int, Int, Float64}[]
+    Q = Tuple{Int, Float64}[]
+
+    for i in 1:V
+        push!(dist, 100000.0)
+        push!(finished, false)
+        push!(bestEdges, (0, 0, 100000.0) )
+    end
+
+    dist[source] = 0
+    bestEdges[source] = (source, source, 0.0)
+    push!(Q, (source, 0) )
+
+    while (!isempty(Q))
+        u = getmin!(Q)
+        
+        for i in 1:length(graph)
+            edge = graph[i]
+            if (edge[1] == u[1] && !finished[edge[2]])
+                if (dist[u[1]] + edge[3] < dist[edge[2]])
+                    dist[edge[2]] = dist[u[1]] + edge[3]
+                    bestEdges[edge[2]] = edge
+                    push!(Q, (edge[2], dist[edge[2]]) )
+                end
+            end
+        end
+        finished[u[1]] = true
+    end
+
+    println("==== SHORTEST PATH ====")
+    println("Source: ", source)
+    println("Cost to ", target, " : ", dist[target])
+    for (u, v, w) in bestEdges
+        println(u, " to ", v, " with weight = ", w)
+    end
+    return
 end
 
 V = 10
@@ -61,3 +130,4 @@ add_edge(5, 9, 9.0)
 add_edge(9, 10, 4.5)  
 print_graph()
 bellmanford(V, 1, 10)
+dijkstra(V, 1, 10)

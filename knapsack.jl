@@ -12,27 +12,30 @@ end
 isless(a::Item, b::Item) = isless(a.value/a.weight, b.value/b.weight)
 
 function knapsackGreedy(itens::Array{Item}, capacity::Int)
+    println("======= Greedy ======")
     sort!(itens, rev=true)
     knapsack = []
     load = 0
-    totalValue = 0
+    total_value = 0
 
     for i in itens
         if ( (load+i.weight) <= capacity) 
             push!(knapsack, i)
             load += i.weight
-            totalValue += i.value
+            total_value += i.value
         end
     end
     println("Load: ", load, "/", capacity)
-    println("Value: ", totalValue)
+    println("Value: ", total_value)
     for i in knapsack
         println(i)
     end
 
+    return
 end
 
 function knapsackDP(itens::Array{Item}, capacity::Int)
+    println("======= DP ======")
     n = length(itens)
     memo = zeros(Int64, n+1, capacity+1)
     
@@ -49,10 +52,10 @@ function knapsackDP(itens::Array{Item}, capacity::Int)
         end
     end
 
-    totalValue = memo[n, capacity+1]
-    println("Value: ", totalValue)
+    total_value = memo[n, capacity+1]
+    println("Value: ", total_value)
 
-    res = totalValue
+    res = total_value
     w = capacity+1
     for i in (n+1:-1:1)
         if res <= 0
@@ -67,6 +70,8 @@ function knapsackDP(itens::Array{Item}, capacity::Int)
             w = w - itens[i-1].weight
         end
     end
+
+    return
 end    
 
 capacity = 10

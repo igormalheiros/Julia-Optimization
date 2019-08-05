@@ -3,10 +3,8 @@
 
 
 using JuMP, GLPK
-using MathOptInterface # Replaces MathProgBase
+import MathOptInterface # Replaces MathProgBase
 const MOI = MathOptInterface
-
-using GLPK # Loading the GLPK module for using its solver
 
 struct Order
     id::Int
@@ -62,9 +60,9 @@ function solve(orders::Array{Order}, len::Int, n::Int)
     @show JuMP.has_values(model)
     @show JuMP.termination_status(model) == MOI.OPTIMAL
     @show JuMP.primal_status(model) == MOI.FEASIBLE_POINT
-
     @show JuMP.objective_value(model)
 
+    return
 end
 
 solve(orders, len, ub)
