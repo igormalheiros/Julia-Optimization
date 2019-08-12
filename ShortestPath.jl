@@ -1,5 +1,6 @@
 # ====== Code by Igor Malheiros - July of 2019 ====== #
-# ====== Shortest Path using Bellman-Ford algorithm ====== #
+# ====== Shortest Path using Bellman-Ford/Dijkstra algorithm ====== #
+using BenchmarkTools
 
 const graph = Tuple{Int, Int, Float64}[]
 
@@ -128,6 +129,8 @@ add_edge(8, 10, 12.0)
 add_edge(3, 10, 17.0)
 add_edge(5, 9, 9.0)
 add_edge(9, 10, 4.5)  
+
 print_graph()
-bellmanford(V, 1, 10)
-dijkstra(V, 1, 10)
+
+@time bellmanford(V, 1, 10)
+@time dijkstra(V, 1, 10)
