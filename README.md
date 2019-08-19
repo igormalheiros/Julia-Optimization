@@ -9,10 +9,12 @@ Contents
 4. [Cutting Stock Problem](#cuttingstock)
 5. [Knapsack Problem](#knapsack)
 6. [Longest Common Subsequence](#LCS)
-7. [Minimum Spanning Tree](#MST)
-8. [Single Shortest Path](#SSP)
-9. [Subset Sum](#subsetsum)
-10. [Travelling Salesman Problem](#TSP)
+7. [Longest Increasing Subsequence](#LIS)
+8. [Minimum Spanning Tree](#MST)
+9. [Single Shortest Path](#SSP)
+10. [Set Partitioning Problem](#SP)
+11. [Subset Sum](#subsetsum)
+12. [Travelling Salesman Problem](#TSP)
 
 
 <!-- ######### ASSIGNMENT ######### -->
@@ -156,6 +158,17 @@ Contents
 * Brute Force (Recursion)
 * Dynamic Programming
 
+<!-- ######### LONGEST INCREASING SUBSEQUENCE PROBLEM ######### -->
+<a name="LIS"></a>
+
+## Longest Increasing Subsequence
+
+<p>Given an integer sequence, the problem is to find the length of the longest subsequence such that all elements of the subsequence are sorted in increasing order.</p>
+
+**Solutions**
+* Brute Force (Recursion)
+* Dynamic Programming
+
 <!-- ######### MINIMUM SPANNING TREE PROBLEM ######### -->
 <a name="MST"></a>
 
@@ -177,6 +190,30 @@ Contents
 **Solutions**
 * Bellman-Ford's Algorithm
 * Dijkstra's Algorithm
+
+<!-- ######### SET PARTITIONING PROBLEM ######### -->
+<a name="sp"></a>
+
+## Set Partitioning Problem
+
+<p>Given a collection of subsets derived from an original set, find a partition of the original set. A new set of subsets that intersection of every subset is empty and the union of all subsets is equal to the original set</p>
+
+* Mixed Integer Programming
+
+<h3>Formulation</h3>
+
+<h4>Constants:</h4>
+
+<img src="imgs/sp/Constants.gif" /> 
+
+<h4>Variables</h4>
+<img src="imgs/sp/Variables.gif" /> 
+
+<h4>Objective:</h4>
+<img src="imgs/sp/Objective.gif" /> 
+
+<h4>s.t.:</h4>
+<img src="imgs/sp/Constraints.gif" />
 
 <!-- ######### SUBSET SUM PROBLEM ######### -->
 <a name="subsetsum"></a>

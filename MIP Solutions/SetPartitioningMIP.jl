@@ -2,7 +2,7 @@
 # ====== Set Partitioning Problem using Integer Programming ====== #
 
 using JuMP, GLPK
-import MathOptInterface # Replaces MathProgBase
+import MathOptInterface
 const MOI = MathOptInterface
 
 function solve(sets::Array{Array{Int,1},1}, max_value::Int, n_sets::Int)
@@ -15,7 +15,7 @@ function solve(sets::Array{Array{Int,1},1}, max_value::Int, n_sets::Int)
         @constraint(model, sum(y[i] for i in 1:n_sets if v in sets[i]) == 1)
     end
 
-    JuMP.optimize!(model) # Old syntax: status = JuMP.solve(model)
+    JuMP.optimize!(model)
 
     for i in 1:n_sets
         if (value(y[i]) == 1.0)
