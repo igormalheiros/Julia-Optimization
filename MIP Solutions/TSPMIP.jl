@@ -29,7 +29,8 @@ function build_cost_matrix(X::Array{Float64}, Y::Array{Float64})
     return cost_matrix
 end
 
-function solve(c::Array{Float64, 2})
+function solveSubtour(c::Array{Float64, 2})
+    println("Using Subtour Modelling")
     N = size(c, 1)
     model = Model(with_optimizer(GLPK.Optimizer))
 
@@ -93,5 +94,57 @@ function solve(c::Array{Float64, 2})
     return
 end
 
+function solveFlow(c::Array{Float64, 2})
+    println("Using Flow variable Modelling")
+    N = size(c, 1)
+    model = Model(with_optimizer(GLPK.Optimizer))
+
+    @variable(model, x[1:N, 1:N], Bin)
+    @variable(model, f[1:N, 1:N] >= 0, Int)
+
+    @objective(model, Min, sum(c[i, j] * x[i, j] for i in 1:N, j in 1:N if (i != j) ))
+
+    for i in 1:N
+        @constraint(model, sum(x[i, j] for j in 1:N if (i != j) ) == 1)
+    end
+
+    for j in 1:N
+        @constraint(model, sum(x[i, j] for i in 1:N if (i != j) ) == 1)
+    end
+
+    for i in 2:N
+        @constraint(model, (sum(f[j, i] for j in 1:N if (i != j) ) - sum(f[i, j] for j in 1:N if (i != j) )) == 1)
+    end
+
+    for i in 1:N 
+        for j in 1:N
+            if (i != j)
+                @constraint(model, f[i, j] <= ((N-1)*x[i, j]))
+            end
+        end
+    end
+
+    JuMP.optimize!(model)
+
+    for i in 1:N
+        for j in 1:N
+            if (i != j && value(x[i,j]) == 1.0)
+                println("Arc from: ", i, " to ", j, " with cost = ", c[i, j])
+            end
+        end
+    end
+
+    println("Total value: ", JuMP.objective_value(model))
+
+    @show JuMP.has_values(model)
+    @show JuMP.termination_status(model) == MOI.OPTIMAL
+    @show JuMP.primal_status(model) == MOI.FEASIBLE_POINT
+    @show JuMP.objective_value(model)
+
+    return
+end
+
 c = build_cost_matrix(X,Y)
-solve(c)
+@time solveSubtour(c)
+println("\n-------------------------------------\n")
+@time solveFlow(c)

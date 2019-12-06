@@ -233,7 +233,7 @@ Contents
 
 <p>Given a set of cities and distance between every pair of cities, the problem is to find the shortest possible route that visits every city exactly once and returns to the starting point.</p>
 
-* Mixed Integer Programming
+* Mixed Integer Programming - Subtour formulation
 
 <h3>Formulation</h3>
 
@@ -249,3 +249,20 @@ Contents
 
 <h4>s.t.:</h4>
 <img src="imgs/tsp/Constraints.gif" />
+
+* Mixed Integer Programming - Flow Variable
+
+<h3>Formulation</h3>
+
+<h4>Constants:</h4>
+
+<img src="imgs/tsp/ConstantsF.gif" /> 
+
+<h4>Variables</h4>
+<img src="imgs/tsp/VariablesF.gif" /> 
+
+<h4>Objective:</h4>
+<img src="imgs/tsp/Objective.gif" /> 
+
+<h4>s.t.:</h4>
+<img src="imgs/tsp/ConstraintsF.gif" />
