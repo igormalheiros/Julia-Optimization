@@ -7,14 +7,15 @@ Contents
 2. [Bin Packing Problem](#binpacking)
 3. [Connected Components](#connectedcomponents)
 4. [Cutting Stock Problem](#cuttingstock)
-5. [Knapsack Problem](#knapsack)
-6. [Longest Common Subsequence](#LCS)
-7. [Longest Increasing Subsequence](#LIS)
-8. [Minimum Spanning Tree](#MST)
-9. [Single Shortest Path](#SSP)
-10. [Set Partitioning Problem](#SP)
-11. [Subset Sum](#subsetsum)
-12. [Travelling Salesman Problem](#TSP)
+5. [Facility Location Problem](#facilitylocation)
+6. [Knapsack Problem](#knapsack)
+7. [Longest Common Subsequence](#LCS)
+8. [Longest Increasing Subsequence](#LIS)
+9. [Minimum Spanning Tree](#MST)
+10. [Single Shortest Path](#SSP)
+11. [Set Partitioning Problem](#SP)
+12. [Subset Sum](#subsetsum)
+13. [Travelling Salesman Problem](#TSP)
 
 
 <!-- ######### ASSIGNMENT ######### -->
@@ -116,6 +117,37 @@ Contents
 <h4>s.t.:</h4>
 
 <img src="imgs/cuttingstock/Constraints.gif" /> 
+
+<!-- ######### FACILITY LOCATION PROBLEM ######### -->
+<a name="facilitylocation"></a>
+
+## Facility Location Problem
+<p>Given a set of clients and a set of potential facilities sites, 
+the problem consists in dicide which sites must be opened in order to assign client's demands to each facility.
+Each facility has it own fixed cost to be open and each client has a cost to be assigned to each facility.
+Total costs must be minimized.</p>
+
+**Solutions**
+
+* Mixed Integer Programming
+
+<h3>Formulation</h3>
+
+<h4>Constants:</h4>
+
+<img src="imgs/facilitylocation/Constants.gif" /> 
+
+<h4>Variables</h4>
+
+<img src="imgs/facilitylocation/Variables.gif" /> 
+
+<h4>Objective:</h4>
+
+<img src="imgs/facilitylocation/Objective.gif" /> 
+
+<h4>s.t.:</h4>
+
+<img src="imgs/facilitylocation/Constraints.gif" /> 
 
 <!-- ######### KNAPSACK PROBLEM ######### -->
 <a name="knapsack"></a>
