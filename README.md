@@ -198,8 +198,8 @@ Total costs must be minimized.</p>
 <p>Given an integer sequence, the problem is to find the length of the longest subsequence such that all elements of the subsequence are sorted in increasing order.</p>
 
 **Solutions**
-* Brute Force (Recursion)
 * Dynamic Programming
+* Divide and Conquer
 
 <!-- ######### MINIMUM SPANNING TREE PROBLEM ######### -->
 <a name="MST"></a>
