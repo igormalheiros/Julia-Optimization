@@ -1,21 +1,15 @@
 # Julia Optimization Study
 
-# This Repository contains solutions and algorithms for many problems.
+**It is a study guide for people who are interested in learning Mixed Integer Programming. The repository contains a set of classical optimization problems, and each problem has it is a mathematical formulation and implementation using Julia language with JuMP framework.**
 
 Contents
 1. [Assignment Problem](#assignment)
 2. [Bin Packing Problem](#binpacking)
-3. [Connected Components](#connectedcomponents)
-4. [Cutting Stock Problem](#cuttingstock)
-5. [Facility Location Problem](#facilitylocation)
-6. [Knapsack Problem](#knapsack)
-7. [Longest Common Subsequence](#LCS)
-8. [Longest Increasing Subsequence](#LIS)
-9. [Minimum Spanning Tree](#MST)
-10. [Single Shortest Path](#SSP)
-11. [Set Partitioning Problem](#SP)
-12. [Subset Sum](#subsetsum)
-13. [Travelling Salesman Problem](#TSP)
+3. [Cutting Stock Problem](#cuttingstock)
+4. [Facility Location Problem](#facilitylocation)
+5. [Knapsack Problem](#knapsack)
+6. [Set Partitioning Problem](#SP)
+7. [Travelling Salesman Problem](#TSP)
 
 
 <!-- ######### ASSIGNMENT ######### -->
@@ -23,23 +17,19 @@ Contents
 
 ## Assignment Problem 
 
-<p>Given a set of tasks and a set of agents, given costs for each agent to perform each task.  It is required to perform all tasks by assigning exactly one agent to each task and exactly one task to each agent in such a way that the total cost of the assignment is minimized.<p>
-
-**Solutions**
-
-* Mixed Integer Programming
+<p>Given a set of tasks, a set of agents, and the costs of each agent to perform each task. The problem consists of assigning agents to tasks such that the total cost is minimized.<p>
 
 <h3>Formulation</h3>
 
-<h4>Constants:</h4>
+<h4>Data:</h4>
 
 <img src="imgs/assignment/Constants.gif" /> 
 
-<h4>Variables</h4>
+<h4>Decision Variables:</h4>
 
 <img src="imgs/assignment/Variable.gif" /> 
 
-<h4>Objective:</h4>
+<h4>Objective Function:</h4>
 
 <img src="imgs/assignment/Objective.gif" /> 
 
@@ -53,24 +43,20 @@ Contents
 
 ## Bin Packing Problem
 
-<p>Given a set of itens with different weights, assign each item to a bin such that number of total used bins is minimized. It is assumed that all itens have weights smaller than capacity.<p>
-
-**Solutions**
-
-* Mixed Integer Programming
+<p>The problem is packing a set of items into a minimum number of bins such that the total weight does not exceed the bin's capacities.<p>
 
 <h3>Formulation</h3>
 
-<h4>Constants:</h4>
+<h4>Data:</h4>
 
 <img src="imgs/binpacking/ConstantWeight.gif" /> 
 <img src="imgs/binpacking/ConstantCapacity.gif" /> 
 
-<h4>Variables</h4>
+<h4>Decision Variables</h4>
 <img src="imgs/binpacking/VariableY.gif" /> 
 <img src="imgs/binpacking/VariableX.gif" /> 
 
-<h4>Objective:</h4>
+<h4>Objective Function:</h4>
 <img src="imgs/binpacking/BinPackingObj.gif" /> 
 
 <h4>s.t.:</h4>
@@ -79,38 +65,23 @@ Contents
 <img src="imgs/binpacking/BinPackingVariableX.gif" />
 <img src="imgs/binpacking/BinPackingVariableY.gif" />
 
-<!-- ######### CONNECTED COMPONENTS ######### -->
-<a name="connectedcomponents"></a>
-
-## Connected Components
-
-<p>Given an undirected graph, print all connected components.</p>
-
-**Solutions**
-* Depth First Search (DFS)
-* Breadth First Search (BFS)
-
 <!-- ######### CUTTING STOCK PROBLEM ######### -->
 <a name="cuttingstock"></a>
 
 ## Cutting Stock Problem
-<p>Given a upperbound number of original rods, the number of new smaller rods, the size and the demand for each new rod. Determine the minimum number of original rods must be cutted to generate all demanded new rods.</p>
-
-**Solutions**
-
-* Mixed Integer Programming
+<p>Given a length and number of original rods, and given a set of lengths and demands of new smaller rods. Determine the minimum number of original rods that must be cut to generate all demanded new rods.</p>
 
 <h3>Formulation</h3>
 
-<h4>Constants:</h4>
+<h4>Data:</h4>
 
 <img src="imgs/cuttingstock/Constants.gif" /> 
 
-<h4>Variables</h4>
+<h4>Decision Variables</h4>
 
 <img src="imgs/cuttingstock/Variables.gif" /> 
 
-<h4>Objective:</h4>
+<h4>Objective Function:</h4>
 
 <img src="imgs/cuttingstock/Objective.gif" /> 
 
@@ -122,26 +93,19 @@ Contents
 <a name="facilitylocation"></a>
 
 ## Facility Location Problem
-<p>Given a set of clients and a set of potential facilities sites, 
-the problem consists in dicide which sites must be opened in order to assign client's demands to each facility.
-Each facility has it own fixed cost to be open and each client has a cost to be assigned to each facility.
-Total costs must be minimized.</p>
-
-**Solutions**
-
-* Mixed Integer Programming
+<p>Given a set of clients, a set of potential facilities sites, the costs of building each facility, and the costs of assign each client to each possible facility. The problem consists of deciding which places to build facilities to supply the client's demands such that total costs are minimized.</p>
 
 <h3>Formulation</h3>
 
-<h4>Constants:</h4>
+<h4>Data:</h4>
 
 <img src="imgs/facilitylocation/Constants.gif" /> 
 
-<h4>Variables</h4>
+<h4>Decision Variables</h4>
 
 <img src="imgs/facilitylocation/Variables.gif" /> 
 
-<h4>Objective:</h4>
+<h4>Objective Function:</h4>
 
 <img src="imgs/facilitylocation/Objective.gif" /> 
 
@@ -154,129 +118,67 @@ Total costs must be minimized.</p>
 
 ## Knapsack Problem
 
-<p>Given a set of itens with different values and weights, determine which itens to include in a colection that total weight of itens is less than or equal to a given limit and the total value is higher as possible.</p>
-
-**Solutions**
-* Greedy (Not Optimal)
-* Dynamic Programming
-* Mixed Integer Programming
+<p>Given a set of items with different values and weights, determine which items to include in a collection that total weight of items is less than or equal to a given limit, and the total value is higher as possible.</p>
 
 <h3>Formulation</h3>
 
-<h4>Constants:</h4>
+<h4>Data:</h4>
 
 <img src="imgs/knapsack/ConstantValue.gif" /> 
 <img src="imgs/knapsack/ConstantWeight.gif" /> 
 <img src="imgs/knapsack/ConstantCapacity.gif" /> 
 
-<h4>Variables</h4>
+<h4>Decision Variables</h4>
 <img src="imgs/knapsack/VariableX.gif" /> 
 
-<h4>Objective:</h4>
+<h4>Objective Function:</h4>
 <img src="imgs/knapsack/KnapsackObj.gif" /> 
 
 <h4>s.t.:</h4>
 <img src="imgs/knapsack/KnpasackConst.gif" /> 
 <img src="imgs/knapsack/KnapsackVariable.gif" /> 
 
-<!-- ######### LONGEST COMMON SUBSEQUENCE PROBLEM ######### -->
-<a name="LCS"></a>
-
-## Longest Common Subsequence
-
-<p>Given two sequences, find the length of longest subsequence present in both of them. A subsequence is a sequence that appears in the same relative order, but not necessarily contiguous.</p>
-
-**Solutions**
-* Brute Force (Recursion)
-* Dynamic Programming
-
-<!-- ######### LONGEST INCREASING SUBSEQUENCE PROBLEM ######### -->
-<a name="LIS"></a>
-
-## Longest Increasing Subsequence
-
-<p>Given an integer sequence, the problem is to find the length of the longest subsequence such that all elements of the subsequence are sorted in increasing order.</p>
-
-**Solutions**
-* Dynamic Programming
-* Divide and Conquer
-
-<!-- ######### MINIMUM SPANNING TREE PROBLEM ######### -->
-<a name="MST"></a>
-
-## Minimum Spanning Tree
-
-<p>A minimum spanning tree (MST) is a subset of the edges of a connected, edge-weighted undirected graph that connects all the vertices together, without any cycles and with the minimum possible total edge weight.</p>
-
-**Solutions**
-* Kruskal's Algorithm
-* Prim's Algorithm
-
-<!-- ######### SINGLE SHORTEST PATH PROBLEM ######### -->
-<a name="SSP"></a>
-
-## Single Shortest Path
-
-<p>Given a graph and a source vertex in the graph, find shortest paths from source to all vertices in the given graph.</p>
-
-**Solutions**
-* Bellman-Ford's Algorithm
-* Dijkstra's Algorithm
-
 <!-- ######### SET PARTITIONING PROBLEM ######### -->
 <a name="sp"></a>
 
 ## Set Partitioning Problem
 
-<p>Given a collection of subsets derived from an original set, find a partition of the original set. A new set of subsets that intersection of every subset is empty and the union of all subsets is equal to the original set</p>
-
-* Mixed Integer Programming
+<p>Given a collection of subsets derived from an original set, the problem is to find a partition of the initial set. In other words, the aim is to select a new set of subsets such that the intersection of every subset is empty, and the union of all subsets is equal to the original set.</p>
 
 <h3>Formulation</h3>
 
-<h4>Constants:</h4>
+<h4>Data:</h4>
 
 <img src="imgs/sp/Constants.gif" /> 
 
-<h4>Variables</h4>
+<h4>Decision Variables</h4>
 <img src="imgs/sp/Variables.gif" /> 
 
-<h4>Objective:</h4>
+<h4>Objective Function:</h4>
 <img src="imgs/sp/Objective.gif" /> 
 
 <h4>s.t.:</h4>
 <img src="imgs/sp/Constraints.gif" />
-
-<!-- ######### SUBSET SUM PROBLEM ######### -->
-<a name="subsetsum"></a>
-
-## Subset Sum
-
-<p>Given a set of non-negative integers, and a value, determine if there is a subset of the given set with sum equal to given value.</p>
-
-**Solutions**
-* Brute Force (Recursion)
-* Dynamic Programming
 
 <!-- ######### TRAVELLING SALESMAN PROBLEM ######### -->
 <a name="tsp"></a>
 
 ## Travelling Salesman Problem
 
-<p>Given a set of cities and distance between every pair of cities, the problem is to find the shortest possible route that visits every city exactly once and returns to the starting point.</p>
+<p>Given a set of cities and the distance between every pair of cities, the problem is to find the shortest possible route that visits every city exactly once and returns to the starting point.</p>
 
 * Mixed Integer Programming - Subtour formulation
 
 <h3>Formulation</h3>
 
-<h4>Constants:</h4>
+<h4>Data:</h4>
 
 <img src="imgs/tsp/Constants.gif" /> 
 
-<h4>Variables</h4>
+<h4>Decision Variables</h4>
 <img src="imgs/tsp/Variables.gif" /> 
 
-<h4>Objective:</h4>
+<h4>Objective Function:</h4>
 <img src="imgs/tsp/Objective.gif" /> 
 
 <h4>s.t.:</h4>
@@ -286,14 +188,14 @@ Total costs must be minimized.</p>
 
 <h3>Formulation</h3>
 
-<h4>Constants:</h4>
+<h4>Data:</h4>
 
 <img src="imgs/tsp/ConstantsF.gif" /> 
 
-<h4>Variables</h4>
+<h4>Decision Variables</h4>
 <img src="imgs/tsp/VariablesF.gif" /> 
 
-<h4>Objective:</h4>
+<h4>Objective Function:</h4>
 <img src="imgs/tsp/Objective.gif" /> 
 
 <h4>s.t.:</h4>
