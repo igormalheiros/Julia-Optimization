@@ -37,8 +37,10 @@ $$ Min( \sum_{i=1}^{n}\sum_{j=1}^{n} c_{ij}x_{ij} ) $$
 
 <h4>s.t.:</h4>
 
-$$ \sum_{i=1}^{n} x_{ij} = 1 \forall i \in n $$
-$$ \sum_{i=1}^{n} x_{ij} = 1 \forall j \in n $$
+$$ \sum_{i=1}^{n} x_{ij} = 1 \right \forall i \in n $$
+
+$$ \sum_{i=1}^{n} x_{ij} = 1 \right \forall j \in n $$
+
 $$ x_{ij} \in \{0, 1\} $$
 
 <!-- ######### BIN PACKING PROBLEM ######### -->
