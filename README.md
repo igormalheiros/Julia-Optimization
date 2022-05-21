@@ -21,6 +21,10 @@ Contents
 
 <h3>Formulation</h3>
 
+$$
+x^{2}_i
+$$
+
 <h4>Data:</h4>
 
 <img src="imgs/assignment/Constants.gif" /> 
