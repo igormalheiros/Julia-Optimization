@@ -89,19 +89,35 @@ $$ y_{i} \\,\in \\, \\{ 0, 1 \\} $$
 
 <h4>Data:</h4>
 
-<img src="imgs/cuttingstock/Constants.gif" /> 
+$L$ is the size of each original bar
+
+$n$ is the upper bound of original rods
+
+$m$ is the number of new smaller rods
+
+$l_{i}$ is the size of each new smaller rod $l_{1}$, $l_{2}$, ..., $l_{m}$
+
+$b_{i}$ is the demand of each new smaller rod $b_{1}$, $b_{2}$, ..., $b_{m}$
 
 <h4>Decision Variables</h4>
 
-<img src="imgs/cuttingstock/Variables.gif" /> 
+$y_{i}$ if an original rod $i$ is used or not
+
+$x_{ij}$ is the number of times that a new rod $j$ is cut in the original rod $i$
 
 <h4>Objective Function:</h4>
 
-<img src="imgs/cuttingstock/Objective.gif" /> 
+$$ Min \left( \sum_{i=1}^{n}y_{i} \right) $$
 
 <h4>s.t.:</h4>
 
-<img src="imgs/cuttingstock/Constraints.gif" /> 
+$$ \sum_{i=1}^{n} x_{ij} \geq b_{j} \qquad j \\, \in \\, m $$
+
+$$ \sum_{j=1}^{m} l_{j} x_{ij} \leq Ly_{i} \qquad i \\, \in \\, n $$
+
+$$ x_{ij} \\, \in \\, Z $$
+
+$$ y_{i} \\,\in \\, \\{ 0, 1 \\} $$
 
 <!-- ######### FACILITY LOCATION PROBLEM ######### -->
 <a name="facilitylocation"></a>
