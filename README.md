@@ -37,11 +37,11 @@ $$ Min( \sum_{i=1}^{n}\sum_{j=1}^{n} c_{ij}x_{ij} ) $$
 
 <h4>s.t.:</h4>
 
-$$ \sum_{i=1}^{n} x_{ij} = 1 \qquad i \quad \in \quad n $$
+$$ \sum_{i=1}^{n} x_{ij} = 1 \qquad i \in n $$
 
-$$ \sum_{i=1}^{n} x_{ij} = 1 \qquad j \quad \in \quad n $$
+$$ \sum_{i=1}^{n} x_{ij} = 1 \qquad j \in n $$
 
-$$ x_{ij} \quad \in \quad \{ 0, 1 \} $$
+$$ x_{ij} \in \left \{ 0, 1 \right \} $$
 
 <!-- ######### BIN PACKING PROBLEM ######### -->
 <a name="binpacking"></a>
