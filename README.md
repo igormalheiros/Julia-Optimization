@@ -42,7 +42,7 @@ $$ \sum_{i=1}^{n} x_{ij} = 1 \qquad i \\, \in \\, n $$
 
 $$ \sum_{i=1}^{n} x_{ij} = 1 \qquad j \\,\in \\, n $$
 
-$$ x_{ij} \\, \in \\, \{ 0, 1 \} $$
+$$ x_{ij} \\, \in \\, \\{ 0, 1 \\} $$
 
 <!-- ######### BIN PACKING PROBLEM ######### -->
 <a name="binpacking"></a>
@@ -75,9 +75,9 @@ $$ \sum_{i=1}^{n} x_{ij} = 1 \qquad i \\, \in \\, n $$
 
 $$ \sum_{j=1}^{n} w_{j} x_{ij} \leq W y_{i} \qquad i \\, \in \\, n $$
 
-$$ x_{ij} \\,\in \\, \{ 0, 1 \} $$
+$$ x_{ij} \\,\in \\, \\{ 0, 1 \\} $$
 
-$$ y_{i} \\,\in \\, \{ 0, 1 \} $$
+$$ y_{i} \\,\in \\, \\{ 0, 1 \\} $$
 
 <!-- ######### CUTTING STOCK PROBLEM ######### -->
 <a name="cuttingstock"></a>
