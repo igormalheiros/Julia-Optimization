@@ -25,6 +25,7 @@ Contents
 <h4>Data:</h4>
 
 $n$ is the number of agents and tasks
+
 $c_{ij}$ is the cost of agent $i$ perform task $j$
 
 <h4>Decision Variables:</h4>
@@ -37,11 +38,11 @@ $$ Min \left( \sum_{i=1}^{n}\sum_{j=1}^{n} c_{ij}x_{ij} \right) $$
 
 <h4>s.t.:</h4>
 
-$$ \sum_{i=1}^{n} x_{ij} = 1 \qquad i \in n $$
+$$ \sum_{i=1}^{n} x_{ij} = 1 \qquad i \\, \in \\, n $$
 
-$$ \sum_{i=1}^{n} x_{ij} = 1 \qquad j \in n $$
+$$ \sum_{i=1}^{n} x_{ij} = 1 \qquad j \\,\in \\, n $$
 
-$$ x_{ij} \in \{ 0, 1 \} $$
+$$ x_{ij} \\, \in \\, \{ 0, 1 \} $$
 
 <!-- ######### BIN PACKING PROBLEM ######### -->
 <a name="binpacking"></a>
@@ -54,21 +55,29 @@ $$ x_{ij} \in \{ 0, 1 \} $$
 
 <h4>Data:</h4>
 
-<img src="imgs/binpacking/ConstantWeight.gif" /> 
-<img src="imgs/binpacking/ConstantCapacity.gif" /> 
+$W$ is the capacity of the bins
+
+$w_{j}$ is the weight of item $j$
 
 <h4>Decision Variables</h4>
-<img src="imgs/binpacking/VariableY.gif" /> 
-<img src="imgs/binpacking/VariableX.gif" /> 
+
+$y_{i}$ is a decision variable, if the bin $i$ is used or not
+
+$x_{ij}$ is a decision variable, if the item $j$ is assigned to bin $i$ or not
 
 <h4>Objective Function:</h4>
-<img src="imgs/binpacking/BinPackingObj.gif" /> 
+
+$$ Min \left( \sum_{i=1}^{n}y_{i} \right) $$
 
 <h4>s.t.:</h4>
-<img src="imgs/binpacking/BinPackingConst1.gif" /> 
-<img src="imgs/binpacking/BinPackingConst2.gif" /> 
-<img src="imgs/binpacking/BinPackingVariableX.gif" />
-<img src="imgs/binpacking/BinPackingVariableY.gif" />
+
+$$ \sum_{i=1}^{n} x_{ij} = 1 \qquad i \\, \in \\, n $$
+
+$$ \sum_{j=1}^{n} w_{j} x_{ij} \leq W y_{i} \qquad i \\, \in \\, n $$
+
+$$ x_{ij} \\,\in \\, \{ 0, 1 \} $$
+
+$$ y_{i} \\,\in \\, \{ 0, 1 \} $$
 
 <!-- ######### CUTTING STOCK PROBLEM ######### -->
 <a name="cuttingstock"></a>
