@@ -24,8 +24,7 @@ Contents
 
 <h4>Data:</h4>
 
-$n$ is the number of agents and tasks
-
+$n$ is the number of agents and tasks</br>
 $c_{ij}$ is the cost of agent $i$ perform task $j$
 
 <h4>Decision Variables:</h4>
@@ -38,9 +37,9 @@ $$ Min \left( \sum_{i=1}^{n}\sum_{j=1}^{n} c_{ij}x_{ij} \right) $$
 
 <h4>s.t.:</h4>
 
-$$ \sum_{i=1}^{n} x_{ij} = 1 \qquad i \\, \in \\, n $$
+$$ \sum_{i=1}^{n} x_{ij} \\, = \\,1 \qquad i \\, \in \\, n $$
 
-$$ \sum_{i=1}^{n} x_{ij} = 1 \qquad j \\,\in \\, n $$
+$$ \sum_{i=1}^{n} x_{ij} \\, = \\, 1 \qquad j \\,\in \\, n $$
 
 $$ x_{ij} \\, \in \\, \\{ 0, 1 \\} $$
 
@@ -55,14 +54,12 @@ $$ x_{ij} \\, \in \\, \\{ 0, 1 \\} $$
 
 <h4>Data:</h4>
 
-$W$ is the capacity of the bins
-
+$W$ is the capacity of the bins</br>
 $w_{j}$ is the weight of item $j$
 
 <h4>Decision Variables</h4>
 
-$y_{i}$ is a decision variable, if the bin $i$ is used or not
-
+$y_{i}$ is a decision variable, if the bin $i$ is used or not</br>
 $x_{ij}$ is a decision variable, if the item $j$ is assigned to bin $i$ or not
 
 <h4>Objective Function:</h4>
@@ -71,9 +68,9 @@ $$ Min \left( \sum_{i=1}^{n}y_{i} \right) $$
 
 <h4>s.t.:</h4>
 
-$$ \sum_{i=1}^{n} x_{ij} = 1 \qquad i \\, \in \\, n $$
+$$ \sum_{i=1}^{n} x_{ij} \\, = \\, 1 \qquad i \\, \in \\, n $$
 
-$$ \sum_{j=1}^{n} w_{j} x_{ij} \leq W y_{i} \qquad i \\, \in \\, n $$
+$$ \sum_{j=1}^{n} w_{j} x_{ij} \\, \leq \\, W y_{i} \qquad i \\, \in \\, n $$
 
 $$ x_{ij} \\,\in \\, \\{ 0, 1 \\} $$
 
@@ -89,20 +86,15 @@ $$ y_{i} \\,\in \\, \\{ 0, 1 \\} $$
 
 <h4>Data:</h4>
 
-$L$ is the size of each original bar
-
-$n$ is the upper bound of original rods
-
-$m$ is the number of new smaller rods
-
-$l_{i}$ is the size of each new smaller rod $l_{1}$, $l_{2}$, ..., $l_{m}$
-
+$L$ is the size of each original bar</br>
+$n$ is the upper bound of original rods</br>
+$m$ is the number of new smaller rods</br>
+$l_{i}$ is the size of each new smaller rod $l_{1}$, $l_{2}$, ..., $l_{m}$</br>
 $b_{i}$ is the demand of each new smaller rod $b_{1}$, $b_{2}$, ..., $b_{m}$
 
 <h4>Decision Variables</h4>
 
-$y_{i}$ if an original rod $i$ is used or not
-
+$y_{i}$ if an original rod $i$ is used or not</br>
 $x_{ij}$ is the number of times that a new rod $j$ is cut in the original rod $i$
 
 <h4>Objective Function:</h4>
@@ -111,11 +103,11 @@ $$ Min \left( \sum_{i=1}^{n}y_{i} \right) $$
 
 <h4>s.t.:</h4>
 
-$$ \sum_{i=1}^{n} x_{ij} \geq b_{j} \qquad j \\, \in \\, m $$
+$$ \sum_{i=1}^{n} x_{ij} \\, \geq \\, b_{j} \qquad j \\, \in \\, m $$
 
-$$ \sum_{j=1}^{m} l_{j} x_{ij} \leq Ly_{i} \qquad i \\, \in \\, n $$
+$$ \sum_{j=1}^{m} l_{j} x_{ij} \\, \leq \\, Ly_{i} \qquad i \\, \in \\, n $$
 
-$$ x_{ij} \\, \in \\, Z $$
+$$ x_{ij} \\, \in \\, \mathbb{Z} $$
 
 $$ y_{i} \\,\in \\, \\{ 0, 1 \\} $$
 
@@ -129,19 +121,31 @@ $$ y_{i} \\,\in \\, \\{ 0, 1 \\} $$
 
 <h4>Data:</h4>
 
-<img src="imgs/facilitylocation/Constants.gif" /> 
+$I$ is the number of potential facilities</br>
+$I$ is the number of clients</br>
+$f_{i}$ is the fixed cost of open facility $i$</br>
+$c_{ij}$ is the fixed cost of assign client $j$ to facilty $i$</br>
+$q_{j}$ is the themand of client $j$</br>
+$Q_{i}$ is the capacity of facility $j$</br>
 
 <h4>Decision Variables</h4>
 
-<img src="imgs/facilitylocation/Variables.gif" /> 
+$y_{i}$ if facility $i$ is opened</br>
+$x_{ij}$ if client $j$ is assigned to facility $i$
 
 <h4>Objective Function:</h4>
 
-<img src="imgs/facilitylocation/Objective.gif" /> 
+$$ Min \left( \sum_{i=1}^{I}f_{i}y_{i} + \sum_{i=1}^{I}\sum_{j=1}^{J}c_{ij}x_{ij}\right) $$
 
 <h4>s.t.:</h4>
 
-<img src="imgs/facilitylocation/Constraints.gif" /> 
+$$ \sum_{i=1}^{I} x_{ij} \\, = \\, 1 \qquad j \\, \in \\, J $$
+
+$$ \sum_{j=1}^{J} q_{j}x_{ij} \\, \leq\\,  Q_{i}y_{i} \qquad i \\, \in \\, I $$
+
+$$ y_{i} \\, \in \\, \\{ 0, 1 \\} $$
+
+$$ 0 \\, \leq \\, x_{ij} \\, \leq \\, 1 $$
 
 <!-- ######### KNAPSACK PROBLEM ######### -->
 <a name="knapsack"></a>
@@ -154,19 +158,25 @@ $$ y_{i} \\,\in \\, \\{ 0, 1 \\} $$
 
 <h4>Data:</h4>
 
-<img src="imgs/knapsack/ConstantValue.gif" /> 
-<img src="imgs/knapsack/ConstantWeight.gif" /> 
-<img src="imgs/knapsack/ConstantCapacity.gif" /> 
+$n$ is the number of items</br>
+$v_{i}$ is the value of item $i$</br>
+$w_{i}$ is the weight of item $i$</br>
+$W$ is the capacity of the knapsack</br>
 
 <h4>Decision Variables</h4>
-<img src="imgs/knapsack/VariableX.gif" /> 
+
+$x_{i}$ is the decision variable, if the item $i$ the item $i$ is in knapsack or not
 
 <h4>Objective Function:</h4>
-<img src="imgs/knapsack/KnapsackObj.gif" /> 
+
+$$ Max \left( \sum_{i=1}^{n}v_{i}x_{i} \right) $$
 
 <h4>s.t.:</h4>
-<img src="imgs/knapsack/KnpasackConst.gif" /> 
-<img src="imgs/knapsack/KnapsackVariable.gif" /> 
+
+$$ \sum_{i=1}^{n} w_{i}x_{i} \\, \leq \\, W $$
+
+$$ x_{i} \\, \in \\, \\{ 0, 1 \\} $$
+
 
 <!-- ######### SET PARTITIONING PROBLEM ######### -->
 <a name="sp"></a>
@@ -179,16 +189,23 @@ $$ y_{i} \\,\in \\, \\{ 0, 1 \\} $$
 
 <h4>Data:</h4>
 
-<img src="imgs/sp/Constants.gif" /> 
+$S$ is the original set</br>
+$n$  is the number of subsets</br>
+$R_{i}$ is a subset of $S$ that has element $i$
 
 <h4>Decision Variables</h4>
-<img src="imgs/sp/Variables.gif" /> 
+
+$y_{j}$ if the subset $j$ is part of partitioning or not
 
 <h4>Objective Function:</h4>
-<img src="imgs/sp/Objective.gif" /> 
+
+$$ Min \left( \sum_{j=1}^{n}y_{j} \right) $$
 
 <h4>s.t.:</h4>
-<img src="imgs/sp/Constraints.gif" />
+
+$$ \sum_{j \\, \in \\, R_{i}} y_{j} \\, = \\, 1 \\qquad i \\, \in \\, S $$
+
+$$ y_{i} \\, \in \\, \\{ 0, 1 \\} $$
 
 <!-- ######### TRAVELLING SALESMAN PROBLEM ######### -->
 <a name="tsp"></a>
@@ -203,16 +220,28 @@ $$ y_{i} \\,\in \\, \\{ 0, 1 \\} $$
 
 <h4>Data:</h4>
 
-<img src="imgs/tsp/Constants.gif" /> 
+$n$ is the number of vertices</br>
+$N$ is the set of vertices</br>
+$S$ is a subtour</br>
+$c_{ij}$ is the cost of travel from vertex $i$ to vertex $j$
 
 <h4>Decision Variables</h4>
-<img src="imgs/tsp/Variables.gif" /> 
+
+$x_{ij}$ if arc from $i$ to $j$ is used
 
 <h4>Objective Function:</h4>
-<img src="imgs/tsp/Objective.gif" /> 
+
+$$ Min \left( \sum_{i=1}^{n} \sum_{\substack{j=1 \\\ i \neq j}}^{n} c_{ij}x_{ij} \right) $$
 
 <h4>s.t.:</h4>
-<img src="imgs/tsp/Constraints.gif" />
+
+$$ \sum_{i=1}^{n} x_{ij} \\, = \\, 1 \\qquad j \\, \in \\, n \\, , \\, j \\, \neq \\, i $$
+
+$$ \sum_{j=1}^{n} x_{ij} \\, = \\, 1 \\qquad i \\, \in \\, n \\, , \\, i \\, \neq \\, j $$
+
+$$ \sum_{i \\, \in \\, S}\sum_{j \\, \in \\, S} x_{ij} \\, \leq \\, |S| - 1 \\qquad S \\, \subset \\, N \\, , \\, 2 \\, \leq \\,|S| - 1| \\, \leq \\, \left \lfloor \frac{n}{2}  \right \rfloor$$
+
+$$ x_{ij} \\, \in \\, \\{ 0, 1 \\} $$
 
 * Mixed Integer Programming - Flow Variable
 
@@ -220,13 +249,28 @@ $$ y_{i} \\,\in \\, \\{ 0, 1 \\} $$
 
 <h4>Data:</h4>
 
-<img src="imgs/tsp/ConstantsF.gif" /> 
+$n$ is the number of vertices</br>
+$c_{ij}$ is the cost of travel from vertex $i$ to vertex $j$
 
 <h4>Decision Variables</h4>
-<img src="imgs/tsp/VariablesF.gif" /> 
+
+$x_{ij}$ if arc from $i$ to $j$ is used</br>
+$f_{ij}$ amount of flow from vertex $i$ to $j$
 
 <h4>Objective Function:</h4>
-<img src="imgs/tsp/Objective.gif" /> 
+
+$$ Min \left( \sum_{i=1}^{n} \sum_{\substack{j=1 \\\ i \neq j}}^{n} c_{ij}x_{ij} \right) $$
 
 <h4>s.t.:</h4>
-<img src="imgs/tsp/ConstraintsF.gif" />
+
+$$ \sum_{i=1}^{n} x_{ij} \\, = \\, 1 \\qquad j \\, \in \\, n \\, , \\, j \\, \neq \\, i $$
+
+$$ \sum_{j=1}^{n} x_{ij} \\, = \\, 1 \\qquad i \\, \in \\, n \\, , \\, i \\, \neq \\, j $$
+
+$$ \sum_{\substack{j=1 \\\ i \neq j}}^{n} f_{ji} - \sum_{\substack{j=1 \\\ i \neq j}}^{n} f_{ij} \\, = \\, 1 \\qquad i \\, \in \\, n \\, \\backslash \\{1\\} $$
+
+$$f_{ij} \\, \leq \\, (n - 1)x_{ij} \\qquad i \\, \in \\, n \\, , \\, j \\, \in \\, n $$
+
+$$ x_{ij} \\, \in \\\, \\{ 0, 1 \\} $$
+
+$$ f_{ij} \\, \in \\, \mathbb{N} $$
