@@ -33,9 +33,7 @@ $x_{ij}$ if task $j$ is assigned to agent $i$
 
 <h4>Objective Function:</h4>
 
-$$
-Min(\sum^{n}_{i=1}\sum^{n}_{j=1}c_{ij}x_{ij})
-$$
+$$ Min( \sum_{i=1}^{n}\sum_{j=1}^{n} c_{ij}x_{ij} ) $$
 
 <h4>s.t.:</h4>
 
