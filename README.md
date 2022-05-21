@@ -21,17 +21,15 @@ Contents
 
 <h3>Formulation</h3>
 
-$$
-x^{2}_i
-$$
 
 <h4>Data:</h4>
 
-<img src="imgs/assignment/Constants.gif" /> 
+$n$ is the number of agents and tasks
+$c_{ij} is the cost of agent $i$ perform task $j$
 
 <h4>Decision Variables:</h4>
 
-<img src="imgs/assignment/Variable.gif" /> 
+$x_{ij}$ if task $j$ is assigned to agent $i$
 
 <h4>Objective Function:</h4>
 
