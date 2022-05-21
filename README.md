@@ -25,7 +25,7 @@ Contents
 <h4>Data:</h4>
 
 $n$ is the number of agents and tasks
-$c_{ij} is the cost of agent $i$ perform task $j$
+$c_{ij}$ is the cost of agent $i$ perform task $j$
 
 <h4>Decision Variables:</h4>
 
@@ -33,7 +33,9 @@ $x_{ij}$ if task $j$ is assigned to agent $i$
 
 <h4>Objective Function:</h4>
 
-<img src="imgs/assignment/Objective.gif" /> 
+$$
+Min(\sum^{n}_{i=1}\sum^{n}_{j=1}{c_{ij}x_{ij}})
+$$
 
 <h4>s.t.:</h4>
 
