@@ -33,7 +33,7 @@ $x_{ij}$ if task $j$ is assigned to agent $i$
 
 <h4>Objective Function:</h4>
 
-$$ Min( \sum_{i=1}^{n}\sum_{j=1}^{n} c_{ij}x_{ij} ) $$
+$$ Min \left( \sum_{i=1}^{n}\sum_{j=1}^{n} c_{ij}x_{ij} \right) $$
 
 <h4>s.t.:</h4>
 
@@ -41,7 +41,7 @@ $$ \sum_{i=1}^{n} x_{ij} = 1 \qquad i \in n $$
 
 $$ \sum_{i=1}^{n} x_{ij} = 1 \qquad j \in n $$
 
-$$ x_{ij} \in \left \{ 0, 1 \right \} $$
+$$ x_{ij} \in \{ 0, 1 \} $$
 
 <!-- ######### BIN PACKING PROBLEM ######### -->
 <a name="binpacking"></a>
