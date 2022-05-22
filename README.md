@@ -21,7 +21,6 @@ Contents
 
 <h3>Formulation</h3>
 
-
 <h4>Data:</h4>
 
 $n$ is the number of agents and tasks</br>
@@ -29,7 +28,7 @@ $c_{ij}$ is the cost of agent $i$ perform task $j$
 
 <h4>Decision Variables:</h4>
 
-$x_{ij}$ if task $j$ is assigned to agent $i$
+$x_{ij}$ assumes value $1$ if task $j$ is assigned to agent $i$, $0$ otherwise
 
 <h4>Objective Function:</h4>
 
@@ -59,8 +58,8 @@ $w_{j}$ is the weight of item $j$
 
 <h4>Decision Variables</h4>
 
-$y_{i}$ is a decision variable, if the bin $i$ is used or not</br>
-$x_{ij}$ is a decision variable, if the item $j$ is assigned to bin $i$ or not
+$y_{i}$ assumes value $1$ if the bin $i$ is used, $0$ otherwise</br>
+$x_{ij}$ assumes value $1$ if the item $j$ is assigned to bin $i$, $0$ otherwise
 
 <h4>Objective Function:</h4>
 
@@ -94,8 +93,8 @@ $b_{i}$ is the demand of each new smaller rod $b_{1}$, $b_{2}$, ..., $b_{m}$
 
 <h4>Decision Variables</h4>
 
-$y_{i}$ if an original rod $i$ is used or not</br>
-$x_{ij}$ is the number of times that a new rod $j$ is cut in the original rod $i$
+$y_{i}$ assumes value $1$ if the original rod $i$ is used, $0$ otherwise</br>
+$x_{ij}$ assumes the number of times that a new rod $j$ is cut in the original rod $i$
 
 <h4>Objective Function:</h4>
 
@@ -130,8 +129,8 @@ $Q_{i}$ is the capacity of facility $j$</br>
 
 <h4>Decision Variables</h4>
 
-$y_{i}$ if facility $i$ is opened</br>
-$x_{ij}$ if client $j$ is assigned to facility $i$
+$y_{i}$ assumes value $1$ if facility $i$ is opened, $0$ otherwise</br>
+$x_{ij}$ assumes value $1$ if client $j$ is assigned to facility $i$, $0$ otherwise
 
 <h4>Objective Function:</h4>
 
@@ -145,7 +144,7 @@ $$ \sum_{j=1}^{J} q_{j}x_{ij} \\, \leq\\,  Q_{i}y_{i} \qquad i \\, \in \\, I $$
 
 $$ y_{i} \\, \in \\, \\{ 0, 1 \\} $$
 
-$$ 0 \\, \leq \\, x_{ij} \\, \leq \\, 1 $$
+$$ x_{ij} \\, \in \\, \\{ 0, 1 \\} $$
 
 <!-- ######### KNAPSACK PROBLEM ######### -->
 <a name="knapsack"></a>
@@ -165,7 +164,7 @@ $W$ is the capacity of the knapsack</br>
 
 <h4>Decision Variables</h4>
 
-$x_{i}$ is the decision variable, if the item $i$ the item $i$ is in knapsack or not
+$x_{i}$ assumes value $1$ if the item $i$ is in knapsack, $0$ otherwise
 
 <h4>Objective Function:</h4>
 
@@ -195,7 +194,7 @@ $R_{i}$ is a subset of $S$ that has element $i$
 
 <h4>Decision Variables</h4>
 
-$y_{j}$ if the subset $j$ is part of partitioning or not
+$y_{j}$ assumes value $1$ if the subset $j$ is part of partitioning, $0$ otherwise
 
 <h4>Objective Function:</h4>
 
@@ -227,7 +226,7 @@ $c_{ij}$ is the cost of travel from vertex $i$ to vertex $j$
 
 <h4>Decision Variables</h4>
 
-$x_{ij}$ if arc from $i$ to $j$ is used
+$x_{ij}$ assumes value $1$ if arc from $i$ to $j$ is used, $0$ otherwise
 
 <h4>Objective Function:</h4>
 
@@ -254,8 +253,8 @@ $c_{ij}$ is the cost of travel from vertex $i$ to vertex $j$
 
 <h4>Decision Variables</h4>
 
-$x_{ij}$ if arc from $i$ to $j$ is used</br>
-$f_{ij}$ amount of flow from vertex $i$ to $j$
+$x_{ij}$ assumes value $1$ if arc from $i$ to $j$ is used, $0$ otherwise</br>
+$f_{ij}$ assumes the amount of flow from vertex $i$ to $j$
 
 <h4>Objective Function:</h4>
 
