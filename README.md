@@ -32,7 +32,7 @@ $x_{ij}$ assumes value $1$ if task $j$ is assigned to agent $i$, $0$ otherwise
 
 <h4>Objective Function:</h4>
 
-$$ Min \left( \sum_{i=1}^{n}\sum_{j=1}^{n} c_{ij}x_{ij} \right) $$
+$$ \min \left( \sum_{i=1}^{n}\sum_{j=1}^{n} c_{ij}x_{ij} \right) $$
 
 <h4>s.t.:</h4>
 
@@ -63,7 +63,7 @@ $x_{ij}$ assumes value $1$ if the item $j$ is assigned to bin $i$, $0$ otherwise
 
 <h4>Objective Function:</h4>
 
-$$ Min \left( \sum_{i=1}^{n}y_{i} \right) $$
+$$ \min \left( \sum_{i=1}^{n}y_{i} \right) $$
 
 <h4>s.t.:</h4>
 
@@ -98,7 +98,7 @@ $x_{ij}$ assumes the number of times that a new rod $j$ is cut in the original r
 
 <h4>Objective Function:</h4>
 
-$$ Min \left( \sum_{i=1}^{n}y_{i} \right) $$
+$$ \min \left( \sum_{i=1}^{n}y_{i} \right) $$
 
 <h4>s.t.:</h4>
 
@@ -134,7 +134,7 @@ $x_{ij}$ assumes value $1$ if client $j$ is assigned to facility $i$, $0$ otherw
 
 <h4>Objective Function:</h4>
 
-$$ Min \left( \sum_{i=1}^{I}f_{i}y_{i} + \sum_{i=1}^{I}\sum_{j=1}^{J}c_{ij}x_{ij}\right) $$
+$$ \min \left( \sum_{i=1}^{I}f_{i}y_{i} + \sum_{i=1}^{I}\sum_{j=1}^{J}c_{ij}x_{ij}\right) $$
 
 <h4>s.t.:</h4>
 
@@ -168,7 +168,7 @@ $x_{i}$ assumes value $1$ if the item $i$ is in knapsack, $0$ otherwise
 
 <h4>Objective Function:</h4>
 
-$$ Max \left( \sum_{i=1}^{n}v_{i}x_{i} \right) $$
+$$ \max \left( \sum_{i=1}^{n}v_{i}x_{i} \right) $$
 
 <h4>s.t.:</h4>
 
@@ -198,7 +198,7 @@ $y_{j}$ assumes value $1$ if the subset $j$ is part of partitioning, $0$ otherwi
 
 <h4>Objective Function:</h4>
 
-$$ Min \left( \sum_{j=1}^{n}y_{j} \right) $$
+$$ \min \left( \sum_{j=1}^{n}y_{j} \right) $$
 
 <h4>s.t.:</h4>
 
@@ -230,7 +230,7 @@ $x_{ij}$ assumes value $1$ if arc from $i$ to $j$ is used, $0$ otherwise
 
 <h4>Objective Function:</h4>
 
-$$ Min \left( \sum_{i=1}^{n} \sum_{\substack{j=1 \\\ i \neq j}}^{n} c_{ij}x_{ij} \right) $$
+$$ \min \left( \sum_{i=1}^{n} \sum_{\substack{j=1 \\\ i \neq j}}^{n} c_{ij}x_{ij} \right) $$
 
 <h4>s.t.:</h4>
 
@@ -258,7 +258,7 @@ $f_{ij}$ assumes the amount of flow from vertex $i$ to $j$
 
 <h4>Objective Function:</h4>
 
-$$ Min \left( \sum_{i=1}^{n} \sum_{\substack{j=1 \\\ i \neq j}}^{n} c_{ij}x_{ij} \right) $$
+$$ \min \left( \sum_{i=1}^{n} \sum_{\substack{j=1 \\\ i \neq j}}^{n} c_{ij}x_{ij} \right) $$
 
 <h4>s.t.:</h4>
 
