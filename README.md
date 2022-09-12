@@ -51,6 +51,7 @@ $$ x_{ij} \\, \in \\, \\{ 0, 1 \\} $$
 <h3>Formulation</h3>
 
 <h4>Data:</h4>
+$n$ is the number of items</br>
 $W$ is the capacity of the bins</br>
 $w_{j}$ is the weight of item $j$
 
