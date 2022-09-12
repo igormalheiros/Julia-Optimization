@@ -1,82 +1,90 @@
 # ====== Code by Igor Malheiros - May of 2019 ====== #
 # ====== Bin Packing Problem using Integer Programming ====== #
 
-using JuMP, GLPK
+using JuMP, GLPK, Test
 import MathOptInterface # Replaces MathProgBase
 const MOI = MathOptInterface
 
-struct Item
-    name::String
-    value::Int64
-    weight::Int64
+struct Data
+    n::Int
+    W::Int
+    w::Vector{Int}
 end
 
-capacity = 10
+struct Solution
+    obj::Float64
+    y::Array{Bool,1}
+    x::Matrix{Bool}
+end
 
-itens = Item[]
-push!(itens, Item("Diamond", 25, 1) )
-push!(itens, Item("Book", 8, 3) )
-push!(itens, Item("Sword", 12, 9) )
-push!(itens, Item("Stone", 15, 3) )
-push!(itens, Item("Statue", 12, 7) )
-push!(itens, Item("Bracelet", 15, 4) )
-push!(itens, Item("Crown", 9, 3) )
-push!(itens, Item("Vase", 10, 8) )
-push!(itens, Item("Skull", 5, 5) )
-push!(itens, Item("Portrait", 13, 6) )
-push!(itens, Item("Ring", 20, 2) )
-push!(itens, Item("Medal", 17, 3) )
-push!(itens, Item("Mummy", 19, 10) )
-push!(itens, Item("Watch", 12, 4) )
-push!(itens, Item("Golden Coins", 20, 5) )
+function solve(data::Data)
+    n = data.n
+    W = data.W
+    w = data.w
 
+    model = Model(GLPK.Optimizer)
 
-function solve(itens::Array{Item}, capacity::Int)
-    n = length(itens)
-    load = 0
-
-    model = Model(with_optimizer(GLPK.Optimizer));  
     @variable(model, x[1:n, 1:n], Bin)
     @variable(model, y[1:n], Bin)
 
-    @objective(model, Min, sum(y[i] for i in 1:n))
+    @objective(model, Min, sum(y[i] for i = 1:n))
 
-    for i in 1:n
-        @constraint(model, sum(itens[j].weight * x[i, j] for j in 1:n) <= capacity * y[i])
+    for i = 1:n
+        @constraint(model, sum(w[j] * x[i, j] for j = 1:n) <= W * y[i])
     end
 
-    for j in 1:n
-        @constraint(model, sum(x[i, j] for i in 1:n) == 1)
+    for j = 1:n
+        @constraint(model, sum(x[i, j] for i = 1:n) == 1)
     end
 
-    JuMP.optimize!(model) # Old syntax: status = JuMP.solve(model)
+    JuMP.optimize!(model)
 
-    for i in 1:n
-        if (value(y[i]) == 1.0)
-            println("Bin Number ", i)
-            load = 0
-            for j in 1:n
-                if (value(x[i,j]) == 1.0)
-                    println(itens[j])
-                    load += itens[j].weight
-                end
+    solution = Solution(JuMP.objective_value(model), falses(n), falses(n, n))
+
+    for i = 1:n
+        if value(y[i]) == 1.0
+            solution.y[i] = true
+            for j = 1:n
+                solution.x[i, j] = (value(x[i, j]) == 1.0) ? true : false
             end
-            println("Load: ", load, "/", capacity, "\n")
         end
     end
 
-    println("Total of Bins used: ", JuMP.objective_value(model))
+    return solution
+end
 
-    @show JuMP.has_values(model)
-    @show JuMP.termination_status(model) == MOI.OPTIMAL
-    @show JuMP.primal_status(model) == MOI.FEASIBLE_POINT
+function print_solution(data::Data, solution::Solution)
+    println("******** Printing Solution! ********\n")
 
-    @show JuMP.objective_value(model)
-
+    for i = 1:data.n
+        if solution.y[i]
+            println("New Bin")
+            load = 0
+            for j = 1:data.n
+                if solution.x[i, j]
+                    println("Including item ", j, " with weight: ", data.w[j])
+                    load += data.w[j]
+                end
+            end
+            println("Load: ", load, "/", data.W, "\n")
+        end
+    end
+    println("Obj Function: ", solution.obj)
+    println("******** End of Printing! ********\n")
     return
 end
 
+data_1 = Data(15, 10, [1, 3, 9, 3, 7, 4, 3, 8, 5, 6, 2, 3, 10, 4, 5])
+data_2 = Data(10, 20, [8, 13, 20, 4, 6, 2, 5, 12, 9, 5])
 
-solve(itens, capacity)
-  
+benchmark_1 = 8
+benchmark_2 = 5
 
+solution_1 = solve(data_1)
+solution_2 = solve(data_2)
+
+@test solution_1.obj == benchmark_1
+@test solution_2.obj == benchmark_2
+
+print_solution(data_1, solution_1)
+print_solution(data_2, solution_2)

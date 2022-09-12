@@ -1,46 +1,83 @@
 # ====== Code by Igor Malheiros - June of 2019 ====== #
 # ====== Assignment Problem using Integer Programming ====== #
 
-using JuMP, GLPK
+using JuMP, GLPK, Test
 import MathOptInterface # Replaces MathProgBase
 const MOI = MathOptInterface
 
-#C = [9 2 7 8; 6 4 3 7 ; 5 8 1 8; 7 6 9 4]
-C = [2500 4000 3500 ; 4000 6000 3500 ; 2000 4000 2500]
+struct Data
+    n::Int
+    c::Matrix{Int}
+end
 
-function solve(cost_matrix::Array{Int,2}, N::Int)
-    model = Model(with_optimizer(GLPK.Optimizer))
-    @variable(model, x[1:N, 1:N], Bin)
+struct Solution
+    obj::Float64
+    x::Matrix{Bool}
+end
 
-    @objective(model, Min, sum(cost_matrix[i,j] * x[i, j] for i in 1:N, j in 1:N) )
+function solve(data::Data)
+    n = data.n
+    c = data.c
 
-    for i in 1:N
-        @constraint(model, sum(x[i, j] for j in 1:N) == 1 )
+    model = Model(GLPK.Optimizer)
+    @variable(model, x[1:n, 1:n], Bin)
+
+    @objective(model, Min, sum(c[i, j] * x[i, j] for i = 1:n, j = 1:n))
+
+    for i = 1:n
+        @constraint(model, sum(x[i, j] for j = 1:n) == 1)
     end
 
-    for j in 1:N
-        @constraint(model, sum(x[i, j] for i in 1:N) == 1 )
+    for j = 1:n
+        @constraint(model, sum(x[i, j] for i = 1:n) == 1)
     end
 
     JuMP.optimize!(model)
 
-    for i in 1:N
-        for j in 1:N
-            if (value(x[i,j]) == 1.0)
-                println("Agent: ", i, " assigned to task ", j, " with cost = ", C[i, j])
-            end
+    solution = Solution(JuMP.objective_value(model), falses(n, n))
+
+    for i = 1:n
+        for j = 1:n
+            solution.x[i, j] = value(x[i, j]) == 1.0 ? true : false
         end
     end
 
-    println("Total value: ", JuMP.objective_value(model))
+    return solution
+end
 
-    @show JuMP.has_values(model)
-    @show JuMP.termination_status(model) == MOI.OPTIMAL
-    @show JuMP.primal_status(model) == MOI.FEASIBLE_POINT
+function print_solution(data::Data, solution::Solution)
+    println("******** Printing Solution! ********\n")
 
-    @show JuMP.objective_value(model)
-
+    for i = 1:data.n
+        for j = 1:data.n
+            if solution.x[i, j]
+                println(
+                    "Agent: ",
+                    i,
+                    " assigned to task ",
+                    j,
+                    " with cost = ",
+                    data.c[i, j],
+                )
+            end
+        end
+    end
+    println("Obj Function: ", solution.obj)
+    println("******** End of Printing! ********\n")
     return
 end
 
-solve(C, size(C)[1])
+data_1 = Data(4, [9 2 7 8; 6 4 3 7; 5 8 1 8; 7 6 9 4])
+data_2 = Data(3, [2500 4000 3500; 4000 6000 3500; 2000 4000 2500])
+
+benchmark_1 = 13
+benchmark_2 = 9500
+
+solution_1 = solve(data_1)
+solution_2 = solve(data_2)
+
+@test solution_1.obj == benchmark_1
+@test solution_2.obj == benchmark_2
+
+print_solution(data_1, solution_1)
+print_solution(data_2, solution_2)

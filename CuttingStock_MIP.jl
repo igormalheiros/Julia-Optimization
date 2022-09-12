@@ -24,30 +24,38 @@ push!(orders, Order(4, 4, 3))
 function solve(orders::Array{Order}, len::Int, n::Int)
     m = length(orders)
 
-    model = Model(with_optimizer(GLPK.Optimizer));  
+    model = Model(GLPK.Optimizer)
 
     @variable(model, y[1:n], Bin)
     @variable(model, x[1:n, 1:m] >= 0, Int)
 
-    @objective(model, Min, sum(y[i] for i in 1:n))
+    @objective(model, Min, sum(y[i] for i = 1:n))
 
-    for j in 1:m
-        @constraint( model, sum( x[i, j] for i in 1:n ) >= orders[j].demand )
+    for j = 1:m
+        @constraint(model, sum(x[i, j] for i = 1:n) >= orders[j].demand)
     end
 
-    for i in 1:n
-        @constraint( model, sum( orders[j].size * x[i, j] for j in 1:m) <= len * y[i] )
+    for i = 1:n
+        @constraint(model, sum(orders[j].size * x[i, j] for j = 1:m) <= len * y[i])
     end
 
     JuMP.optimize!(model) # Old syntax: status = JuMP.solve(model)
 
-    for i in 1:n
+    for i = 1:n
         if (value(y[i]) == 1.0)
             println("Bar #", i)
             used = 0
-            for j in 1:m
+            for j = 1:m
                 if (value(x[i, j]) > 0)
-                    println("Order #", j, " has size of ", orders[j].size, " and appears ", value(x[i, j]), " times")
+                    println(
+                        "Order #",
+                        j,
+                        " has size of ",
+                        orders[j].size,
+                        " and appears ",
+                        value(x[i, j]),
+                        " times",
+                    )
                     used += (orders[j].size * value(x[i, j]))
                 end
             end

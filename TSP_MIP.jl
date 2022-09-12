@@ -9,7 +9,7 @@ const MOI = MathOptInterface
 # ### N = 12
 # ### OBJ = 283.635
 X = [43.0, 58.0, 53.0, 21.0, 78.0, 46.0, 79.0, 60.0, 42.0, 87.0, 77.0, 99.0]
-Y = [23.0, 76.0, 64.0, 38.0, 68.0, 57.0,  6.0,  5.0, 30.0,  2.0, 97.0, 79.0]
+Y = [23.0, 76.0, 64.0, 38.0, 68.0, 57.0, 6.0, 5.0, 30.0, 2.0, 97.0, 79.0]
 
 # ### N = 48
 # ### OBJ = 424.971
@@ -20,30 +20,30 @@ Y = [23.0, 76.0, 64.0, 38.0, 68.0, 57.0,  6.0,  5.0, 30.0,  2.0, 97.0, 79.0]
 function build_cost_matrix(X::Array{Float64}, Y::Array{Float64})
     N = length(X)
     cost_matrix = zeros(Float64, N, N)
-    for i in 1:N
-        for j in 1:N
-            cost_matrix[i, j] = sqrt( (X[i]-X[j])^2 + (Y[i]-Y[j])^2)
+    for i = 1:N
+        for j = 1:N
+            cost_matrix[i, j] = sqrt((X[i] - X[j])^2 + (Y[i] - Y[j])^2)
         end
     end
     println(cost_matrix)
     return cost_matrix
 end
 
-function solveSubtour(c::Array{Float64, 2})
+function solveSubtour(c::Array{Float64,2})
     println("Using Subtour Modelling")
     N = size(c, 1)
-    model = Model(with_optimizer(GLPK.Optimizer))
+    model = Model(GLPK.Optimizer)
 
     @variable(model, x[1:N, 1:N], Bin)
 
-    @objective(model, Min, sum(c[i, j] * x[i, j] for i in 1:N, j in 1:N if (i != j)) )
+    @objective(model, Min, sum(c[i, j] * x[i, j] for i in 1:N, j in 1:N if (i != j)))
 
-    for i in 1:N
+    for i = 1:N
         @constraint(model, sum(x[i, j] for j in 1:N if (i != j)) == 1)
     end
 
-    for j in 1:N
-        @constraint(model, sum(x[i, j] for i in 1:N  if (i != j)) == 1)
+    for j = 1:N
+        @constraint(model, sum(x[i, j] for i in 1:N if (i != j)) == 1)
     end
 
     JuMP.optimize!(model)
@@ -76,9 +76,9 @@ function solveSubtour(c::Array{Float64, 2})
         JuMP.optimize!(model)
     end
 
-    for i in 1:N
-        for j in 1:N
-            if (value(x[i,j]) == 1.0)
+    for i = 1:N
+        for j = 1:N
+            if (value(x[i, j]) == 1.0)
                 println("Arc from: ", i, " to ", j, " with cost = ", c[i, j])
             end
         end
@@ -94,41 +94,47 @@ function solveSubtour(c::Array{Float64, 2})
     return
 end
 
-function solveFlow(c::Array{Float64, 2})
+function solveFlow(c::Array{Float64,2})
     println("Using Flow variable Modelling")
     N = size(c, 1)
-    model = Model(with_optimizer(GLPK.Optimizer))
+    model = Model(GLPK.Optimizer)
 
     @variable(model, x[1:N, 1:N], Bin)
     @variable(model, f[1:N, 1:N] >= 0, Int)
 
-    @objective(model, Min, sum(c[i, j] * x[i, j] for i in 1:N, j in 1:N if (i != j) ))
+    @objective(model, Min, sum(c[i, j] * x[i, j] for i in 1:N, j in 1:N if (i != j)))
 
-    for i in 1:N
-        @constraint(model, sum(x[i, j] for j in 1:N if (i != j) ) == 1)
+    for i = 1:N
+        @constraint(model, sum(x[i, j] for j in 1:N if (i != j)) == 1)
     end
 
-    for j in 1:N
-        @constraint(model, sum(x[i, j] for i in 1:N if (i != j) ) == 1)
+    for j = 1:N
+        @constraint(model, sum(x[i, j] for i in 1:N if (i != j)) == 1)
     end
 
-    for i in 2:N
-        @constraint(model, (sum(f[j, i] for j in 1:N if (i != j) ) - sum(f[i, j] for j in 1:N if (i != j) )) == 1)
+    for i = 2:N
+        @constraint(
+            model,
+            (
+                sum(f[j, i] for j in 1:N if (i != j)) -
+                sum(f[i, j] for j in 1:N if (i != j))
+            ) == 1
+        )
     end
 
-    for i in 1:N 
-        for j in 1:N
+    for i = 1:N
+        for j = 1:N
             if (i != j)
-                @constraint(model, f[i, j] <= ((N-1)*x[i, j]))
+                @constraint(model, f[i, j] <= ((N - 1) * x[i, j]))
             end
         end
     end
 
     JuMP.optimize!(model)
 
-    for i in 1:N
-        for j in 1:N
-            if (i != j && value(x[i,j]) == 1.0)
+    for i = 1:N
+        for j = 1:N
+            if (i != j && value(x[i, j]) == 1.0)
                 println("Arc from: ", i, " to ", j, " with cost = ", c[i, j])
             end
         end
@@ -144,7 +150,7 @@ function solveFlow(c::Array{Float64, 2})
     return
 end
 
-c = build_cost_matrix(X,Y)
+c = build_cost_matrix(X, Y)
 @time solveSubtour(c)
 println("\n-------------------------------------\n")
 @time solveFlow(c)
