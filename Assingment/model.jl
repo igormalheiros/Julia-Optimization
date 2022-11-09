@@ -6,7 +6,7 @@ import MathOptInterface # Replaces MathProgBase
 const MOI = MathOptInterface
 
 struct Solution
-    obj::Float64
+    obj::Int
     x::Matrix{Bool}
 end
 

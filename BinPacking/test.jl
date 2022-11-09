@@ -25,17 +25,16 @@ function print_solution(data::Data, solution::Solution)
     println("******** Printing Solution! ********\n")
 
     for i = 1:data.n
-        for j = 1:data.n
-            if solution.x[i, j]
-                println(
-                    "Agent: ",
-                    i,
-                    " assigned to task ",
-                    j,
-                    " with cost = ",
-                    data.c[i, j],
-                )
+        if solution.y[i]
+            println("New Bin")
+            load = 0
+            for j = 1:data.n
+                if solution.x[i, j]
+                    println("Including item ", j, " with weight: ", data.w[j])
+                    load += data.w[j]
+                end
             end
+            println("Load: ", load, "/", data.W, "\n")
         end
     end
     println("Obj Function: ", solution.obj)
