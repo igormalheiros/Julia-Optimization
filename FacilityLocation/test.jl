@@ -23,30 +23,36 @@ end
 
 function print_solution(data::Data, solution::Solution)
     println("******** Printing Solution! ********\n")
-    L = data.L
-    n = data.n
-    m = data.m
-    l = data.l
+    I = data.I
+    J = data.J
+    f = data.f
+    q = data.q
+    Q = data.Q
+    c = data.c
 
-    for i = 1:n
+    for i = 1:I
         if solution.y[i]
-            println("Bar #", i)
-            used = 0
-            for j = 1:m
-                if solution.x[i, j] > 0
+            println("Facility ", i, " with cost: ", f[i], " is open!")
+            total_demand = 0
+            total_cost = f[i]
+            for j = 1:J
+                if solution.x[i, j]
+                    total_demand += q[j]
                     println(
-                        "Order #",
+                        "Client ",
                         j,
-                        " has size of ",
-                        l[j],
-                        " and appears ",
-                        solution.x[i, j],
-                        " times",
+                        " with demand: ",
+                        q[j],
+                        " is assigned to facility ",
+                        i,
+                        " with cost: ",
+                        c[i, j],
                     )
-                    used += (l[j] * solution.x[i, j])
+                    total_cost += c[i, j]
                 end
             end
-            println("Total used: ", used, "/", L)
+            println("Total demand: ", total_demand, "/", Q[i])
+            println("Total cost: ", total_cost)
         end
     end
     println("Obj Function: ", solution.obj)

@@ -14,6 +14,7 @@ function run()
     # Test 2
     data_2 = read_input("input/input2.in")
     benchmark_2 = read_output("output/output2.out")
+    println(data_2)
 
     @time solution_2 = solve(data_2)
     @test solution_2.obj == benchmark_2.opt_cost
@@ -23,32 +24,21 @@ end
 
 function print_solution(data::Data, solution::Solution)
     println("******** Printing Solution! ********\n")
-    L = data.L
     n = data.n
-    m = data.m
-    l = data.l
+    W = data.W
+    v = data.v
+    w = data.w
+    load = 0
 
     for i = 1:n
-        if solution.y[i]
-            println("Bar #", i)
-            used = 0
-            for j = 1:m
-                if solution.x[i, j] > 0
-                    println(
-                        "Order #",
-                        j,
-                        " has size of ",
-                        l[j],
-                        " and appears ",
-                        solution.x[i, j],
-                        " times",
-                    )
-                    used += (l[j] * solution.x[i, j])
-                end
-            end
-            println("Total used: ", used, "/", L)
+        if solution.x[i]
+            println("Item ", i, " with weight ", w[i], " and with value ", v[i])
+            load += w[i]
         end
     end
+
+    println("Load: ", load, "/", W)
+
     println("Obj Function: ", solution.obj)
     println("******** End of Printing! ********\n")
     return
