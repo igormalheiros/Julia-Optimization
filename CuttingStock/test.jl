@@ -15,7 +15,7 @@ function run()
     data_2 = read_input("input/input2.in")
     benchmark_2 = read_output("output/output2.out")
 
-    solution_2 = solve(data_2)
+    @time solution_2 = solve(data_2)
     @test solution_2.obj == benchmark_2.opt_cost
 
     print_solution(data_2, solution_2)
