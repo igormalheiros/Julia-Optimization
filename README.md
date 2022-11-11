@@ -3,13 +3,14 @@
 **It is a study guide for people who are interested in learning Mixed Integer Programming. The repository contains a set of classical optimization problems, and each problem has it is a mathematical formulation and implementation using Julia language with JuMP framework.**
 
 Contents
-1. [Assignment Problem](#assignment)
-2. [Bin Packing Problem](#binpacking)
-3. [Cutting Stock Problem](#cuttingstock)
-4. [Facility Location Problem](#facilitylocation)
-5. [Knapsack Problem](#knapsack)
-6. [Set Partitioning Problem](#SP)
-7. [Travelling Salesman Problem](#TSP)
+- [Julia Optimization Study](#julia-optimization-study)
+  - [Assignment Problem](#assignment-problem)
+  - [Bin Packing Problem](#bin-packing-problem)
+  - [Cutting Stock Problem](#cutting-stock-problem)
+  - [Facility Location Problem](#facility-location-problem)
+  - [Knapsack Problem](#knapsack-problem)
+  - [Set Partitioning Problem](#set-partitioning-problem)
+  - [Travelling Salesman Problem](#travelling-salesman-problem)
 
 
 <!-- ######### ASSIGNMENT ######### -->
@@ -116,11 +117,11 @@ $$ y_{i} \\,\in \\, \\{ 0, 1 \\} $$
 
 <h4>Data:</h4>
 $I$ is the number of potential facilities</br>
-$I$ is the number of clients</br>
+$J$ is the number of clients</br>
 $f_{i}$ is the fixed cost of open facility $i$</br>
 $c_{ij}$ is the fixed cost of assign client $j$ to facilty $i$</br>
 $q_{j}$ is the themand of client $j$</br>
-$Q_{i}$ is the capacity of facility $j$</br>
+$Q_{i}$ is the capacity of facility $i$</br>
 
 <h4>Decision Variables</h4>
 $y_{i}$ assumes value $1$ if facility $i$ is opened, $0$ otherwise</br>
