@@ -28,6 +28,7 @@ $n$ is the number of agents and tasks</br>
 $c_{ij}$ is the cost of agent $i$ perform task $j$
 
 <h4>Decision Variables:</h4>
+
 $x_{ij}$ assumes value $1$ if task $j$ is assigned to agent $i$, $0$ otherwise
 
 <h4>Objective Function:</h4>
@@ -52,11 +53,13 @@ $$ x_{ij} \\, \in \\, \\{ 0, 1 \\} $$
 <h3>Formulation</h3>
 
 <h4>Data:</h4>
+
 $n$ is the number of items</br>
-$W$ is the capacity of the bins</br>
+$C$ is the capacity of the bins</br>
 $w_{j}$ is the weight of item $j$
 
 <h4>Decision Variables</h4>
+
 $y_{i}$ assumes value $1$ if the bin $i$ is used, $0$ otherwise</br>
 $x_{ij}$ assumes value $1$ if the item $j$ is assigned to bin $i$, $0$ otherwise
 
@@ -68,7 +71,7 @@ $$ \min \left( \sum_{i=1}^{n}y_{i} \right) $$
 
 $$ \sum_{i=1}^{n} x_{ij} \\, = \\, 1 \qquad i \\, \in \\, n $$
 
-$$ \sum_{j=1}^{n} w_{j} x_{ij} \\, \leq \\, W y_{i} \qquad i \\, \in \\, n $$
+$$ \sum_{j=1}^{n} w_{j} x_{ij} \\, \leq \\, C y_{i} \qquad i \\, \in \\, n $$
 
 $$ x_{ij} \\,\in \\, \\{ 0, 1 \\} $$
 
@@ -83,6 +86,7 @@ $$ y_{i} \\,\in \\, \\{ 0, 1 \\} $$
 <h3>Formulation</h3>
 
 <h4>Data:</h4>
+
 $L$ is the size of each original bar</br>
 $n$ is the upper bound of original rods</br>
 $m$ is the number of new smaller rods</br>
@@ -90,6 +94,7 @@ $l_{i}$ is the size of each new smaller rod $l_{1}$, $l_{2}$, ..., $l_{m}$</br>
 $b_{i}$ is the demand of each new smaller rod $b_{1}$, $b_{2}$, ..., $b_{m}$
 
 <h4>Decision Variables</h4>
+
 $y_{i}$ assumes value $1$ if the original rod $i$ is used, $0$ otherwise</br>
 $x_{ij}$ assumes the number of times that a new rod $j$ is cut in the original rod $i$
 
@@ -116,6 +121,7 @@ $$ y_{i} \\,\in \\, \\{ 0, 1 \\} $$
 <h3>Formulation</h3>
 
 <h4>Data:</h4>
+
 $I$ is the number of potential facilities</br>
 $J$ is the number of clients</br>
 $f_{i}$ is the fixed cost of open facility $i$</br>
@@ -124,6 +130,7 @@ $q_{j}$ is the themand of client $j$</br>
 $Q_{i}$ is the capacity of facility $i$</br>
 
 <h4>Decision Variables</h4>
+
 $y_{i}$ assumes value $1$ if facility $i$ is opened, $0$ otherwise</br>
 $x_{ij}$ assumes value $1$ if client $j$ is assigned to facility $i$, $0$ otherwise
 
