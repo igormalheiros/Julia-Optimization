@@ -153,22 +153,24 @@ $$ x_{ij} \\, \in \\, \\{ 0, 1 \\} $$
 
 ## Knapsack Problem
 
-<p>Given a set of items with different values and weights, determine which items to include in a collection that total weight of items is less than or equal to a given limit, and the total value is higher as possible.</p>
+<p>Given a set of items with different profits and weights, determine which items to include in a collection such that the total weight of items is less than or equal to a given limit, and the total profit is higher as possible.</p>
 
 <h3>Formulation</h3>
 
 <h4>Data:</h4>
+
 $n$ is the number of items</br>
-$v_{i}$ is the value of item $i$</br>
+$p_{i}$ is the profit of item $i$</br>
 $w_{i}$ is the weight of item $i$</br>
 $W$ is the capacity of the knapsack</br>
 
 <h4>Decision Variables</h4>
+
 $x_{i}$ assumes value $1$ if the item $i$ is in knapsack, $0$ otherwise
 
 <h4>Objective Function:</h4>
 
-$$ \max \left( \sum_{i=1}^{n}v_{i}x_{i} \right) $$
+$$ \max \left( \sum_{i=1}^{n}p_{i}x_{i} \right) $$
 
 <h4>s.t.:</h4>
 
@@ -187,11 +189,13 @@ $$ x_{i} \\, \in \\, \\{ 0, 1 \\} $$
 <h3>Formulation</h3>
 
 <h4>Data:</h4>
+
 $S$ is the original set</br>
 $n$  is the number of subsets</br>
 $R_{i}$ is a subset of $S$ that has element $i$
 
 <h4>Decision Variables</h4>
+
 $y_{j}$ assumes value $1$ if the subset $j$ is part of partitioning, $0$ otherwise
 
 <h4>Objective Function:</h4>
@@ -216,12 +220,14 @@ $$ y_{i} \\, \in \\, \\{ 0, 1 \\} $$
 <h3>Formulation</h3>
 
 <h4>Data:</h4>
+
 $n$ is the number of vertices</br>
 $N$ is the set of vertices</br>
 $S$ is a subtour</br>
 $c_{ij}$ is the cost of travel from vertex $i$ to vertex $j$
 
 <h4>Decision Variables</h4>
+
 $x_{ij}$ assumes value $1$ if arc from $i$ to $j$ is used, $0$ otherwise
 
 <h4>Objective Function:</h4>
@@ -243,10 +249,12 @@ $$ x_{ij} \\, \in \\, \\{ 0, 1 \\} $$
 <h3>Formulation</h3>
 
 <h4>Data:</h4>
+
 $n$ is the number of vertices</br>
 $c_{ij}$ is the cost of travel from vertex $i$ to vertex $j$
 
 <h4>Decision Variables</h4>
+
 $x_{ij}$ assumes value $1$ if arc from $i$ to $j$ is used, $0$ otherwise</br>
 $f_{ij}$ assumes the amount of flow from vertex $i$ to $j$
 
