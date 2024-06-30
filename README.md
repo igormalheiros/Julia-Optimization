@@ -309,9 +309,9 @@ $c_{ij} \in \mathbb{R_{+}}$ is the travel cost to go from $i \in V$ to $j \in V$
 
 <h4>Decision Variables</h4>
 
-$x^{k}_{ij} \in \{0, 1\}^{{|K| \times |V|} \times |V|}$ assumes value $1$ if arc from $i$ to $j$ is used by vehicle $k$, $0$ otherwise</br>
-$B^{k}_{i} \in \mathbb{R}^{|K| \times |V|}_{+}$ is the visit time of node $i$ by vehicle $k$</br>
-$Q^{k}_{i} \in \mathbb{R}^{|K| \times |V|}_{+}$ is the accumulalted demand up to node $i$ on the vehicle $k$
+$x^{k}_{ij} \in \\{0, 1\\}^{{|K| \times |V|} \times |V|}$ assumes value $1$ if arc from $i$ to $j$ is used by vehicle $k$, $0$ otherwise</br>
+$B^{k}_{i} \in \mathbb{R^{|K| \times |V|}_{+}}$ is the visit time of node $i$ by vehicle $k$</br>
+$Q^{k}_{i} \in \mathbb{R^{|K| \times |V|}_{+}}$ is the accumulalted demand up to node $i$ on the vehicle $k$
 
 <h4>Objective Function:</h4>
 
