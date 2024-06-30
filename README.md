@@ -333,6 +333,10 @@ $$B_{j}^{k} \geq (B_{i}^{k} + s_{i} + t_{ij})x_{ij}^{k} \\qquad i \\, \in \\, V,
 
 $$e_i \leq B_{i}^{k} \leq l_i \\qquad i \\, \in \\, V, \\, k \\, \in \\, K$$
 
+$$\leq B_{i+n}^{k} \geq B_{i}^{k} \\qquad i \\, \in \\, P, \\, k \\, \in \\, K$$
+
+$$\leq B_{i+n}^{k} \\, - \\, (B_{i}^{k} \\, + \\, s_{i}) \leq L \\qquad i \\, \in \\, P, \\, k \\, \in \\, K$$
+
 $$Q_{j}^{k} \geq (Q_{i}^{k} + q_{j})x_{ij}^{k} \\qquad i \\, \in \\, V, j \\, \in \\, V, \\, k \\, \in \\, K$$
 
 $$Q_{i}^{k} \leq C \\qquad i \\, \in \\, V, \\, k \\, \in \\, K$$
