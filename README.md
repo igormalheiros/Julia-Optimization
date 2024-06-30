@@ -29,6 +29,7 @@ $n$ is the number of agents and tasks</br>
 $c_{ij}$ is the cost of agent $i$ perform task $j$
 
 <h4>Decision Variables:</h4>
+
 $x_{ij}$ assumes value $1$ if task $j$ is assigned to agent $i$, $0$ otherwise
 
 <h4>Objective Function:</h4>
@@ -93,7 +94,7 @@ $m$ is the number of new smaller rods</br>
 $l_{i}$ is the size of each new smaller rod $l_{1}$, $l_{2}$, ..., $l_{m}$</br>
 $b_{i}$ is the demand of each new smaller rod $b_{1}$, $b_{2}$, ..., $b_{m}$
 
-<h4>Decision Variables</h4>\
+<h4>Decision Variables</h4>
 
 $y_{i}$ assumes value $1$ if the original rod $i$ is used, $0$ otherwise</br>
 $x_{ij}$ assumes the number of times that a new rod $j$ is cut in the original rod $i$
@@ -295,7 +296,7 @@ $P = \{1, \ldots, n\}$ is the set of pickup nodes</br>
 $D = \{n+1, \ldots, 2n\}$ is the set of delivery nodes</br>
 $m_{o} = 2n + 1$ is the initial depot node</br>
 $m_{e} = 2n + 2$ is the ending depot node</br>
-$V = P \cup D \cup \{m_{o}\} \cup \{m_{e}\}$ is the set of all nodes in the network</br>
+$V = P \cup D \cup \\{m_{o}\\} \cup \\{m_{e}\\}$ is the set of all nodes in the network</br>
 $K = \{1, \ldots, v\}$ is the set of vehicles</br>
 $C \in \mathbb{N}_+$ is the maximum capacity of the vehicles</br>
 $L \in \mathbb{R}_{+}$ is the maximum ride of the request</br>
