@@ -298,14 +298,14 @@ $m_{o} = 2n + 1$ is the initial depot node</br>
 $m_{e} = 2n + 2$ is the ending depot node</br>
 $V = P \cup D \cup \\{m_{o}\\} \cup \\{m_{e}\\}$ is the set of all nodes in the network</br>
 $K = \{1, \ldots, v\}$ is the set of vehicles</br>
-$C \in \mathbb{N}_+$ is the maximum capacity of the vehicles</br>
-$L \in \mathbb{R}_{+}$ is the maximum ride of the request</br>
+$C \in \mathbb{N_+}$ is the maximum capacity of the vehicles</br>
+$L \in \mathbb{R_{+}}$ is the maximum ride of the request</br>
 $q_{i} \in \mathbb{N}$ is the demand of node $i \in V$</br>
-$e_{i} \in \mathbb{R}_{+}$ is the earliest time to visit the node $i \in V$</br>
-$l_{i} \in \mathbb{R}_{+}$ is the latest time to visit the node $i \in V$</br>
-$s_{i} \in \mathbb{R}_{+}$ is the service time to visit the node $i \in V$</br>
-$t_{ij} \in \mathbb{R}_{+}$ is the travel time to go from $i \in V$ to $j \in V$</br>
-$c_{ij} \in \mathbb{R}_{+}$ is the travel cost to go from $i \in V$ to $j \in V$
+$e_{i} \in \mathbb{R_{+}}$ is the earliest time to visit the node $i \in V$</br>
+$l_{i} \in \mathbb{R_{+}}$ is the latest time to visit the node $i \in V$</br>
+$s_{i} \in \mathbb{R_{+}}$ is the service time to visit the node $i \in V$</br>
+$t_{ij} \in \mathbb{R_{+}}$ is the travel time to go from $i \in V$ to $j \in V$</br>
+$c_{ij} \in \mathbb{R_{+}}$ is the travel cost to go from $i \in V$ to $j \in V$
 
 <h4>Decision Variables</h4>
 
