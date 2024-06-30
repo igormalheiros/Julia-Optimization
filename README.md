@@ -53,11 +53,13 @@ $$ x_{ij} \\, \in \\, \\{ 0, 1 \\} $$
 <h3>Formulation</h3>
 
 <h4>Data:</h4>
+
 $n$ is the number of items</br>
 $W$ is the capacity of the bins</br>
 $w_{j}$ is the weight of item $j$
 
 <h4>Decision Variables</h4>
+
 $y_{i}$ assumes value $1$ if the bin $i$ is used, $0$ otherwise</br>
 $x_{ij}$ assumes value $1$ if the item $j$ is assigned to bin $i$, $0$ otherwise
 
@@ -84,13 +86,15 @@ $$ y_{i} \\,\in \\, \\{ 0, 1 \\} $$
 <h3>Formulation</h3>
 
 <h4>Data:</h4>
+
 $L$ is the size of each original bar</br>
 $n$ is the upper bound of original rods</br>
 $m$ is the number of new smaller rods</br>
 $l_{i}$ is the size of each new smaller rod $l_{1}$, $l_{2}$, ..., $l_{m}$</br>
 $b_{i}$ is the demand of each new smaller rod $b_{1}$, $b_{2}$, ..., $b_{m}$
 
-<h4>Decision Variables</h4>
+<h4>Decision Variables</h4>\
+
 $y_{i}$ assumes value $1$ if the original rod $i$ is used, $0$ otherwise</br>
 $x_{ij}$ assumes the number of times that a new rod $j$ is cut in the original rod $i$
 
@@ -117,6 +121,7 @@ $$ y_{i} \\,\in \\, \\{ 0, 1 \\} $$
 <h3>Formulation</h3>
 
 <h4>Data:</h4>
+
 $I$ is the number of potential facilities</br>
 $J$ is the number of clients</br>
 $f_{i}$ is the fixed cost of open facility $i$</br>
@@ -125,6 +130,7 @@ $q_{j}$ is the themand of client $j$</br>
 $Q_{i}$ is the capacity of facility $i$</br>
 
 <h4>Decision Variables</h4>
+
 $y_{i}$ assumes value $1$ if facility $i$ is opened, $0$ otherwise</br>
 $x_{ij}$ assumes value $1$ if client $j$ is assigned to facility $i$, $0$ otherwise
 
@@ -152,12 +158,14 @@ $$ x_{ij} \\, \in \\, \\{ 0, 1 \\} $$
 <h3>Formulation</h3>
 
 <h4>Data:</h4>
+
 $n$ is the number of items</br>
 $v_{i}$ is the value of item $i$</br>
 $w_{i}$ is the weight of item $i$</br>
 $W$ is the capacity of the knapsack</br>
 
 <h4>Decision Variables</h4>
+
 $x_{i}$ assumes value $1$ if the item $i$ is in knapsack, $0$ otherwise
 
 <h4>Objective Function:</h4>
@@ -181,11 +189,13 @@ $$ x_{i} \\, \in \\, \\{ 0, 1 \\} $$
 <h3>Formulation</h3>
 
 <h4>Data:</h4>
+
 $S$ is the original set</br>
 $n$  is the number of subsets</br>
 $R_{i}$ is a subset of $S$ that has element $i$
 
 <h4>Decision Variables</h4>
+
 $y_{j}$ assumes value $1$ if the subset $j$ is part of partitioning, $0$ otherwise
 
 <h4>Objective Function:</h4>
@@ -210,12 +220,14 @@ $$ y_{i} \\, \in \\, \\{ 0, 1 \\} $$
 <h3>Formulation</h3>
 
 <h4>Data:</h4>
+
 $n$ is the number of vertices</br>
 $N$ is the set of vertices</br>
 $S$ is a subtour</br>
 $c_{ij}$ is the cost of travel from vertex $i$ to vertex $j$
 
 <h4>Decision Variables</h4>
+
 $x_{ij}$ assumes value $1$ if arc from $i$ to $j$ is used, $0$ otherwise
 
 <h4>Objective Function:</h4>
@@ -237,10 +249,12 @@ $$ x_{ij} \\, \in \\, \\{ 0, 1 \\} $$
 <h3>Formulation</h3>
 
 <h4>Data:</h4>
+
 $n$ is the number of vertices</br>
 $c_{ij}$ is the cost of travel from vertex $i$ to vertex $j$
 
 <h4>Decision Variables</h4>
+
 $x_{ij}$ assumes value $1$ if arc from $i$ to $j$ is used, $0$ otherwise</br>
 $f_{ij}$ assumes the amount of flow from vertex $i$ to $j$
 
@@ -274,6 +288,7 @@ $$ f_{ij} \\, \in \\, \mathbb{N} $$
 <h3>Formulation</h3>
 
 <h4>Data:</h4>
+
 $n$ is the number of requests</br>
 $v$ is the number of vehicles</br>
 $P = \{1, \ldots, n\}$ is the set of pickup nodes</br>
@@ -292,6 +307,7 @@ $t_{ij} \in \mathbb{R}_{+}$ is the travel time to go from $i \in V$ to $j \in V$
 $c_{ij} \in \mathbb{R}_{+}$ is the travel cost to go from $i \in V$ to $j \in V$
 
 <h4>Decision Variables</h4>
+
 $x^{k}_{ij} \in \{0, 1\}^{{|K| \times |V|} \times |V|}$ assumes value $1$ if arc from $i$ to $j$ is used by vehicle $k$, $0$ otherwise</br>
 $B^{k}_{i} \in \mathbb{R}^{|K| \times |V|}_{+}$ is the visit time of node $i$ by vehicle $k$</br>
 $Q^{k}_{i} \in \mathbb{R}^{|K| \times |V|}_{+}$ is the accumulalted demand up to node $i$ on the vehicle $k$
