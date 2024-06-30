@@ -11,6 +11,7 @@ Contents
   - [Knapsack Problem](#knapsack-problem)
   - [Set Partitioning Problem](#set-partitioning-problem)
   - [Travelling Salesman Problem](#travelling-salesman-problem)
+  - [Dial-a-Ride Problem](#dial-a-ride-problem)
 
 
 <!-- ######### ASSIGNMENT ######### -->
@@ -28,7 +29,6 @@ $n$ is the number of agents and tasks</br>
 $c_{ij}$ is the cost of agent $i$ perform task $j$
 
 <h4>Decision Variables:</h4>
-
 $x_{ij}$ assumes value $1$ if task $j$ is assigned to agent $i$, $0$ otherwise
 
 <h4>Objective Function:</h4>
@@ -53,13 +53,11 @@ $$ x_{ij} \\, \in \\, \\{ 0, 1 \\} $$
 <h3>Formulation</h3>
 
 <h4>Data:</h4>
-
 $n$ is the number of items</br>
-$C$ is the capacity of the bins</br>
+$W$ is the capacity of the bins</br>
 $w_{j}$ is the weight of item $j$
 
 <h4>Decision Variables</h4>
-
 $y_{i}$ assumes value $1$ if the bin $i$ is used, $0$ otherwise</br>
 $x_{ij}$ assumes value $1$ if the item $j$ is assigned to bin $i$, $0$ otherwise
 
@@ -71,7 +69,7 @@ $$ \min \left( \sum_{i=1}^{n}y_{i} \right) $$
 
 $$ \sum_{i=1}^{n} x_{ij} \\, = \\, 1 \qquad i \\, \in \\, n $$
 
-$$ \sum_{j=1}^{n} w_{j} x_{ij} \\, \leq \\, C y_{i} \qquad i \\, \in \\, n $$
+$$ \sum_{j=1}^{n} w_{j} x_{ij} \\, \leq \\, W y_{i} \qquad i \\, \in \\, n $$
 
 $$ x_{ij} \\,\in \\, \\{ 0, 1 \\} $$
 
@@ -86,7 +84,6 @@ $$ y_{i} \\,\in \\, \\{ 0, 1 \\} $$
 <h3>Formulation</h3>
 
 <h4>Data:</h4>
-
 $L$ is the size of each original bar</br>
 $n$ is the upper bound of original rods</br>
 $m$ is the number of new smaller rods</br>
@@ -94,7 +91,6 @@ $l_{i}$ is the size of each new smaller rod $l_{1}$, $l_{2}$, ..., $l_{m}$</br>
 $b_{i}$ is the demand of each new smaller rod $b_{1}$, $b_{2}$, ..., $b_{m}$
 
 <h4>Decision Variables</h4>
-
 $y_{i}$ assumes value $1$ if the original rod $i$ is used, $0$ otherwise</br>
 $x_{ij}$ assumes the number of times that a new rod $j$ is cut in the original rod $i$
 
@@ -121,7 +117,6 @@ $$ y_{i} \\,\in \\, \\{ 0, 1 \\} $$
 <h3>Formulation</h3>
 
 <h4>Data:</h4>
-
 $I$ is the number of potential facilities</br>
 $J$ is the number of clients</br>
 $f_{i}$ is the fixed cost of open facility $i$</br>
@@ -130,7 +125,6 @@ $q_{j}$ is the themand of client $j$</br>
 $Q_{i}$ is the capacity of facility $i$</br>
 
 <h4>Decision Variables</h4>
-
 $y_{i}$ assumes value $1$ if facility $i$ is opened, $0$ otherwise</br>
 $x_{ij}$ assumes value $1$ if client $j$ is assigned to facility $i$, $0$ otherwise
 
@@ -153,24 +147,22 @@ $$ x_{ij} \\, \in \\, \\{ 0, 1 \\} $$
 
 ## Knapsack Problem
 
-<p>Given a set of items with different profits and weights, determine which items to include in a collection such that the total weight of items is less than or equal to a given limit, and the total profit is higher as possible.</p>
+<p>Given a set of items with different values and weights, determine which items to include in a collection that total weight of items is less than or equal to a given limit, and the total value is higher as possible.</p>
 
 <h3>Formulation</h3>
 
 <h4>Data:</h4>
-
 $n$ is the number of items</br>
-$p_{i}$ is the profit of item $i$</br>
+$v_{i}$ is the value of item $i$</br>
 $w_{i}$ is the weight of item $i$</br>
 $W$ is the capacity of the knapsack</br>
 
 <h4>Decision Variables</h4>
-
 $x_{i}$ assumes value $1$ if the item $i$ is in knapsack, $0$ otherwise
 
 <h4>Objective Function:</h4>
 
-$$ \max \left( \sum_{i=1}^{n}p_{i}x_{i} \right) $$
+$$ \max \left( \sum_{i=1}^{n}v_{i}x_{i} \right) $$
 
 <h4>s.t.:</h4>
 
@@ -189,13 +181,11 @@ $$ x_{i} \\, \in \\, \\{ 0, 1 \\} $$
 <h3>Formulation</h3>
 
 <h4>Data:</h4>
-
 $S$ is the original set</br>
 $n$  is the number of subsets</br>
 $R_{i}$ is a subset of $S$ that has element $i$
 
 <h4>Decision Variables</h4>
-
 $y_{j}$ assumes value $1$ if the subset $j$ is part of partitioning, $0$ otherwise
 
 <h4>Objective Function:</h4>
@@ -220,14 +210,12 @@ $$ y_{i} \\, \in \\, \\{ 0, 1 \\} $$
 <h3>Formulation</h3>
 
 <h4>Data:</h4>
-
 $n$ is the number of vertices</br>
 $N$ is the set of vertices</br>
 $S$ is a subtour</br>
 $c_{ij}$ is the cost of travel from vertex $i$ to vertex $j$
 
 <h4>Decision Variables</h4>
-
 $x_{ij}$ assumes value $1$ if arc from $i$ to $j$ is used, $0$ otherwise
 
 <h4>Objective Function:</h4>
@@ -249,12 +237,10 @@ $$ x_{ij} \\, \in \\, \\{ 0, 1 \\} $$
 <h3>Formulation</h3>
 
 <h4>Data:</h4>
-
 $n$ is the number of vertices</br>
 $c_{ij}$ is the cost of travel from vertex $i$ to vertex $j$
 
 <h4>Decision Variables</h4>
-
 $x_{ij}$ assumes value $1$ if arc from $i$ to $j$ is used, $0$ otherwise</br>
 $f_{ij}$ assumes the amount of flow from vertex $i$ to $j$
 
@@ -275,3 +261,51 @@ $$f_{ij} \\, \leq \\, (n - 1)x_{ij} \\qquad i \\, \in \\, n \\, , \\, j \\, \in 
 $$ x_{ij} \\, \in \\\, \\{ 0, 1 \\} $$
 
 $$ f_{ij} \\, \in \\, \mathbb{N} $$
+
+<!-- ######### DIAL-A-RIDE PROBLEM ######### -->
+<a name="darp"></a>
+
+## Dial-a-Ride Problem
+
+<p>This problem consists of designing least-cost routes to serve pickup-and-delivery requests, while meeting capacity, time window, maximum route duration, and maximum ride time constraints.</p>
+
+* Mixed Integer Programming
+
+<h3>Formulation</h3>
+
+<h4>Data:</h4>
+$n$ is the number of requests</br>
+$v$ is the number of vehicles</br>
+$P = \{1, \ldots, n\}$ is the set of pickup nodes</br>
+$D = \{n+1, \ldots, 2n\}$ is the set of delivery nodes</br>
+$m_{o} = 2n + 1$ is the initial depot node</br>
+$m_{e} = 2n + 2$ is the ending depot node</br>
+$V = P \cup D \cup \{m_{o}\} \cup \{m_{e}\}$ is the set of all nodes in the network</br>
+$K = \{1, \ldots, v\}$ is the set of vehicles</br>
+$C \in \mathbb{N}_+$ is the maximum capacity of the vehicles</br>
+$L \in \mathbb{R}_{+}$ is the maximum ride of the request</br>
+$q_{i} \in \mathbb{N}$ is the demand of node $i \in V$</br>
+$e_{i} \in \mathbb{R}_{+}$ is the earliest time to visit the node $i \in V$</br>
+$l_{i} \in \mathbb{R}_{+}$ is the latest time to visit the node $i \in V$</br>
+$s_{i} \in \mathbb{R}_{+}$ is the service time to visit the node $i \in V$</br>
+$t_{ij} \in \mathbb{R}_{+}$ is the travel time to go from $i \in V$ to $j \in V$</br>
+$c_{ij} \in \mathbb{R}_{+}$ is the travel cost to go from $i \in V$ to $j \in V$
+
+<h4>Decision Variables</h4>
+$x^{k}_{ij} \in \{0, 1\}^{{|K| \times |V|} \times |V|}$ assumes value $1$ if arc from $i$ to $j$ is used by vehicle $k$, $0$ otherwise</br>
+$B^{k}_{i} \in \mathbb{R}^{|K| \times |V|}_{+}$ is the visit time of node $i$ by vehicle $k$</br>
+$Q^{k}_{i} \in \mathbb{R}^{|K| \times |V|}_{+}$ is the accumulalted demand up to node $i$ on the vehicle $k$
+
+<h4>Objective Function:</h4>
+
+$$ \min \left( \sum_{k \in K} \sum_{i \in V} \sum_{j \in V} c_{ij}x^{k}_{ij} \right) $$
+
+<h4>s.t.:</h4>
+
+$$ \sum_{i=1}^{n} x_{ij} \\, = \\, 1 \\qquad j \\, \in \\, n \\, , \\, j \\, \neq \\, i $$
+
+$$ \sum_{j=1}^{n} x_{ij} \\, = \\, 1 \\qquad i \\, \in \\, n \\, , \\, i \\, \neq \\, j $$
+
+$$ \sum_{i \\, \in \\, S}\sum_{j \\, \in \\, S} x_{ij} \\, \leq \\, |S| - 1 \\qquad S \\, \subset \\, N \\, , \\, 2 \\, \leq \\,|S| - 1| \\, \leq \\, \left \lfloor \frac{n}{2}  \right \rfloor$$
+
+$$ x_{ij} \\, \in \\, \\{ 0, 1 \\} $$
