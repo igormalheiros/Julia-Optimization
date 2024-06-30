@@ -331,6 +331,14 @@ $$ \sum_{j \in V} x_{ji}^{k} \\, - \\,  \sum_{j \in V} x_{ij}^{k} \\, = \\, 0 \\
 
 $$B_{j}^{k} \geq (B_{i}^{k} + s_{i} + t_{ij})x_{ij}^{k} \\qquad i \\, \in \\, V, j \\, \in \\, V, \\, k \\, \in \\, K$$
 
-$$e_i \leq B_{i}^{k} \leq l_i \\qquad i \\, i \\ \in \\, V, \\, k \\, \in \\, K$$
+$$e_i \leq B_{i}^{k} \leq l_i \\qquad i \\, \in \\, V, \\, k \\, \in \\, K$$
 
-$$ x_{ij} \\, \in \\, \\{ 0, 1 \\} $$
+$$Q_{j}^{k} \geq (Q_{i}^{k} + q_{j})x_{ij}^{k} \\qquad i \\, \in \\, V, j \\, \in \\, V, \\, k \\, \in \\, K$$
+
+$$Q_{i}^{k} \leq C \\qquad i \\, \in \\, V, \\, k \\, \in \\, K$$
+
+$$ x_{ij}^{k} \\, \in \\, \\{ 0, 1 \\} \\qquad i \\, \in \\, V, j \\, \in \\, V, \\, k \\, \in \\, K $$
+
+$$ Q_{i}^{k} \\, \geq \\, 0 \\qquad i \\, \in \\, V, j \\, \in \\, V, \\, k \\, \in \\, K $$
+
+$$ B_{i}^{k} \\, \geq \\, 0 \\qquad i \\, \in \\, V, j \\, \in \\, V, \\, k \\, \in \\, K $$
