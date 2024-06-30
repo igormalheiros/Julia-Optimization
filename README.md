@@ -329,15 +329,15 @@ $$ \sum_{j \in V} x_{i, m_e}^{k} \\, = \\, 1 \\qquad k \\, \in \\,K $$
 
 $$ \sum_{j \in V} x_{ji}^{k} \\, - \\,  \sum_{j \in V} x_{ij}^{k} \\, = \\, 0 \\qquad i \\, \in \\,P \\, \cup \\, D, k \\, \in \\, K $$
 
-$$B_{j}^{k} \geq (B_{i}^{k} + s_{i} + t_{ij})x_{ij}^{k} \\qquad i \\, \in \\, V, j \\, \in \\, V, \\, k \\, \in \\, K$$
+$$B_{j}^{k} \geq (B_{i}^{k} + s_{i} + t_{ij}) - M(1 - x_{ij}^{k}) \\qquad i \\, \in \\, V, j \\, \in \\, V, \\, k \\, \in \\, K$$
 
 $$e_i \leq B_{i}^{k} \leq l_i \\qquad i \\, \in \\, V, \\, k \\, \in \\, K$$
 
-$$\leq B_{i+n}^{k} \geq B_{i}^{k} \\qquad i \\, \in \\, P, \\, k \\, \in \\, K$$
+$$B_{i+n}^{k} \geq B_{i}^{k} \\qquad i \\, \in \\, P, \\, k \\, \in \\, K$$
 
-$$\leq B_{i+n}^{k} \\, - \\, (B_{i}^{k} \\, + \\, s_{i}) \leq L \\qquad i \\, \in \\, P, \\, k \\, \in \\, K$$
+$$B_{i+n}^{k} \\, - \\, (B_{i}^{k} \\, + \\, s_{i}) \leq L \\qquad i \\, \in \\, P, \\, k \\, \in \\, K$$
 
-$$Q_{j}^{k} \geq (Q_{i}^{k} + q_{j})x_{ij}^{k} \\qquad i \\, \in \\, V, j \\, \in \\, V, \\, k \\, \in \\, K$$
+$$Q_{j}^{k} \geq (Q_{i}^{k} + q_{j}) - M'(1 - x_{ij}^{k}) \\qquad i \\, \in \\, V, j \\, \in \\, V, \\, k \\, \in \\, K$$
 
 $$Q_{i}^{k} \leq C \\qquad i \\, \in \\, V, \\, k \\, \in \\, K$$
 
