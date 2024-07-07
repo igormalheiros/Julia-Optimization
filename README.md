@@ -288,6 +288,8 @@ $$ f_{ij} \\, \in \\, \mathbb{N} $$
 
 <h3>Formulation</h3>
 
+The formulation is based on [Cordeau and Laporte (2007)](https://doi.org/10.1007/s10479-007-0170-8)
+
 <h4>Data:</h4>
 
 $n$ is the number of requests</br>
@@ -300,6 +302,7 @@ $V = P \cup D \cup \\{m_{o}\\} \cup \\{m_{e}\\}$ is the set of all nodes in the 
 $K = \{1, \ldots, v\}$ is the set of vehicles</br>
 $C \in \mathbb{N_+}$ is the maximum capacity of the vehicles</br>
 $L \in \mathbb{R_{+}}$ is the maximum ride of the request</br>
+$T \in \mathbb{R_{+}}$ is the maximum duration of the routes</br>
 $q_{i} \in \mathbb{N}$ is the demand of node $i \in V$</br>
 $e_{i} \in \mathbb{R_{+}}$ is the earliest time to visit the node $i \in V$</br>
 $l_{i} \in \mathbb{R_{+}}$ is the latest time to visit the node $i \in V$</br>
@@ -310,8 +313,9 @@ $c_{ij} \in \mathbb{R_{+}}$ is the travel cost to go from $i \in V$ to $j \in V$
 <h4>Decision Variables</h4>
 
 $x_{ij}^{k} \in \\{0, 1\\}$ assumes value $1$ if arc from $i$ to $j$ is used by vehicle $k$, $0$ otherwise</br>
-$B_{i}^{k} \in \mathbb{R_{+}}$ is the visit time of node $i$ by vehicle $k$</br>
-$Q_{i}^{k} \in \mathbb{R_{+}}$ is the accumulalted demand up to node $i$ on the vehicle $k$
+$u_{i}^{k} \in \mathbb{R_{+}}$ is the visit time of node $i$ by vehicle $k$</br>
+$w_{i}^{k} \in \mathbb{R_{+}}$ is the accumulalted demand up to node $i$ on the vehicle $k$
+$r_{i}^{k} \in \mathbb{R_{+}}$ is the ride time of request $i$ by vehicle $k$</br>
 
 <h4>Objective Function:</h4>
 
@@ -321,28 +325,34 @@ $$ \min  \sum_{k \in K} \sum_{i \in V} \sum_{j \in V} c_{ij}x^{k}_{ij} $$
 
 $$ \sum_{k \in K} \sum_{j \in V} x_{ij}^{k} \\, = \\, 1 \\qquad i \\, \in \\,P $$
 
-$$ \sum_{j \in V} x_{ij}^{k} \\, - \\,  \sum_{j \in V} x_{n+i,j}^{k} \\, = \\, 0 \\qquad i \\, \in \\,P, k \\, \in \\, K $$
-
 $$ \sum_{j \in V} x_{m_o, j}^{k} \\, = \\, 1 \\qquad k \\, \in \\,K $$
 
 $$ \sum_{j \in V} x_{i, m_e}^{k} \\, = \\, 1 \\qquad k \\, \in \\,K $$
 
+$$ \sum_{j \in V} x_{ij}^{k} \\, - \\,  \sum_{j \in V} x_{n+i,j}^{k} \\, = \\, 0 \\qquad i \\, \in \\,P, k \\, \in \\, K $$
+
 $$ \sum_{j \in V} x_{ji}^{k} \\, - \\,  \sum_{j \in V} x_{ij}^{k} \\, = \\, 0 \\qquad i \\, \in \\,P \\, \cup \\, D, k \\, \in \\, K $$
 
-$$B_{j}^{k} \geq (B_{i}^{k} + s_{i} + t_{ij}) - M(1 - x_{ij}^{k}) \\qquad i \\, \in \\, V, j \\, \in \\, V, \\, k \\, \in \\, K$$
+$$u_{j}^{k} \geq (u_{i}^{k} + s_{i} + t_{ij}) - M(1 - x_{ij}^{k}) \\qquad i \\, \in \\, V, j \\, \in \\, V, \\, k \\, \in \\, K$$
 
-$$e_i \leq B_{i}^{k} \leq l_i \\qquad i \\, \in \\, V, \\, k \\, \in \\, K$$
+$$w_{j}^{k} \geq (w_{i}^{k} + q_{j}) - M'(1 - x_{ij}^{k}) \\qquad i \\, \in \\, V, j \\, \in \\, V, \\, k \\, \in \\, K$$
 
-$$B_{i+n}^{k} \geq B_{i}^{k} \\qquad i \\, \in \\, P, \\, k \\, \in \\, K$$
+$$r_{i}^{k} \geq u_{i+n}^{k} - (u_{i}^{k} + s[i]) \\qquad i \\, \in \\, P, \\, k \\, \in \\, K$$
 
-$$B_{i+n}^{k} \\, - \\, (B_{i}^{k} \\, + \\, s_{i}) \leq L \\qquad i \\, \in \\, P, \\, k \\, \in \\, K$$
+$$u_{m_e}^{k} - u_{m_o}^{k} \leq T \\qquad k \\, \in \\, K$$
 
-$$Q_{j}^{k} \geq (Q_{i}^{k} + q_{j}) - M'(1 - x_{ij}^{k}) \\qquad i \\, \in \\, V, j \\, \in \\, V, \\, k \\, \in \\, K$$
+$$e_i \leq u_{i}^{k} \leq l_i \\qquad i \\, \in \\, V, \\, k \\, \in \\, K$$
 
-$$Q_{i}^{k} \leq C \\qquad i \\, \in \\, V, \\, k \\, \in \\, K$$
+$$u_{i+n}^{k} \geq u_{i}^{k} \\qquad i \\, \in \\, P, \\, k \\, \in \\, K$$
+
+$$t_{i,i+n} \leq r_{i}^{k} \leq L \\qquad i \\, \in \\, P, \\, k \\, \in \\, K$$
+
+$$\max\\{0, q_i \\} \leq w_{i}^{k} \leq \min \\{C, C + q_i \\} \\qquad i \\, \in \\, V, \\, k \\, \in \\, K$$
 
 $$ x_{ij}^{k} \\, \in \\, \\{ 0, 1 \\} \\qquad i \\, \in \\, V, j \\, \in \\, V, \\, k \\, \in \\, K $$
 
-$$ Q_{i}^{k} \\, \geq \\, 0 \\qquad i \\, \in \\, V, j \\, \in \\, V, \\, k \\, \in \\, K $$
+$$ u_{i}^{k} \\, \geq \\, 0 \\qquad i \\, \in \\, V, \\, k \\, \in \\, K $$
 
-$$ B_{i}^{k} \\, \geq \\, 0 \\qquad i \\, \in \\, V, j \\, \in \\, V, \\, k \\, \in \\, K $$
+$$ w_{i}^{k} \\, \geq \\, 0 \\qquad i \\, \in \\, V, \\, k \\, \in \\, K $$
+
+$$ r_{i}^{k} \\, \geq \\, 0 \\qquad i \\, \in \\, P, \\, k \\, \in \\, K $$
