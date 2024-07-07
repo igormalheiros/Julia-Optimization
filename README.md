@@ -337,7 +337,7 @@ $$u_{j}^{k} \geq (u_{i}^{k} + s_{i} + t_{ij}) - M(1 - x_{ij}^{k}) \\qquad i \\, 
 
 $$w_{j}^{k} \geq (w_{i}^{k} + q_{j}) - M'(1 - x_{ij}^{k}) \\qquad i \\, \in \\, V, j \\, \in \\, V, \\, k \\, \in \\, K$$
 
-$$r_{i}^{k} \geq u_{i+n}^{k} - (u_{i}^{k} + s[i]) \\qquad i \\, \in \\, P, \\, k \\, \in \\, K$$
+$$r_{i}^{k} \geq u_{i+n}^{k} - (u_{i}^{k} + s_i) \\qquad i \\, \in \\, P, \\, k \\, \in \\, K$$
 
 $$u_{m_e}^{k} - u_{m_o}^{k} \leq T \\qquad k \\, \in \\, K$$
 
