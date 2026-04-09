@@ -84,6 +84,7 @@ $$ y_{i} \\,\in \\, \\{ 0, 1 \\} $$
 <h3>Formulation</h3>
 
 <h4>Data:</h4>
+
 $n$ is the number of customers</br>
 $N$ is the set of customers</br>
 $V$ is the set of all nodes in the network (customers and depot)</br>
@@ -93,10 +94,12 @@ $c_{ij}$ is the cost of travel from vertex $i$ to vertex $j$
 $d_{i}$ is the demand of customer $i$
 
 <h4>Decision Variables</h4>
+
 $x_{ij}^{k}$ assumes value $1$ if arc from $i$ to $j$ is used by vehicle $k$, $0$ otherwise
 $y_{i}^{k}$ assumes value $1$ if customer $i$ is served by vehicle $k$, $0$ otherwise
 
 <h4>Objective Function:</h4>
+
 $$ \min  \sum_{k \in K} \sum_{i \in V} \sum_{j \in V} c_{ij}x^{k}_{ij} $$
 
 <h4>s.t.:</h4>
