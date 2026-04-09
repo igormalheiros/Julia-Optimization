@@ -1,7 +1,7 @@
 # ====== Code by Igor Malheiros - May of 2019 ====== #
 # ====== Bin Packing Problem using Integer Programming ====== #
 
-using JuMP, GLPK, Test
+using JuMP, HiGHS, Test
 import MathOptInterface # Replaces MathProgBase
 const MOI = MathOptInterface
 
@@ -16,7 +16,7 @@ function solve(data::Data)
     W = data.W
     w = data.w
 
-    model = Model(GLPK.Optimizer)
+    model = Model(HiGHS.Optimizer)
 
     @variable(model, x[1:n, 1:n], Bin)
     @variable(model, y[1:n], Bin)

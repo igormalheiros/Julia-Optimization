@@ -1,12 +1,12 @@
 # ====== Code by Igor Malheiros - August of 2019 ====== #
 # ====== Set Partitioning Problem using Integer Programming ====== #
 
-using JuMP, GLPK
+using JuMP, HiGHS
 import MathOptInterface
 const MOI = MathOptInterface
 
 function solve(sets::Array{Array{Int,1},1}, max_value::Int, n_sets::Int)
-    model = Model(GLPK.Optimizer)
+    model = Model(HiGHS.Optimizer)
     @variable(model, y[1:n_sets], Bin)
 
     @objective(model, Min, sum(y[i] for i = 1:n_sets))

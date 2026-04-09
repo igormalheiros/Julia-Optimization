@@ -2,7 +2,7 @@
 # ====== Cutting Stock Problem using Integer Programming ====== #
 
 
-using JuMP, GLPK, Test
+using JuMP, HiGHS, Test
 import MathOptInterface # Replaces MathProgBase
 const MOI = MathOptInterface
 
@@ -19,7 +19,7 @@ function solve(data::Data)
     l = data.l
     b = data.b
 
-    model = Model(GLPK.Optimizer)
+    model = Model(HiGHS.Optimizer)
 
     @variable(model, y[1:n], Bin)
     @variable(model, x[1:n, 1:m] >= 0, Int)
@@ -42,7 +42,7 @@ function solve(data::Data)
         if value(y[i]) == 1.0
             solution.y[i] = true
             for j = 1:m
-                solution.x[i, j] = value(x[i, j])
+                solution.x[i, j] = Int(round(value(x[i, j])))
             end
         end
     end

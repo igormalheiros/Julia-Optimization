@@ -6,13 +6,13 @@ Contents
 - [Julia Optimization Study](#julia-optimization-study)
   - [Assignment Problem](#assignment-problem)
   - [Bin Packing Problem](#bin-packing-problem)
+  - [Capacitated Vehicle Routing Problem](#capacitated-vehicle-routing-problem)
   - [Cutting Stock Problem](#cutting-stock-problem)
+  - [Dial-a-Ride Problem](#dial-a-ride-problem)
   - [Facility Location Problem](#facility-location-problem)
   - [Knapsack Problem](#knapsack-problem)
   - [Set Partitioning Problem](#set-partitioning-problem)
   - [Travelling Salesman Problem](#travelling-salesman-problem)
-  - [Dial-a-Ride Problem](#dial-a-ride-problem)
-
 
 <!-- ######### ASSIGNMENT ######### -->
 <a name="assignment"></a>
@@ -78,6 +78,45 @@ $$ x_{ij} \\,\in \\, \\{ 0, 1 \\} $$
 
 $$ y_{i} \\,\in \\, \\{ 0, 1 \\} $$
 
+## Capacitated Vehicle Routing Problem
+<p>Given a set of customers with demands, a set of vehicles with capacities, and the costs of travel between customers. The problem consists of designing least-cost routes to serve all customers such that the total demand of each route does not exceed the vehicle's capacity.</p>
+
+<h3>Formulation</h3>
+
+<h4>Data:</h4>
+$n$ is the number of customers</br>
+$N$ is the set of customers</br>
+$V$ is the set of all nodes in the network (customers and depot)</br>
+$K$ is the number of vehicles</br>
+$Q$ is the capacity of the vehicles</br>
+$c_{ij}$ is the cost of travel from vertex $i$ to vertex $j$
+$d_{i}$ is the demand of customer $i$
+
+<h4>Decision Variables</h4>
+$x_{ij}^{k}$ assumes value $1$ if arc from $i$ to $j$ is used by vehicle $k$, $0$ otherwise
+$y_{i}^{k}$ assumes value $1$ if customer $i$ is served by vehicle $k$, $0$ otherwise
+
+<h4>Objective Function:</h4>
+$$ \min  \sum_{k \in K} \sum_{i \in V} \sum_{j \in V} c_{ij}x^{k}_{ij} $$
+
+<h4>s.t.:</h4>
+
+$$ \sum_{k \in K} y_{i}^{k} \\, = \\, 1 \\qquad i \\, \in \\,N $$
+
+$$ \sum_{j \in V : j \neq i} x_{ij}^{k} \\, = y_{i}^{k} \\qquad i \\, \in \\,N, k \\, \in \\, K $$
+
+$$ \sum_{i \in V : i \neq j} x_{ij}^{k} \\, = y_{j}^{k} \\qquad j \\, \in \\,N, k \\, \in \\, K $$
+
+$$ \sum_{j \in V : j \neq 0} x_{0j}^{k} \\, = 1 \\qquad k \\, \in \\, K $$
+
+$$ \sum_{i \in V : i \neq 0} x_{i0}^{k} \\, = 1 \\qquad k \\, \in \\, K $$
+
+$$ \sum_{i \in N} d_{i} y_{i}^{k} \\, \leq \\, Q \\qquad k \\, \in \\, K $$
+
+$$\sum_{k \, \in \, K}\sum_{i \, \in \, S}\sum_{j \, \in \, S} x_{ij}^{k}
+\, \leq \, |S| - \left\lceil \frac{\sum_{i \, \in \, S} q_i}{Q} \right\rceil \qquad S \, \subset \, N \, , \, 2 \, \leq \, |S| \, \leq \, \left \lfloor \frac{n}{2} \right \rfloor
+$$
+
 <!-- ######### CUTTING STOCK PROBLEM ######### -->
 <a name="cuttingstock"></a>
 
@@ -112,6 +151,86 @@ $$ \sum_{j=1}^{m} l_{j} x_{ij} \\, \leq \\, Ly_{i} \qquad i \\, \in \\, n $$
 $$ x_{ij} \\, \in \\, \mathbb{Z} $$
 
 $$ y_{i} \\,\in \\, \\{ 0, 1 \\} $$
+
+<!-- ######### DIAL-A-RIDE PROBLEM ######### -->
+<a name="darp"></a>
+
+## Dial-a-Ride Problem
+
+<p>This problem consists of designing least-cost routes to serve pickup-and-delivery requests, while meeting capacity, time window, maximum route duration, and maximum ride time constraints.</p>
+
+* Mixed Integer Programming
+
+<h3>Formulation</h3>
+
+The formulation is based on [Cordeau and Laporte (2007)](https://doi.org/10.1007/s10479-007-0170-8)
+
+<h4>Data:</h4>
+
+$n$ is the number of requests</br>
+$v$ is the number of vehicles</br>
+$P = \{1, \ldots, n\}$ is the set of pickup nodes</br>
+$D = \{n+1, \ldots, 2n\}$ is the set of delivery nodes</br>
+$m_{o} = 2n + 1$ is the initial depot node</br>
+$m_{e} = 2n + 2$ is the ending depot node</br>
+$V = P \cup D \cup \\{m_{o}\\} \cup \\{m_{e}\\}$ is the set of all nodes in the network</br>
+$K = \{1, \ldots, v\}$ is the set of vehicles</br>
+$C \in \mathbb{N_+}$ is the maximum capacity of the vehicles</br>
+$L \in \mathbb{R_{+}}$ is the maximum ride of the request</br>
+$T \in \mathbb{R_{+}}$ is the maximum duration of the routes</br>
+$q_{i} \in \mathbb{N}$ is the demand of node $i \in V$</br>
+$e_{i} \in \mathbb{R_{+}}$ is the earliest time to visit the node $i \in V$</br>
+$l_{i} \in \mathbb{R_{+}}$ is the latest time to visit the node $i \in V$</br>
+$s_{i} \in \mathbb{R_{+}}$ is the service time to visit the node $i \in V$</br>
+$t_{ij} \in \mathbb{R_{+}}$ is the travel time to go from $i \in V$ to $j \in V$</br>
+$c_{ij} \in \mathbb{R_{+}}$ is the travel cost to go from $i \in V$ to $j \in V$
+
+<h4>Decision Variables</h4>
+
+$x_{ij}^{k} \in \\{0, 1\\}$ assumes value $1$ if arc from $i$ to $j$ is used by vehicle $k$, $0$ otherwise</br>
+$u_{i}^{k} \in \mathbb{R_{+}}$ is the visit time of node $i$ by vehicle $k$</br>
+$w_{i}^{k} \in \mathbb{R_{+}}$ is the accumulalted demand up to node $i$ on the vehicle $k$
+$r_{i}^{k} \in \mathbb{R_{+}}$ is the ride time of request $i$ by vehicle $k$</br>
+
+<h4>Objective Function:</h4>
+
+$$ \min  \sum_{k \in K} \sum_{i \in V} \sum_{j \in V} c_{ij}x^{k}_{ij} $$
+
+<h4>s.t.:</h4>
+
+$$ \sum_{k \in K} \sum_{j \in V} x_{ij}^{k} \\, = \\, 1 \\qquad i \\, \in \\,P $$
+
+$$ \sum_{j \in V} x_{m_o, j}^{k} \\, = \\, 1 \\qquad k \\, \in \\,K $$
+
+$$ \sum_{j \in V} x_{i, m_e}^{k} \\, = \\, 1 \\qquad k \\, \in \\,K $$
+
+$$ \sum_{j \in V} x_{ij}^{k} \\, - \\,  \sum_{j \in V} x_{n+i,j}^{k} \\, = \\, 0 \\qquad i \\, \in \\,P, k \\, \in \\, K $$
+
+$$ \sum_{j \in V} x_{ji}^{k} \\, - \\,  \sum_{j \in V} x_{ij}^{k} \\, = \\, 0 \\qquad i \\, \in \\,P \\, \cup \\, D, k \\, \in \\, K $$
+
+$$u_{j}^{k} \geq (u_{i}^{k} + s_{i} + t_{ij}) - M(1 - x_{ij}^{k}) \\qquad i \\, \in \\, V, j \\, \in \\, V, \\, k \\, \in \\, K$$
+
+$$w_{j}^{k} \geq (w_{i}^{k} + q_{j}) - M'(1 - x_{ij}^{k}) \\qquad i \\, \in \\, V, j \\, \in \\, V, \\, k \\, \in \\, K$$
+
+$$r_{i}^{k} \geq u_{i+n}^{k} - (u_{i}^{k} + s_i) \\qquad i \\, \in \\, P, \\, k \\, \in \\, K$$
+
+$$u_{m_e}^{k} - u_{m_o}^{k} \leq T \\qquad k \\, \in \\, K$$
+
+$$e_i \leq u_{i}^{k} \leq l_i \\qquad i \\, \in \\, V, \\, k \\, \in \\, K$$
+
+$$u_{i+n}^{k} \geq u_{i}^{k} \\qquad i \\, \in \\, P, \\, k \\, \in \\, K$$
+
+$$t_{i,i+n} \leq r_{i}^{k} \leq L \\qquad i \\, \in \\, P, \\, k \\, \in \\, K$$
+
+$$\max\\{0, q_i \\} \leq w_{i}^{k} \leq \min \\{C, C + q_i \\} \\qquad i \\, \in \\, V, \\, k \\, \in \\, K$$
+
+$$ x_{ij}^{k} \\, \in \\, \\{ 0, 1 \\} \\qquad i \\, \in \\, V, j \\, \in \\, V, \\, k \\, \in \\, K $$
+
+$$ u_{i}^{k} \\, \geq \\, 0 \\qquad i \\, \in \\, V, \\, k \\, \in \\, K $$
+
+$$ w_{i}^{k} \\, \geq \\, 0 \\qquad i \\, \in \\, V, \\, k \\, \in \\, K $$
+
+$$ r_{i}^{k} \\, \geq \\, 0 \\qquad i \\, \in \\, P, \\, k \\, \in \\, K $$
 
 <!-- ######### FACILITY LOCATION PROBLEM ######### -->
 <a name="facilitylocation"></a>
@@ -276,83 +395,3 @@ $$f_{ij} \\, \leq \\, (n - 1)x_{ij} \\qquad i \\, \in \\, n \\, , \\, j \\, \in 
 $$ x_{ij} \\, \in \\\, \\{ 0, 1 \\} $$
 
 $$ f_{ij} \\, \in \\, \mathbb{N} $$
-
-<!-- ######### DIAL-A-RIDE PROBLEM ######### -->
-<a name="darp"></a>
-
-## Dial-a-Ride Problem
-
-<p>This problem consists of designing least-cost routes to serve pickup-and-delivery requests, while meeting capacity, time window, maximum route duration, and maximum ride time constraints.</p>
-
-* Mixed Integer Programming
-
-<h3>Formulation</h3>
-
-The formulation is based on [Cordeau and Laporte (2007)](https://doi.org/10.1007/s10479-007-0170-8)
-
-<h4>Data:</h4>
-
-$n$ is the number of requests</br>
-$v$ is the number of vehicles</br>
-$P = \{1, \ldots, n\}$ is the set of pickup nodes</br>
-$D = \{n+1, \ldots, 2n\}$ is the set of delivery nodes</br>
-$m_{o} = 2n + 1$ is the initial depot node</br>
-$m_{e} = 2n + 2$ is the ending depot node</br>
-$V = P \cup D \cup \\{m_{o}\\} \cup \\{m_{e}\\}$ is the set of all nodes in the network</br>
-$K = \{1, \ldots, v\}$ is the set of vehicles</br>
-$C \in \mathbb{N_+}$ is the maximum capacity of the vehicles</br>
-$L \in \mathbb{R_{+}}$ is the maximum ride of the request</br>
-$T \in \mathbb{R_{+}}$ is the maximum duration of the routes</br>
-$q_{i} \in \mathbb{N}$ is the demand of node $i \in V$</br>
-$e_{i} \in \mathbb{R_{+}}$ is the earliest time to visit the node $i \in V$</br>
-$l_{i} \in \mathbb{R_{+}}$ is the latest time to visit the node $i \in V$</br>
-$s_{i} \in \mathbb{R_{+}}$ is the service time to visit the node $i \in V$</br>
-$t_{ij} \in \mathbb{R_{+}}$ is the travel time to go from $i \in V$ to $j \in V$</br>
-$c_{ij} \in \mathbb{R_{+}}$ is the travel cost to go from $i \in V$ to $j \in V$
-
-<h4>Decision Variables</h4>
-
-$x_{ij}^{k} \in \\{0, 1\\}$ assumes value $1$ if arc from $i$ to $j$ is used by vehicle $k$, $0$ otherwise</br>
-$u_{i}^{k} \in \mathbb{R_{+}}$ is the visit time of node $i$ by vehicle $k$</br>
-$w_{i}^{k} \in \mathbb{R_{+}}$ is the accumulalted demand up to node $i$ on the vehicle $k$
-$r_{i}^{k} \in \mathbb{R_{+}}$ is the ride time of request $i$ by vehicle $k$</br>
-
-<h4>Objective Function:</h4>
-
-$$ \min  \sum_{k \in K} \sum_{i \in V} \sum_{j \in V} c_{ij}x^{k}_{ij} $$
-
-<h4>s.t.:</h4>
-
-$$ \sum_{k \in K} \sum_{j \in V} x_{ij}^{k} \\, = \\, 1 \\qquad i \\, \in \\,P $$
-
-$$ \sum_{j \in V} x_{m_o, j}^{k} \\, = \\, 1 \\qquad k \\, \in \\,K $$
-
-$$ \sum_{j \in V} x_{i, m_e}^{k} \\, = \\, 1 \\qquad k \\, \in \\,K $$
-
-$$ \sum_{j \in V} x_{ij}^{k} \\, - \\,  \sum_{j \in V} x_{n+i,j}^{k} \\, = \\, 0 \\qquad i \\, \in \\,P, k \\, \in \\, K $$
-
-$$ \sum_{j \in V} x_{ji}^{k} \\, - \\,  \sum_{j \in V} x_{ij}^{k} \\, = \\, 0 \\qquad i \\, \in \\,P \\, \cup \\, D, k \\, \in \\, K $$
-
-$$u_{j}^{k} \geq (u_{i}^{k} + s_{i} + t_{ij}) - M(1 - x_{ij}^{k}) \\qquad i \\, \in \\, V, j \\, \in \\, V, \\, k \\, \in \\, K$$
-
-$$w_{j}^{k} \geq (w_{i}^{k} + q_{j}) - M'(1 - x_{ij}^{k}) \\qquad i \\, \in \\, V, j \\, \in \\, V, \\, k \\, \in \\, K$$
-
-$$r_{i}^{k} \geq u_{i+n}^{k} - (u_{i}^{k} + s_i) \\qquad i \\, \in \\, P, \\, k \\, \in \\, K$$
-
-$$u_{m_e}^{k} - u_{m_o}^{k} \leq T \\qquad k \\, \in \\, K$$
-
-$$e_i \leq u_{i}^{k} \leq l_i \\qquad i \\, \in \\, V, \\, k \\, \in \\, K$$
-
-$$u_{i+n}^{k} \geq u_{i}^{k} \\qquad i \\, \in \\, P, \\, k \\, \in \\, K$$
-
-$$t_{i,i+n} \leq r_{i}^{k} \leq L \\qquad i \\, \in \\, P, \\, k \\, \in \\, K$$
-
-$$\max\\{0, q_i \\} \leq w_{i}^{k} \leq \min \\{C, C + q_i \\} \\qquad i \\, \in \\, V, \\, k \\, \in \\, K$$
-
-$$ x_{ij}^{k} \\, \in \\, \\{ 0, 1 \\} \\qquad i \\, \in \\, V, j \\, \in \\, V, \\, k \\, \in \\, K $$
-
-$$ u_{i}^{k} \\, \geq \\, 0 \\qquad i \\, \in \\, V, \\, k \\, \in \\, K $$
-
-$$ w_{i}^{k} \\, \geq \\, 0 \\qquad i \\, \in \\, V, \\, k \\, \in \\, K $$
-
-$$ r_{i}^{k} \\, \geq \\, 0 \\qquad i \\, \in \\, P, \\, k \\, \in \\, K $$

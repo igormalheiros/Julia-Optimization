@@ -1,7 +1,7 @@
 # ====== Code by Igor Malheiros - June of 2019 ====== #
 # ====== Assignment Problem using Integer Programming ====== #
 
-using JuMP, GLPK, Test
+using JuMP, HiGHS, Test
 import MathOptInterface # Replaces MathProgBase
 const MOI = MathOptInterface
 
@@ -14,7 +14,7 @@ function solve(data::Data)
     n = data.n
     c = data.c
 
-    model = Model(GLPK.Optimizer)
+    model = Model(HiGHS.Optimizer)
     @variable(model, x[1:n, 1:n], Bin)
 
     @objective(model, Min, sum(c[i, j] * x[i, j] for i = 1:n, j = 1:n))
