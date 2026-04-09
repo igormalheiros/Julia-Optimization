@@ -114,7 +114,7 @@ $$ \sum_{i \in V : i \neq 0} x_{i0}^{k} \\, = 1 \\qquad k \\, \in \\, K $$
 $$ \sum_{i \in N} d_{i} y_{i}^{k} \\, \leq \\, Q \\qquad k \\, \in \\, K $$
 
 $$\sum_{k \in K}\sum_{i \in S}\sum_{j \in S} x_{ij}^{k}
-\\, \leq |S| - \left\lceil \frac{\sum_{i \, \in \, S} q_i}{Q} \right\rceil \qquad S \\, \subset \\, N \\, , \, 2 \\, \leq \\, |S| \\, \leq \\, \left \lfloor \frac{n}{2} \right \rfloor
+\\, \leq |S| - \left\lceil \frac{\sum_{i \, \in \, S} q_i}{Q} \right\rceil \qquad S \\, \subset \\, N \\, , \\, 2 \\, \leq \\, |S| \\, \leq \\, \left \lfloor \frac{n}{2} \right \rfloor
 $$
 
 <!-- ######### CUTTING STOCK PROBLEM ######### -->
