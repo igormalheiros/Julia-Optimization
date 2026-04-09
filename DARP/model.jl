@@ -1,9 +1,4 @@
-import Pkg
-Pkg.add("JuMP")
-Pkg.add("CPLEX")
-Pkg.add("MathOptInterface")
-
-using JuMP, CPLEX, Test
+using JuMP, HiGHS, Test
 import MathOptInterface # Replaces MathProgBase
 const MOI = MathOptInterface
 
@@ -79,7 +74,7 @@ function solve(data::Data)
     M1 = T
     M2 = C
 
-    model = Model(CPLEX.Optimizer)
+    model = Model(HiGHS.Optimizer)
 
     @variable(model, x[i in V, j in V, K; i != j], Bin)
     @variable(model, u[V, K] >= 0)

@@ -2,7 +2,7 @@
 # ====== Cutting Stock Problem using Integer Programming ====== #
 
 
-using JuMP, GLPK, Test
+using JuMP, HiGHS, Test
 import MathOptInterface # Replaces MathProgBase
 const MOI = MathOptInterface
 
@@ -20,7 +20,7 @@ function solve(data::Data)
     Q = data.Q
     c = data.c
 
-    model = Model(GLPK.Optimizer)
+    model = Model(HiGHS.Optimizer)
 
     @variable(model, y[1:I], Bin)
     @variable(model, x[1:I, 1:J], Bin)

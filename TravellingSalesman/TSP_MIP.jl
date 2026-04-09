@@ -1,15 +1,22 @@
 # ====== Code by Igor Malheiros - July of 2019 ====== #
 # ====== Travelling Salesman Problem using Integer Programming ====== #
 
-using JuMP, GLPK
+using JuMP, HiGHS
 import MathOptInterface # Replaces MathProgBase
 const MOI = MathOptInterface
 
 #Data of points in a cartesian plan
 # ### N = 12
 # ### OBJ = 283.635
-X = [43.0, 58.0, 53.0, 21.0, 78.0, 46.0, 79.0, 60.0, 42.0, 87.0, 77.0, 99.0]
-Y = [23.0, 76.0, 64.0, 38.0, 68.0, 57.0, 6.0, 5.0, 30.0, 2.0, 97.0, 79.0]
+# X = [43.0, 58.0, 53.0, 21.0, 78.0, 46.0, 79.0, 60.0, 42.0, 87.0, 77.0, 99.0]
+# Y = [23.0, 76.0, 64.0, 38.0, 68.0, 57.0, 6.0, 5.0, 30.0, 2.0, 97.0, 79.0]
+
+X = [50.0, 100.0, 50.0, 10.0, 10.0]
+Y = [50.0, 20.0, 10.0, 20.0, 60.0]
+
+X = [50.0, 110.0, 100.0]
+Y = [50.0, 60.0, 20.0]
+
 
 # ### N = 48
 # ### OBJ = 424.971
@@ -29,10 +36,23 @@ function build_cost_matrix(X::Array{Float64}, Y::Array{Float64})
     return cost_matrix
 end
 
+#Build matrix of costs between points
+function build_cost_matrix_manh(X::Array{Float64}, Y::Array{Float64})
+    N = length(X)
+    cost_matrix = zeros(Float64, N, N)
+    for i = 1:N
+        for j = 1:N
+            cost_matrix[i, j] = abs(X[i] - X[j]) + abs(Y[i] - Y[j])
+        end
+    end
+    println(cost_matrix)
+    return cost_matrix
+end
+
 function solveSubtour(c::Array{Float64,2})
     println("Using Subtour Modelling")
     N = size(c, 1)
-    model = Model(GLPK.Optimizer)
+    model = Model(HiGHS.Optimizer)
 
     @variable(model, x[1:N, 1:N], Bin)
 
@@ -97,7 +117,7 @@ end
 function solveFlow(c::Array{Float64,2})
     println("Using Flow variable Modelling")
     N = size(c, 1)
-    model = Model(GLPK.Optimizer)
+    model = Model(HiGHS.Optimizer)
 
     @variable(model, x[1:N, 1:N], Bin)
     @variable(model, f[1:N, 1:N] >= 0, Int)
@@ -150,7 +170,7 @@ function solveFlow(c::Array{Float64,2})
     return
 end
 
-c = build_cost_matrix(X, Y)
+c = build_cost_matrix_manh(X, Y)
 @time solveSubtour(c)
 println("\n-------------------------------------\n")
 @time solveFlow(c)
