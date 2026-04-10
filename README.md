@@ -211,8 +211,8 @@ $r_{i}^{k} \in \mathbb{R_{+}}$ is the ride time of request $i$ by vehicle $k$</b
 
 <h4>Data:</h4>
 
-$I$ is the number of potential facilities</br>
-$J$ is the number of clients</br>
+$I$ is the set of potential facilities</br>
+$J$ is the set of clients</br>
 $f_{i}$ is the fixed cost of open facility $i$</br>
 $c_{ij}$ is the fixed cost of assign client $j$ to facilty $i$</br>
 $q_{j}$ is the themand of client $j$</br>
@@ -223,19 +223,15 @@ $Q_{i}$ is the capacity of facility $i$</br>
 $y_{i}$ assumes value $1$ if facility $i$ is opened, $0$ otherwise</br>
 $x_{ij}$ assumes value $1$ if client $j$ is assigned to facility $i$, $0$ otherwise
 
-<h4>Objective Function:</h4>
-
-$$ \min \left( \sum_{i=1}^{I}f_{i}y_{i} + \sum_{i=1}^{I}\sum_{j=1}^{J}c_{ij}x_{ij}\right) $$
-
-<h4>s.t.:</h4>
-
-$$ \sum_{i=1}^{I} x_{ij} \\, = \\, 1 \qquad j \\, \in \\, J $$
-
-$$ \sum_{j=1}^{J} q_{j}x_{ij} \\, \leq\\,  Q_{i}y_{i} \qquad i \\, \in \\, I $$
-
-$$ y_{i} \\, \in \\, \\{ 0, 1 \\} $$
-
-$$ x_{ij} \\, \in \\, \\{ 0, 1 \\} $$
+```math
+\begin{aligned}
+  \min \; & \sum_{i=1}^{I} f_i y_i + \sum_{i=1}^{I} \sum_{j=1}^{J} c_{ij} x_{ij} \\
+  \text{s.t.} \; & \sum_{i=1}^{I} x_{ij} = 1, & j \in J \\
+  & \sum_{j=1}^{J} q_j x_{ij} \leq Q_i y_i, & i \in I \\
+  & y_i \in \{0,1\}, & i \in I \\
+  & x_{ij} \in \{0,1\}, & i \in I,\; j \in J
+\end{aligned}
+```
 
 <!-- ######### KNAPSACK PROBLEM ######### -->
 <a name="knapsack"></a>
@@ -257,16 +253,14 @@ $W$ is the capacity of the knapsack</br>
 
 $x_{i}$ assumes value $1$ if the item $i$ is in knapsack, $0$ otherwise
 
-<h4>Objective Function:</h4>
-
-$$ \max \left( \sum_{i=1}^{n}v_{i}x_{i} \right) $$
-
-<h4>s.t.:</h4>
-
-$$ \sum_{i=1}^{n} w_{i}x_{i} \\, \leq \\, W $$
-
-$$ x_{i} \\, \in \\, \\{ 0, 1 \\} $$
-
+```math
+\begin{aligned}
+  \max \; & \sum_{i=1}^{n} v_i x_i \\
+  \text{s.t.} \quad
+  & \sum_{i=1}^{n} w_i x_i \leq W \\
+  & x_i \in \{0,1\}, & i = 1,\ldots,n
+\end{aligned}
+```
 
 <!-- ######### SET PARTITIONING PROBLEM ######### -->
 <a name="sp"></a>
@@ -287,15 +281,14 @@ $R_{i}$ is a subset of $S$ that has element $i$
 
 $y_{j}$ assumes value $1$ if the subset $j$ is part of partitioning, $0$ otherwise
 
-<h4>Objective Function:</h4>
-
-$$ \min \left( \sum_{j=1}^{n}y_{j} \right) $$
-
-<h4>s.t.:</h4>
-
-$$ \sum_{j \\, \in \\, R_{i}} y_{j} \\, = \\, 1 \\qquad i \\, \in \\, S $$
-
-$$ y_{i} \\, \in \\, \\{ 0, 1 \\} $$
+```math
+\begin{aligned}
+  \min \; & \sum_{j=1}^{n} y_j \\
+  \text{s.t.} \quad
+  & \sum_{j \in R_i} y_j = 1, & i \in S \\
+  & y_i \in \{0,1\}, & i = 1,\ldots,n
+\end{aligned}
+```
 
 <!-- ######### TRAVELLING SALESMAN PROBLEM ######### -->
 <a name="tsp"></a>
