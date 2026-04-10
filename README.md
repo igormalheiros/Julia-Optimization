@@ -256,8 +256,7 @@ $x_{i}$ assumes value $1$ if the item $i$ is in knapsack, $0$ otherwise
 ```math
 \begin{aligned}
   \max \; & \sum_{i=1}^{n} v_i x_i \\
-  \text{s.t.} \quad
-  & \sum_{i=1}^{n} w_i x_i \leq W \\
+  \text{s.t.} \; & \sum_{i=1}^{n} w_i x_i \leq W \\
   & x_i \in \{0,1\}, & i = 1,\ldots,n
 \end{aligned}
 ```
@@ -284,8 +283,7 @@ $y_{j}$ assumes value $1$ if the subset $j$ is part of partitioning, $0$ otherwi
 ```math
 \begin{aligned}
   \min \; & \sum_{j=1}^{n} y_j \\
-  \text{s.t.} \quad
-  & \sum_{j \in R_i} y_j = 1, & i \in S \\
+  \text{s.t.} \; &\sum_{j \in R_i} y_j = 1, & i \in S \\
   & y_i \in \{0,1\}, & i = 1,\ldots,n
 \end{aligned}
 ```
@@ -312,19 +310,16 @@ $c_{ij}$ is the cost of travel from vertex $i$ to vertex $j$
 
 $x_{ij}$ assumes value $1$ if arc from $i$ to $j$ is used, $0$ otherwise
 
-<h4>Objective Function:</h4>
-
-$$ \min \left( \sum_{i=1}^{n} \sum_{\substack{j=1 \\\ i \neq j}}^{n} c_{ij}x_{ij} \right) $$
-
-<h4>s.t.:</h4>
-
-$$ \sum_{i=1}^{n} x_{ij} \\, = \\, 1 \\qquad j \\, \in \\, n \\, , \\, j \\, \neq \\, i $$
-
-$$ \sum_{j=1}^{n} x_{ij} \\, = \\, 1 \\qquad i \\, \in \\, n \\, , \\, i \\, \neq \\, j $$
-
-$$ \sum_{i \\, \in \\, S}\sum_{j \\, \in \\, S} x_{ij} \\, \leq \\, |S| - 1 \\qquad S \\, \subset \\, N \\, , \\, 2 \\, \leq \\,|S| - 1| \\, \leq \\, \left \lfloor \frac{n}{2}  \right \rfloor$$
-
-$$ x_{ij} \\, \in \\, \\{ 0, 1 \\} $$
+```math
+\begin{aligned}
+  \min \; & \sum_{i=1}^{n} \sum_{\substack{j=1 \\ j \neq i}}^{n} c_{ij} x_{ij} \\
+  \text{s.t.} \; & \sum_{\substack{i=1 \\ j \neq i}}^{n} x_{ij} = 1, & j = 1,\ldots,n \\
+  & \sum_{\substack{j=1 \\ j \neq i}}^{n} x_{ij} = 1, & i = 1,\ldots,n \\
+  & \sum_{i \in S} \sum_{j \in S} x_{ij} \leq |S| - 1, 
+    & S \subset N,\; 2 \leq |S| \leq \left\lfloor \frac{n}{2} \right\rfloor \\
+  & x_{ij} \in \{0,1\}, & i,j = 1,\ldots,n,\; i \neq j
+\end{aligned}
+```
 
 * Mixed Integer Programming - Flow Variable
 
@@ -340,20 +335,16 @@ $c_{ij}$ is the cost of travel from vertex $i$ to vertex $j$
 $x_{ij}$ assumes value $1$ if arc from $i$ to $j$ is used, $0$ otherwise</br>
 $f_{ij}$ assumes the amount of flow from vertex $i$ to $j$
 
-<h4>Objective Function:</h4>
-
-$$ \min \left( \sum_{i=1}^{n} \sum_{\substack{j=1 \\\ i \neq j}}^{n} c_{ij}x_{ij} \right) $$
-
-<h4>s.t.:</h4>
-
-$$ \sum_{i=1}^{n} x_{ij} \\, = \\, 1 \\qquad j \\, \in \\, n \\, , \\, j \\, \neq \\, i $$
-
-$$ \sum_{j=1}^{n} x_{ij} \\, = \\, 1 \\qquad i \\, \in \\, n \\, , \\, i \\, \neq \\, j $$
-
-$$ \sum_{\substack{j=1 \\\ i \neq j}}^{n} f_{ji} - \sum_{\substack{j=1 \\\ i \neq j}}^{n} f_{ij} \\, = \\, 1 \\qquad i \\, \in \\, n \\, \\backslash \\{1\\} $$
-
-$$f_{ij} \\, \leq \\, (n - 1)x_{ij} \\qquad i \\, \in \\, n \\, , \\, j \\, \in \\, n $$
-
-$$ x_{ij} \\, \in \\\, \\{ 0, 1 \\} $$
-
-$$ f_{ij} \\, \in \\, \mathbb{N} $$
+```math
+\begin{aligned}
+  \min \; & \sum_{i=1}^{n} \sum_{\substack{j=1 \\ j \neq i}}^{n} c_{ij} x_{ij} \\
+  \text{s.t.} \; & \sum_{\substack{i=1 \\ j \neq i}}^{n} x_{ij} = 1, & j = 1,\ldots,n \\
+  & \sum_{\substack{j=1 \\ j \neq i}}^{n} x_{ij} = 1, & i = 1,\ldots,n \\
+  & \sum_{\substack{j=1 \\ j \neq i}}^{n} f_{ji}
+    - \sum_{\substack{j=1 \\ j \neq i}}^{n} f_{ij} = 1, 
+    & i \in N \setminus \{1\} \\
+  & f_{ij} \leq (n-1)x_{ij}, & i,j = 1,\ldots,n \\
+  & x_{ij} \in \{0,1\}, & i,j = 1,\ldots,n \\
+  & f_{ij} \in \mathbb{N}, & i,j = 1,\ldots,n
+\end{aligned}
+```
