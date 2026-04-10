@@ -32,17 +32,14 @@ $c_{ij}$ is the cost of agent $i$ perform task $j$
 
 $x_{ij}$ assumes value $1$ if task $j$ is assigned to agent $i$, $0$ otherwise
 
-<h4>Objective Function:</h4>
-
-$$ \min \left( \sum_{i=1}^{n}\sum_{j=1}^{n} c_{ij}x_{ij} \right) $$
-
-<h4>s.t.:</h4>
-
-$$ \sum_{i=1}^{n} x_{ij} \\, = \\,1 \qquad i \\, \in \\, n $$
-
-$$ \sum_{i=1}^{n} x_{ij} \\, = \\, 1 \qquad j \\,\in \\, n $$
-
-$$ x_{ij} \\, \in \\, \\{ 0, 1 \\} $$
+```math
+\begin{aligned}
+  \min \;& \sum_{i=1}^{n}\sum_{j=1}^{n} c_{ij}x_{ij} \\
+  \text{s.t.}\; & \sum_{i=1}^{n} x_{ij} = 1, & j = 1, \ldots, n \\
+                & \sum_{j=1}^{n} x_{ij} = 1, & i = 1, \ldots, n \\
+                & x_{ij} \in \{0,1\}, & i,j = 1, \ldots, n
+\end{aligned}
+```
 
 <!-- ######### BIN PACKING PROBLEM ######### -->
 <a name="binpacking"></a>
@@ -64,19 +61,15 @@ $w_{j}$ is the weight of item $j$
 $y_{i}$ assumes value $1$ if the bin $i$ is used, $0$ otherwise</br>
 $x_{ij}$ assumes value $1$ if the item $j$ is assigned to bin $i$, $0$ otherwise
 
-<h4>Objective Function:</h4>
-
-$$ \min \left( \sum_{i=1}^{n}y_{i} \right) $$
-
-<h4>s.t.:</h4>
-
-$$ \sum_{i=1}^{n} x_{ij} \\, = \\, 1 \qquad i \\, \in \\, n $$
-
-$$ \sum_{j=1}^{n} w_{j} x_{ij} \\, \leq \\, W y_{i} \qquad i \\, \in \\, n $$
-
-$$ x_{ij} \\,\in \\, \\{ 0, 1 \\} $$
-
-$$ y_{i} \\,\in \\, \\{ 0, 1 \\} $$
+```math
+\begin{aligned}
+  \min \; & \sum_{i=1}^{n} y_i \\
+  \text{s.t.} \; & \sum_{i=1}^{n} x_{ij} = 1, & j = 1, \ldots, n \\
+  & \sum_{j=1}^{n} w_j x_{ij} \leq W y_i, & i = 1, \ldots, n \\
+  & x_{ij} \in \{0,1\}, & i,j = 1, \ldots, n \\
+  & y_i \in \{0,1\}, & i = 1, \ldots, n
+\end{aligned}
+```
 
 ## Capacitated Vehicle Routing Problem
 <p>Given a set of customers with demands, a set of vehicles with capacities, and the costs of travel between customers. The problem consists of designing least-cost routes to serve all customers such that the total demand of each route does not exceed the vehicle's capacity.</p>
@@ -88,7 +81,7 @@ $$ y_{i} \\,\in \\, \\{ 0, 1 \\} $$
 $n$ is the number of customers</br>
 $N$ is the set of customers</br>
 $V$ is the set of all nodes in the network (customers and depot)</br>
-$K$ is the number of vehicles</br>
+$K$ is the set of vehicles</br>
 $Q$ is the capacity of the vehicles</br>
 $c_{ij}$ is the cost of travel from vertex $i$ to vertex $j$
 $d_{i}$ is the demand of customer $i$
@@ -98,27 +91,20 @@ $d_{i}$ is the demand of customer $i$
 $x_{ij}^{k}$ assumes value $1$ if arc from $i$ to $j$ is used by vehicle $k$, $0$ otherwise
 $y_{i}^{k}$ assumes value $1$ if customer $i$ is served by vehicle $k$, $0$ otherwise
 
-<h4>Objective Function:</h4>
-
-$$ \min  \sum_{k \in K} \sum_{i \in V} \sum_{j \in V} c_{ij}x^{k}_{ij} $$
-
-<h4>s.t.:</h4>
-
-$$ \sum_{k \in K} y_{i}^{k} \\, = \\, 1 \\qquad i \\, \in \\,N $$
-
-$$ \sum_{j \in V : j \neq i} x_{ij}^{k} \\, = y_{i}^{k} \\qquad i \\, \in \\,N, k \\, \in \\, K $$
-
-$$ \sum_{i \in V : i \neq j} x_{ij}^{k} \\, = y_{j}^{k} \\qquad j \\, \in \\,N, k \\, \in \\, K $$
-
-$$ \sum_{j \in V : j \neq 0} x_{0j}^{k} \\, = 1 \\qquad k \\, \in \\, K $$
-
-$$ \sum_{i \in V : i \neq 0} x_{i0}^{k} \\, = 1 \\qquad k \\, \in \\, K $$
-
-$$ \sum_{i \in N} d_{i} y_{i}^{k} \\, \leq \\, Q \\qquad k \\, \in \\, K $$
-
-$$\sum_{k \in K}\sum_{i \in S}\sum_{j \in S} x_{ij}^{k}
-\\, \leq |S| - \left\lceil \frac{\sum_{i \, \in \, S} q_i}{Q} \right\rceil \qquad S \\, \subset \\, N \\, , \\, 2 \\, \leq \\, |S| \\, \leq \\, \left \lfloor \frac{n}{2} \right \rfloor
-$$
+```math
+\begin{aligned}
+  \min \; & \sum_{k \in K} \sum_{i \in V} \sum_{j \in V} c_{ij} x_{ij}^{k} \\
+  \text{s.t.} \; & \sum_{k \in K} y_{i}^{k} = 1, & i \in N \\
+  & \sum_{j \in V : j \neq i} x_{ij}^{k} = y_{i}^{k}, & i \in N,\; k \in K \\
+  & \sum_{i \in V : i \neq j} x_{ij}^{k} = y_{j}^{k}, & j \in N,\; k \in K \\
+  & \sum_{j \in V : j \neq 0} x_{0j}^{k} = 1, & k \in K \\
+  & \sum_{i \in V : i \neq 0} x_{i0}^{k} = 1, & k \in K \\
+  & \sum_{i \in N} d_{i} y_{i}^{k} \leq Q, & k \in K \\
+  & \sum_{k \in K} \sum_{i \in S} \sum_{j \in S} x_{ij}^{k}
+    \leq |S| - \left\lceil \frac{\sum_{i \in S} q_i}{Q} \right\rceil, 
+    & S \subset N,\; 2 \leq |S| \leq \left\lfloor \frac{n}{2} \right\rfloor
+\end{aligned}
+```
 
 <!-- ######### CUTTING STOCK PROBLEM ######### -->
 <a name="cuttingstock"></a>
@@ -141,19 +127,15 @@ $b_{i}$ is the demand of each new smaller rod $b_{1}$, $b_{2}$, ..., $b_{m}$
 $y_{i}$ assumes value $1$ if the original rod $i$ is used, $0$ otherwise</br>
 $x_{ij}$ assumes the number of times that a new rod $j$ is cut in the original rod $i$
 
-<h4>Objective Function:</h4>
-
-$$ \min \left( \sum_{i=1}^{n}y_{i} \right) $$
-
-<h4>s.t.:</h4>
-
-$$ \sum_{i=1}^{n} x_{ij} \\, \geq \\, b_{j} \qquad j \\, \in \\, m $$
-
-$$ \sum_{j=1}^{m} l_{j} x_{ij} \\, \leq \\, Ly_{i} \qquad i \\, \in \\, n $$
-
-$$ x_{ij} \\, \in \\, \mathbb{Z} $$
-
-$$ y_{i} \\,\in \\, \\{ 0, 1 \\} $$
+```math
+  \begin{aligned}
+    \min \; & \sum_{i=1}^{n} y_i \\
+    \text{s.t.} \; & \sum_{i=1}^{n} x_{ij} \geq b_j, & j = 1, \ldots, m \\
+    & \sum_{j=1}^{m} l_j x_{ij} \leq L y_i, & i = 1, \ldots, n \\
+    & x_{ij} \in \mathbb{Z}, & i = 1, \ldots, n,\; j = 1, \ldots, m \\
+    & y_i \in \{0,1\}, & i = 1, \ldots, n
+  \end{aligned}
+```
 
 <!-- ######### DIAL-A-RIDE PROBLEM ######### -->
 <a name="darp"></a>
@@ -195,45 +177,29 @@ $u_{i}^{k} \in \mathbb{R_{+}}$ is the visit time of node $i$ by vehicle $k$</br>
 $w_{i}^{k} \in \mathbb{R_{+}}$ is the accumulalted demand up to node $i$ on the vehicle $k$
 $r_{i}^{k} \in \mathbb{R_{+}}$ is the ride time of request $i$ by vehicle $k$</br>
 
-<h4>Objective Function:</h4>
-
-$$ \min  \sum_{k \in K} \sum_{i \in V} \sum_{j \in V} c_{ij}x^{k}_{ij} $$
-
-<h4>s.t.:</h4>
-
-$$ \sum_{k \in K} \sum_{j \in V} x_{ij}^{k} \\, = \\, 1 \\qquad i \\, \in \\,P $$
-
-$$ \sum_{j \in V} x_{m_o, j}^{k} \\, = \\, 1 \\qquad k \\, \in \\,K $$
-
-$$ \sum_{j \in V} x_{i, m_e}^{k} \\, = \\, 1 \\qquad k \\, \in \\,K $$
-
-$$ \sum_{j \in V} x_{ij}^{k} \\, - \\,  \sum_{j \in V} x_{n+i,j}^{k} \\, = \\, 0 \\qquad i \\, \in \\,P, k \\, \in \\, K $$
-
-$$ \sum_{j \in V} x_{ji}^{k} \\, - \\,  \sum_{j \in V} x_{ij}^{k} \\, = \\, 0 \\qquad i \\, \in \\,P \\, \cup \\, D, k \\, \in \\, K $$
-
-$$u_{j}^{k} \geq (u_{i}^{k} + s_{i} + t_{ij}) - M(1 - x_{ij}^{k}) \\qquad i \\, \in \\, V, j \\, \in \\, V, \\, k \\, \in \\, K$$
-
-$$w_{j}^{k} \geq (w_{i}^{k} + q_{j}) - M'(1 - x_{ij}^{k}) \\qquad i \\, \in \\, V, j \\, \in \\, V, \\, k \\, \in \\, K$$
-
-$$r_{i}^{k} \geq u_{i+n}^{k} - (u_{i}^{k} + s_i) \\qquad i \\, \in \\, P, \\, k \\, \in \\, K$$
-
-$$u_{m_e}^{k} - u_{m_o}^{k} \leq T \\qquad k \\, \in \\, K$$
-
-$$e_i \leq u_{i}^{k} \leq l_i \\qquad i \\, \in \\, V, \\, k \\, \in \\, K$$
-
-$$u_{i+n}^{k} \geq u_{i}^{k} \\qquad i \\, \in \\, P, \\, k \\, \in \\, K$$
-
-$$t_{i,i+n} \leq r_{i}^{k} \leq L \\qquad i \\, \in \\, P, \\, k \\, \in \\, K$$
-
-$$\max\\{0, q_i \\} \leq w_{i}^{k} \leq \min \\{C, C + q_i \\} \\qquad i \\, \in \\, V, \\, k \\, \in \\, K$$
-
-$$ x_{ij}^{k} \\, \in \\, \\{ 0, 1 \\} \\qquad i \\, \in \\, V, j \\, \in \\, V, \\, k \\, \in \\, K $$
-
-$$ u_{i}^{k} \\, \geq \\, 0 \\qquad i \\, \in \\, V, \\, k \\, \in \\, K $$
-
-$$ w_{i}^{k} \\, \geq \\, 0 \\qquad i \\, \in \\, V, \\, k \\, \in \\, K $$
-
-$$ r_{i}^{k} \\, \geq \\, 0 \\qquad i \\, \in \\, P, \\, k \\, \in \\, K $$
+```math
+  \begin{aligned}
+  \min \; & \sum_{k \in K} \sum_{i \in V} \sum_{j \in V} c_{ij} x_{ij}^{k} \\
+  \text{s.t.} \quad
+  & \sum_{k \in K} \sum_{j \in V} x_{ij}^{k} = 1, & i \in P \\
+  & \sum_{j \in V} x_{m_o, j}^{k} = 1, & k \in K \\
+  & \sum_{j \in V} x_{i, m_e}^{k} = 1, & k \in K \\
+  & \sum_{j \in V} x_{ij}^{k} - \sum_{j \in V} x_{n+i,j}^{k} = 0, & i \in P,\; k \in K \\
+  & \sum_{j \in V} x_{ji}^{k} - \sum_{j \in V} x_{ij}^{k} = 0, & i \in P \cup D,\; k \in K \\
+  & u_{j}^{k} \geq (u_{i}^{k} + s_{i} + t_{ij}) - M(1 - x_{ij}^{k}), & i,j \in V,\; k \in K \\
+  & w_{j}^{k} \geq (w_{i}^{k} + q_{j}) - M'(1 - x_{ij}^{k}), & i,j \in V,\; k \in K \\
+  & r_{i}^{k} \geq u_{i+n}^{k} - (u_{i}^{k} + s_i), & i \in P,\; k \in K \\
+  & u_{m_e}^{k} - u_{m_o}^{k} \leq T, & k \in K \\
+  & e_i \leq u_{i}^{k} \leq l_i, & i \in V,\; k \in K \\
+  & u_{i+n}^{k} \geq u_{i}^{k}, & i \in P,\; k \in K \\
+  & t_{i,i+n} \leq r_{i}^{k} \leq L, & i \in P,\; k \in K \\
+  & \max\{0, q_i\} \leq w_{i}^{k} \leq \min\{C, C + q_i\}, & i \in V,\; k \in K \\
+  & x_{ij}^{k} \in \{0,1\}, & i,j \in V,\; k \in K \\
+  & u_{i}^{k} \geq 0, & i \in V,\; k \in K \\
+  & w_{i}^{k} \geq 0, & i \in V,\; k \in K \\
+  & r_{i}^{k} \geq 0, & i \in P,\; k \in K
+\end{aligned}
+```
 
 <!-- ######### FACILITY LOCATION PROBLEM ######### -->
 <a name="facilitylocation"></a>
@@ -245,8 +211,8 @@ $$ r_{i}^{k} \\, \geq \\, 0 \\qquad i \\, \in \\, P, \\, k \\, \in \\, K $$
 
 <h4>Data:</h4>
 
-$I$ is the number of potential facilities</br>
-$J$ is the number of clients</br>
+$I$ is the set of potential facilities</br>
+$J$ is the set of clients</br>
 $f_{i}$ is the fixed cost of open facility $i$</br>
 $c_{ij}$ is the fixed cost of assign client $j$ to facilty $i$</br>
 $q_{j}$ is the themand of client $j$</br>
@@ -257,19 +223,15 @@ $Q_{i}$ is the capacity of facility $i$</br>
 $y_{i}$ assumes value $1$ if facility $i$ is opened, $0$ otherwise</br>
 $x_{ij}$ assumes value $1$ if client $j$ is assigned to facility $i$, $0$ otherwise
 
-<h4>Objective Function:</h4>
-
-$$ \min \left( \sum_{i=1}^{I}f_{i}y_{i} + \sum_{i=1}^{I}\sum_{j=1}^{J}c_{ij}x_{ij}\right) $$
-
-<h4>s.t.:</h4>
-
-$$ \sum_{i=1}^{I} x_{ij} \\, = \\, 1 \qquad j \\, \in \\, J $$
-
-$$ \sum_{j=1}^{J} q_{j}x_{ij} \\, \leq\\,  Q_{i}y_{i} \qquad i \\, \in \\, I $$
-
-$$ y_{i} \\, \in \\, \\{ 0, 1 \\} $$
-
-$$ x_{ij} \\, \in \\, \\{ 0, 1 \\} $$
+```math
+\begin{aligned}
+  \min \; & \sum_{i=1}^{I} f_i y_i + \sum_{i=1}^{I} \sum_{j=1}^{J} c_{ij} x_{ij} \\
+  \text{s.t.} \; & \sum_{i=1}^{I} x_{ij} = 1, & j \in J \\
+  & \sum_{j=1}^{J} q_j x_{ij} \leq Q_i y_i, & i \in I \\
+  & y_i \in \{0,1\}, & i \in I \\
+  & x_{ij} \in \{0,1\}, & i \in I,\; j \in J
+\end{aligned}
+```
 
 <!-- ######### KNAPSACK PROBLEM ######### -->
 <a name="knapsack"></a>
@@ -291,16 +253,13 @@ $W$ is the capacity of the knapsack</br>
 
 $x_{i}$ assumes value $1$ if the item $i$ is in knapsack, $0$ otherwise
 
-<h4>Objective Function:</h4>
-
-$$ \max \left( \sum_{i=1}^{n}v_{i}x_{i} \right) $$
-
-<h4>s.t.:</h4>
-
-$$ \sum_{i=1}^{n} w_{i}x_{i} \\, \leq \\, W $$
-
-$$ x_{i} \\, \in \\, \\{ 0, 1 \\} $$
-
+```math
+\begin{aligned}
+  \max \; & \sum_{i=1}^{n} v_i x_i \\
+  \text{s.t.} \; & \sum_{i=1}^{n} w_i x_i \leq W \\
+  & x_i \in \{0,1\}, & i = 1,\ldots,n
+\end{aligned}
+```
 
 <!-- ######### SET PARTITIONING PROBLEM ######### -->
 <a name="sp"></a>
@@ -321,15 +280,13 @@ $R_{i}$ is a subset of $S$ that has element $i$
 
 $y_{j}$ assumes value $1$ if the subset $j$ is part of partitioning, $0$ otherwise
 
-<h4>Objective Function:</h4>
-
-$$ \min \left( \sum_{j=1}^{n}y_{j} \right) $$
-
-<h4>s.t.:</h4>
-
-$$ \sum_{j \\, \in \\, R_{i}} y_{j} \\, = \\, 1 \\qquad i \\, \in \\, S $$
-
-$$ y_{i} \\, \in \\, \\{ 0, 1 \\} $$
+```math
+\begin{aligned}
+  \min \; & \sum_{j=1}^{n} y_j \\
+  \text{s.t.} \; &\sum_{j \in R_i} y_j = 1, & i \in S \\
+  & y_i \in \{0,1\}, & i = 1,\ldots,n
+\end{aligned}
+```
 
 <!-- ######### TRAVELLING SALESMAN PROBLEM ######### -->
 <a name="tsp"></a>
@@ -353,19 +310,16 @@ $c_{ij}$ is the cost of travel from vertex $i$ to vertex $j$
 
 $x_{ij}$ assumes value $1$ if arc from $i$ to $j$ is used, $0$ otherwise
 
-<h4>Objective Function:</h4>
-
-$$ \min \left( \sum_{i=1}^{n} \sum_{\substack{j=1 \\\ i \neq j}}^{n} c_{ij}x_{ij} \right) $$
-
-<h4>s.t.:</h4>
-
-$$ \sum_{i=1}^{n} x_{ij} \\, = \\, 1 \\qquad j \\, \in \\, n \\, , \\, j \\, \neq \\, i $$
-
-$$ \sum_{j=1}^{n} x_{ij} \\, = \\, 1 \\qquad i \\, \in \\, n \\, , \\, i \\, \neq \\, j $$
-
-$$ \sum_{i \\, \in \\, S}\sum_{j \\, \in \\, S} x_{ij} \\, \leq \\, |S| - 1 \\qquad S \\, \subset \\, N \\, , \\, 2 \\, \leq \\,|S| - 1| \\, \leq \\, \left \lfloor \frac{n}{2}  \right \rfloor$$
-
-$$ x_{ij} \\, \in \\, \\{ 0, 1 \\} $$
+```math
+\begin{aligned}
+  \min \; & \sum_{i=1}^{n} \sum_{\substack{j=1 \\ j \neq i}}^{n} c_{ij} x_{ij} \\
+  \text{s.t.} \; & \sum_{\substack{i=1 \\ j \neq i}}^{n} x_{ij} = 1, & j = 1,\ldots,n \\
+  & \sum_{\substack{j=1 \\ j \neq i}}^{n} x_{ij} = 1, & i = 1,\ldots,n \\
+  & \sum_{i \in S} \sum_{j \in S} x_{ij} \leq |S| - 1, 
+    & S \subset N,\; 2 \leq |S| \leq \left\lfloor \frac{n}{2} \right\rfloor \\
+  & x_{ij} \in \{0,1\}, & i,j = 1,\ldots,n,\; i \neq j
+\end{aligned}
+```
 
 * Mixed Integer Programming - Flow Variable
 
@@ -381,20 +335,16 @@ $c_{ij}$ is the cost of travel from vertex $i$ to vertex $j$
 $x_{ij}$ assumes value $1$ if arc from $i$ to $j$ is used, $0$ otherwise</br>
 $f_{ij}$ assumes the amount of flow from vertex $i$ to $j$
 
-<h4>Objective Function:</h4>
-
-$$ \min \left( \sum_{i=1}^{n} \sum_{\substack{j=1 \\\ i \neq j}}^{n} c_{ij}x_{ij} \right) $$
-
-<h4>s.t.:</h4>
-
-$$ \sum_{i=1}^{n} x_{ij} \\, = \\, 1 \\qquad j \\, \in \\, n \\, , \\, j \\, \neq \\, i $$
-
-$$ \sum_{j=1}^{n} x_{ij} \\, = \\, 1 \\qquad i \\, \in \\, n \\, , \\, i \\, \neq \\, j $$
-
-$$ \sum_{\substack{j=1 \\\ i \neq j}}^{n} f_{ji} - \sum_{\substack{j=1 \\\ i \neq j}}^{n} f_{ij} \\, = \\, 1 \\qquad i \\, \in \\, n \\, \\backslash \\{1\\} $$
-
-$$f_{ij} \\, \leq \\, (n - 1)x_{ij} \\qquad i \\, \in \\, n \\, , \\, j \\, \in \\, n $$
-
-$$ x_{ij} \\, \in \\\, \\{ 0, 1 \\} $$
-
-$$ f_{ij} \\, \in \\, \mathbb{N} $$
+```math
+\begin{aligned}
+  \min \; & \sum_{i=1}^{n} \sum_{\substack{j=1 \\ j \neq i}}^{n} c_{ij} x_{ij} \\
+  \text{s.t.} \; & \sum_{\substack{i=1 \\ j \neq i}}^{n} x_{ij} = 1, & j = 1,\ldots,n \\
+  & \sum_{\substack{j=1 \\ j \neq i}}^{n} x_{ij} = 1, & i = 1,\ldots,n \\
+  & \sum_{\substack{j=1 \\ j \neq i}}^{n} f_{ji}
+    - \sum_{\substack{j=1 \\ j \neq i}}^{n} f_{ij} = 1, 
+    & i \in N \setminus \{1\} \\
+  & f_{ij} \leq (n-1)x_{ij}, & i,j = 1,\ldots,n \\
+  & x_{ij} \in \{0,1\}, & i,j = 1,\ldots,n \\
+  & f_{ij} \in \mathbb{N}, & i,j = 1,\ldots,n
+\end{aligned}
+```
