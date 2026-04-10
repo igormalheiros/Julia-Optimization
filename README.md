@@ -64,8 +64,7 @@ $x_{ij}$ assumes value $1$ if the item $j$ is assigned to bin $i$, $0$ otherwise
 ```math
 \begin{aligned}
   \min \; & \sum_{i=1}^{n} y_i \\
-  \text{s.t.} \quad 
-  & \sum_{i=1}^{n} x_{ij} = 1, & j = 1, \ldots, n \\
+  \text{s.t.} \; & \sum_{i=1}^{n} x_{ij} = 1, & j = 1, \ldots, n \\
   & \sum_{j=1}^{n} w_j x_{ij} \leq W y_i, & i = 1, \ldots, n \\
   & x_{ij} \in \{0,1\}, & i,j = 1, \ldots, n \\
   & y_i \in \{0,1\}, & i = 1, \ldots, n
@@ -95,8 +94,7 @@ $y_{i}^{k}$ assumes value $1$ if customer $i$ is served by vehicle $k$, $0$ othe
 ```math
 \begin{aligned}
   \min \; & \sum_{k \in K} \sum_{i \in V} \sum_{j \in V} c_{ij} x_{ij}^{k} \\
-  \text{s.t.} \quad 
-  & \sum_{k \in K} y_{i}^{k} = 1, & i \in N \\
+  \text{s.t.} \; & \sum_{k \in K} y_{i}^{k} = 1, & i \in N \\
   & \sum_{j \in V : j \neq i} x_{ij}^{k} = y_{i}^{k}, & i \in N,\; k \in K \\
   & \sum_{i \in V : i \neq j} x_{ij}^{k} = y_{j}^{k}, & j \in N,\; k \in K \\
   & \sum_{j \in V : j \neq 0} x_{0j}^{k} = 1, & k \in K \\
@@ -129,19 +127,15 @@ $b_{i}$ is the demand of each new smaller rod $b_{1}$, $b_{2}$, ..., $b_{m}$
 $y_{i}$ assumes value $1$ if the original rod $i$ is used, $0$ otherwise</br>
 $x_{ij}$ assumes the number of times that a new rod $j$ is cut in the original rod $i$
 
-<h4>Objective Function:</h4>
-
-$$ \min \left( \sum_{i=1}^{n}y_{i} \right) $$
-
-<h4>s.t.:</h4>
-
-$$ \sum_{i=1}^{n} x_{ij} \\, \geq \\, b_{j} \qquad j \\, \in \\, m $$
-
-$$ \sum_{j=1}^{m} l_{j} x_{ij} \\, \leq \\, Ly_{i} \qquad i \\, \in \\, n $$
-
-$$ x_{ij} \\, \in \\, \mathbb{Z} $$
-
-$$ y_{i} \\,\in \\, \\{ 0, 1 \\} $$
+```math
+  \begin{aligned}
+    \min \; & \sum_{i=1}^{n} y_i \\
+    \text{s.t.} \; & \sum_{i=1}^{n} x_{ij} \geq b_j, & j = 1, \ldots, m \\
+    & \sum_{j=1}^{m} l_j x_{ij} \leq L y_i, & i = 1, \ldots, n \\
+    & x_{ij} \in \mathbb{Z}, & i = 1, \ldots, n,\; j = 1, \ldots, m \\
+    & y_i \in \{0,1\}, & i = 1, \ldots, n
+  \end{aligned}
+```
 
 <!-- ######### DIAL-A-RIDE PROBLEM ######### -->
 <a name="darp"></a>
@@ -183,45 +177,29 @@ $u_{i}^{k} \in \mathbb{R_{+}}$ is the visit time of node $i$ by vehicle $k$</br>
 $w_{i}^{k} \in \mathbb{R_{+}}$ is the accumulalted demand up to node $i$ on the vehicle $k$
 $r_{i}^{k} \in \mathbb{R_{+}}$ is the ride time of request $i$ by vehicle $k$</br>
 
-<h4>Objective Function:</h4>
-
-$$ \min  \sum_{k \in K} \sum_{i \in V} \sum_{j \in V} c_{ij}x^{k}_{ij} $$
-
-<h4>s.t.:</h4>
-
-$$ \sum_{k \in K} \sum_{j \in V} x_{ij}^{k} \\, = \\, 1 \\qquad i \\, \in \\,P $$
-
-$$ \sum_{j \in V} x_{m_o, j}^{k} \\, = \\, 1 \\qquad k \\, \in \\,K $$
-
-$$ \sum_{j \in V} x_{i, m_e}^{k} \\, = \\, 1 \\qquad k \\, \in \\,K $$
-
-$$ \sum_{j \in V} x_{ij}^{k} \\, - \\,  \sum_{j \in V} x_{n+i,j}^{k} \\, = \\, 0 \\qquad i \\, \in \\,P, k \\, \in \\, K $$
-
-$$ \sum_{j \in V} x_{ji}^{k} \\, - \\,  \sum_{j \in V} x_{ij}^{k} \\, = \\, 0 \\qquad i \\, \in \\,P \\, \cup \\, D, k \\, \in \\, K $$
-
-$$u_{j}^{k} \geq (u_{i}^{k} + s_{i} + t_{ij}) - M(1 - x_{ij}^{k}) \\qquad i \\, \in \\, V, j \\, \in \\, V, \\, k \\, \in \\, K$$
-
-$$w_{j}^{k} \geq (w_{i}^{k} + q_{j}) - M'(1 - x_{ij}^{k}) \\qquad i \\, \in \\, V, j \\, \in \\, V, \\, k \\, \in \\, K$$
-
-$$r_{i}^{k} \geq u_{i+n}^{k} - (u_{i}^{k} + s_i) \\qquad i \\, \in \\, P, \\, k \\, \in \\, K$$
-
-$$u_{m_e}^{k} - u_{m_o}^{k} \leq T \\qquad k \\, \in \\, K$$
-
-$$e_i \leq u_{i}^{k} \leq l_i \\qquad i \\, \in \\, V, \\, k \\, \in \\, K$$
-
-$$u_{i+n}^{k} \geq u_{i}^{k} \\qquad i \\, \in \\, P, \\, k \\, \in \\, K$$
-
-$$t_{i,i+n} \leq r_{i}^{k} \leq L \\qquad i \\, \in \\, P, \\, k \\, \in \\, K$$
-
-$$\max\\{0, q_i \\} \leq w_{i}^{k} \leq \min \\{C, C + q_i \\} \\qquad i \\, \in \\, V, \\, k \\, \in \\, K$$
-
-$$ x_{ij}^{k} \\, \in \\, \\{ 0, 1 \\} \\qquad i \\, \in \\, V, j \\, \in \\, V, \\, k \\, \in \\, K $$
-
-$$ u_{i}^{k} \\, \geq \\, 0 \\qquad i \\, \in \\, V, \\, k \\, \in \\, K $$
-
-$$ w_{i}^{k} \\, \geq \\, 0 \\qquad i \\, \in \\, V, \\, k \\, \in \\, K $$
-
-$$ r_{i}^{k} \\, \geq \\, 0 \\qquad i \\, \in \\, P, \\, k \\, \in \\, K $$
+```math
+  \begin{aligned}
+  \min \; & \sum_{k \in K} \sum_{i \in V} \sum_{j \in V} c_{ij} x_{ij}^{k} \\
+  \text{s.t.} \quad
+  & \sum_{k \in K} \sum_{j \in V} x_{ij}^{k} = 1, & i \in P \\
+  & \sum_{j \in V} x_{m_o, j}^{k} = 1, & k \in K \\
+  & \sum_{j \in V} x_{i, m_e}^{k} = 1, & k \in K \\
+  & \sum_{j \in V} x_{ij}^{k} - \sum_{j \in V} x_{n+i,j}^{k} = 0, & i \in P,\; k \in K \\
+  & \sum_{j \in V} x_{ji}^{k} - \sum_{j \in V} x_{ij}^{k} = 0, & i \in P \cup D,\; k \in K \\
+  & u_{j}^{k} \geq (u_{i}^{k} + s_{i} + t_{ij}) - M(1 - x_{ij}^{k}), & i,j \in V,\; k \in K \\
+  & w_{j}^{k} \geq (w_{i}^{k} + q_{j}) - M'(1 - x_{ij}^{k}), & i,j \in V,\; k \in K \\
+  & r_{i}^{k} \geq u_{i+n}^{k} - (u_{i}^{k} + s_i), & i \in P,\; k \in K \\
+  & u_{m_e}^{k} - u_{m_o}^{k} \leq T, & k \in K \\
+  & e_i \leq u_{i}^{k} \leq l_i, & i \in V,\; k \in K \\
+  & u_{i+n}^{k} \geq u_{i}^{k}, & i \in P,\; k \in K \\
+  & t_{i,i+n} \leq r_{i}^{k} \leq L, & i \in P,\; k \in K \\
+  & \max\{0, q_i\} \leq w_{i}^{k} \leq \min\{C, C + q_i\}, & i \in V,\; k \in K \\
+  & x_{ij}^{k} \in \{0,1\}, & i,j \in V,\; k \in K \\
+  & u_{i}^{k} \geq 0, & i \in V,\; k \in K \\
+  & w_{i}^{k} \geq 0, & i \in V,\; k \in K \\
+  & r_{i}^{k} \geq 0, & i \in P,\; k \in K
+\end{aligned}
+```
 
 <!-- ######### FACILITY LOCATION PROBLEM ######### -->
 <a name="facilitylocation"></a>
