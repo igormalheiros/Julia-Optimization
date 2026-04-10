@@ -32,17 +32,12 @@ $c_{ij}$ is the cost of agent $i$ perform task $j$
 
 $x_{ij}$ assumes value $1$ if task $j$ is assigned to agent $i$, $0$ otherwise
 
-<h4>Objective Function:</h4>
-
-$$ \min \left( \sum_{i=1}^{n}\sum_{j=1}^{n} c_{ij}x_{ij} \right) $$
-
-<h4>s.t.:</h4>
-
-$$ \sum_{i=1}^{n} x_{ij} \\, = \\,1 \qquad i \\, \in \\, n $$
-
-$$ \sum_{i=1}^{n} x_{ij} \\, = \\, 1 \qquad j \\,\in \\, n $$
-
-$$ x_{ij} \\, \in \\, \\{ 0, 1 \\} $$
+```math
+  \min \;& \left( \sum_{i=1}^{n}\sum_{j=1}^{n} c_{ij}x_{ij} \right)\\
+  \mbox{s.t.}\; & \sum_{i=1}^{n} x_{ij} = 1, & j = 1, \ldots, n \\
+  & \sum_{j=1}^{n} x_{ij} = 1, & i = 1, j = 1, \ldots, n \\
+  & x_{ij} \in \{0, 1\}, & i = 1, \ldots, n, j = 1, \ldots, n
+```
 
 <!-- ######### BIN PACKING PROBLEM ######### -->
 <a name="binpacking"></a>
