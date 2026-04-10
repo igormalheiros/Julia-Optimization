@@ -33,10 +33,12 @@ $c_{ij}$ is the cost of agent $i$ perform task $j$
 $x_{ij}$ assumes value $1$ if task $j$ is assigned to agent $i$, $0$ otherwise
 
 ```math
-  \min \;& \left( \sum_{i=1}^{n}\sum_{j=1}^{n} c_{ij}x_{ij} \right)\\
-  \mbox{s.t.}\; & \sum_{i=1}^{n} x_{ij} = 1, & j = 1, \ldots, n \\
-  & \sum_{j=1}^{n} x_{ij} = 1, & i = 1, j = 1, \ldots, n \\
-  & x_{ij} \in \{0, 1\}, & i = 1, \ldots, n, j = 1, \ldots, n
+\begin{aligned}
+  \min \;& \sum_{i=1}^{n}\sum_{j=1}^{n} c_{ij}x_{ij} \\
+  \text{s.t.}\; & \sum_{i=1}^{n} x_{ij} = 1, & j = 1, \ldots, n \\
+                & \sum_{j=1}^{n} x_{ij} = 1, & i = 1, \ldots, n \\
+                & x_{ij} \in \{0,1\}, & i,j = 1, \ldots, n
+\end{aligned}
 ```
 
 <!-- ######### BIN PACKING PROBLEM ######### -->
@@ -59,19 +61,16 @@ $w_{j}$ is the weight of item $j$
 $y_{i}$ assumes value $1$ if the bin $i$ is used, $0$ otherwise</br>
 $x_{ij}$ assumes value $1$ if the item $j$ is assigned to bin $i$, $0$ otherwise
 
-<h4>Objective Function:</h4>
-
-$$ \min \left( \sum_{i=1}^{n}y_{i} \right) $$
-
-<h4>s.t.:</h4>
-
-$$ \sum_{i=1}^{n} x_{ij} \\, = \\, 1 \qquad i \\, \in \\, n $$
-
-$$ \sum_{j=1}^{n} w_{j} x_{ij} \\, \leq \\, W y_{i} \qquad i \\, \in \\, n $$
-
-$$ x_{ij} \\,\in \\, \\{ 0, 1 \\} $$
-
-$$ y_{i} \\,\in \\, \\{ 0, 1 \\} $$
+```math
+\begin{aligned}
+  \min \; & \sum_{i=1}^{n} y_i \\
+  \text{s.t.} \quad 
+  & \sum_{i=1}^{n} x_{ij} = 1, & j = 1, \ldots, n \\
+  & \sum_{j=1}^{n} w_j x_{ij} \leq W y_i, & i = 1, \ldots, n \\
+  & x_{ij} \in \{0,1\}, & i,j = 1, \ldots, n \\
+  & y_i \in \{0,1\}, & i = 1, \ldots, n
+\end{aligned}
+```
 
 ## Capacitated Vehicle Routing Problem
 <p>Given a set of customers with demands, a set of vehicles with capacities, and the costs of travel between customers. The problem consists of designing least-cost routes to serve all customers such that the total demand of each route does not exceed the vehicle's capacity.</p>
@@ -83,7 +82,7 @@ $$ y_{i} \\,\in \\, \\{ 0, 1 \\} $$
 $n$ is the number of customers</br>
 $N$ is the set of customers</br>
 $V$ is the set of all nodes in the network (customers and depot)</br>
-$K$ is the number of vehicles</br>
+$K$ is the set of vehicles</br>
 $Q$ is the capacity of the vehicles</br>
 $c_{ij}$ is the cost of travel from vertex $i$ to vertex $j$
 $d_{i}$ is the demand of customer $i$
@@ -93,27 +92,21 @@ $d_{i}$ is the demand of customer $i$
 $x_{ij}^{k}$ assumes value $1$ if arc from $i$ to $j$ is used by vehicle $k$, $0$ otherwise
 $y_{i}^{k}$ assumes value $1$ if customer $i$ is served by vehicle $k$, $0$ otherwise
 
-<h4>Objective Function:</h4>
-
-$$ \min  \sum_{k \in K} \sum_{i \in V} \sum_{j \in V} c_{ij}x^{k}_{ij} $$
-
-<h4>s.t.:</h4>
-
-$$ \sum_{k \in K} y_{i}^{k} \\, = \\, 1 \\qquad i \\, \in \\,N $$
-
-$$ \sum_{j \in V : j \neq i} x_{ij}^{k} \\, = y_{i}^{k} \\qquad i \\, \in \\,N, k \\, \in \\, K $$
-
-$$ \sum_{i \in V : i \neq j} x_{ij}^{k} \\, = y_{j}^{k} \\qquad j \\, \in \\,N, k \\, \in \\, K $$
-
-$$ \sum_{j \in V : j \neq 0} x_{0j}^{k} \\, = 1 \\qquad k \\, \in \\, K $$
-
-$$ \sum_{i \in V : i \neq 0} x_{i0}^{k} \\, = 1 \\qquad k \\, \in \\, K $$
-
-$$ \sum_{i \in N} d_{i} y_{i}^{k} \\, \leq \\, Q \\qquad k \\, \in \\, K $$
-
-$$\sum_{k \in K}\sum_{i \in S}\sum_{j \in S} x_{ij}^{k}
-\\, \leq |S| - \left\lceil \frac{\sum_{i \, \in \, S} q_i}{Q} \right\rceil \qquad S \\, \subset \\, N \\, , \\, 2 \\, \leq \\, |S| \\, \leq \\, \left \lfloor \frac{n}{2} \right \rfloor
-$$
+```math
+\begin{aligned}
+  \min \; & \sum_{k \in K} \sum_{i \in V} \sum_{j \in V} c_{ij} x_{ij}^{k} \\
+  \text{s.t.} \quad 
+  & \sum_{k \in K} y_{i}^{k} = 1, & i \in N \\
+  & \sum_{j \in V : j \neq i} x_{ij}^{k} = y_{i}^{k}, & i \in N,\; k \in K \\
+  & \sum_{i \in V : i \neq j} x_{ij}^{k} = y_{j}^{k}, & j \in N,\; k \in K \\
+  & \sum_{j \in V : j \neq 0} x_{0j}^{k} = 1, & k \in K \\
+  & \sum_{i \in V : i \neq 0} x_{i0}^{k} = 1, & k \in K \\
+  & \sum_{i \in N} d_{i} y_{i}^{k} \leq Q, & k \in K \\
+  & \sum_{k \in K} \sum_{i \in S} \sum_{j \in S} x_{ij}^{k}
+    \leq |S| - \left\lceil \frac{\sum_{i \in S} q_i}{Q} \right\rceil, 
+    & S \subset N,\; 2 \leq |S| \leq \left\lfloor \frac{n}{2} \right\rfloor
+\end{aligned}
+```
 
 <!-- ######### CUTTING STOCK PROBLEM ######### -->
 <a name="cuttingstock"></a>
